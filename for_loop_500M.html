@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>浏览器for循环空转5亿次耗时</title>
+	<meta http-equiv="content-type" type="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+</head>
+<style type="text/css">
+
+* {background: #000;color:#0f0;}
+p {text-align: center;}
+a {color:inherit;}
+
+#container {
+	border: 1px solid #0f0;
+	padding: 20px;
+}
+
+#res {
+	font-size: 32px;
+}
+
+#btn {
+	display: block;
+	width: 200px;
+	height: 32px;
+	line-height: 32px;
+	background: #030;
+	text-align: center;
+	text-decoration: none;
+	margin: 0 auto;
+	border: 1px solid #0f0;
+	border-radius: 32px;
+}
+#btn:active {
+	background: #000;
+}
+
+</style>
+<body>
+
+<p>浏览器for循环空转5亿次耗时</p>
+
+<div id="container">
+<pre style="font-size:12px;">
+var times = 500000000;
+var start = (new Date()).getTime();
+
+for(var i=0; i&lt;times; i++) {
+  //..
+}
+
+var end = (new Date()).getTime();
+
+var interval = end - start;
+
+console.log(interval/1000 +'s');
+</pre>
+</div>
+
+<br>
+
+<p>--- Time used ---</p>
+<p><span id="res">0.000s</span></p>
+<br>
+<a id="btn" href="javascript:;" onclick="func()">Try again</a>
+<p style="font-size:12px;margin-top:20px;color:#050;"><a href="//jisuowei.com">jisuowei.com</a></p>
+
+</body>
+</html>
+<script>
+
+function func() {
+
+	document.getElementById('btn').innerHTML = 'looping..';
+
+	setTimeout(function(){
+
+		var times = 500000000;
+		var start = (new Date()).getTime();
+
+		for(var i=0; i<times; i++) {
+
+		}
+
+		var end = (new Date()).getTime();
+
+		var interval = end - start;
+
+		document.getElementById('res').innerHTML = interval/1000 +'s';
+		document.getElementById('btn').innerHTML = 'Try again';
+
+	}, 50);
+}
+
+func();
+
+
+</script>

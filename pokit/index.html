@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>POKIT-自制阅读-奇斯威克</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=1200, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+	<link href="../../static/img/favicon.ico" rel="shortcut icon">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+
+
+	<div id="Jihuajiyi"></div>
+	<div id="icIBahyI-scbbtn"></div>
+	<div id="icIBahyI-morebtn"></div>
+	<div id="more_info"></div>
+
+
+	<div class="pokit-paper">
+
+
+		<div class="pokit-catalog J_catalogBox">
+
+			<div class="catalog-list">
+
+				<h4 class="list-title J_catalogTitle"></h4>
+
+				<div class="list-box">
+
+					<ul class="J_pokitList"></ul>
+					
+				</div>
+				
+			</div>
+		
+		</div><!-- pokit-catalog -->
+
+
+
+		<a class="pokit-player"></a>
+
+		
+		<h3 class="pokit-title J_pokitTitle"></h3>
+
+
+		<h4 class="pokit-mixed-title J_pokitMixedTitle"></h4>
+		<div class="pokit-mixed clearfix">
+			<div class="pokit-text J_pokitText"></div>
+			<div class="pokit-image J_pokitImage"></div>
+		</div>
+
+
+		<h4 class="pokit-words-title J_pokitWordsTitle"></h4>
+		<div class="pokit-words clearfix J_pokitWords"></div>
+
+
+		<h4 class="pokit-notes-title J_pokitNotesTitle"></h4>
+		<div class="pokit-notes J_pokitNotes"></div>
+
+
+		<h4 class="pokit-translation-title J_pokitTranslationTitle"></h4>
+		<div class="pokit-translation J_pokitTranslation"></div>
+
+
+		<div class="pokit-id">ID: <span class="J_pokitId"></span> JISUOWEI.COM</div>
+
+
+	</div><!-- .pokit-paper -->
+
+
+	<div class="pokit-sider J_pokitSider">
+		<a title="目录" class="list J_showCatalog"></a>
+		<a title="上一张" class="prev"></a>
+		<a title="下一张" class="next"></a>
+	</div>
+
+
+	<div id="jiloading" class="ji-loading">
+		<div class="dot dot1"></div>
+		<div class="dot dot2"></div>
+		<div class="dot dot3"></div>
+		<div class="dot dot4"></div>
+	</div>
+
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+	
+(function() {
+
+	String.prototype.toHTMLEntity = function () {
+		let arr = this.split('');
+		res = '';
+
+		arr.forEach(function (o, i) {
+			res += '&#' + o.charCodeAt() + ';';
+		});
+
+		return res;
+	}
+
+	let pokit = {
+
+		data: {
+			titles: {
+				nce: {
+					catalog: 'New Concept English',
+					mixed: 'First listen and then answer the question.<br>听录音， 然后回答以下问题。',
+					words: 'New words and expressions 生词和短语',
+					notes: 'Notes on the text 课文注释',
+					translation: '参考译文'
+				},
+				nhj_zz: {
+					catalog: '南华经 庄子',
+					mixed: '原文',
+					words: '正音',
+					notes: '注疏',
+					translation: '译文'
+				},
+			}
+		},
+
+		init: function() {
+
+			let name = 'nce';
+
+			$('head').append('<link rel="stylesheet" type="text/css" href="css/pokit_'+ name +'.css">');
+
+			let title = this.data.titles[name];
+			$('.J_catalogTitle').html(title.catalog);
+			$('.J_pokitMixedTitle').html(title.mixed);
+			$('.J_pokitWordsTitle').html(title.words);
+			$('.J_pokitNotesTitle').html(title.notes);
+			$('.J_pokitTranslationTitle').html(title.translation);
+
+			this.initEvent();
+			this.getPokitListByName(name);
+		},
+
+
+		// 事件代理
+		initEvent: function() {
+
+			let that = this;
+
+			$('body')
+				// 目录
+				.on('click', '.J_showCatalog', function() {
+					$(this).toggleClass('on');
+					$('.J_catalogBox').fadeToggle(300).toggleClass('on');
+				})
+				.on('click', '.J_showCatalog a', function() {
+
+				})
+
+				// 跳转
+				.on('click', '.J_pokitList a', function() {
+					let $item = $(this),
+						id    = $item.data('id');
+
+					$item.addClass('on').siblings().removeClass('on');
+					$('.J_showCatalog').removeClass('on');
+					$('.J_catalogBox').fadeOut(300).removeClass('on');
+
+					that.getPokitById(id);
+				})
+
+				// 上下页
+				.on('click', '.J_pokitSider .prev, .J_pokitSider .next', function() {
+					let isNext = $(this).hasClass('next'),
+						$prev  = $('.J_pokitList a.on').prev(),
+						$next  = $('.J_pokitList a.on').next();
+
+					if ( isNext && $next  ) {
+						$next.trigger('click');
+					} else if ( $prev ) {
+						$prev.trigger('click');
+					}
+
+				})
+
+				// 编辑模式
+				.on('dblclick', '.J_pokitMixedTitle', function() {
+					$('.J_pokitText, .J_pokitWords, .J_pokitNotes, .J_pokitTranslation').attr('contenteditable','true');
+				})
+
+				// 实体字符
+				.on('dblclick', '.J_pokitWordsTitle', function() {
+					let html = '';
+
+					$('.J_pokitWords p').each(function(i, o) {
+
+						let arr = $(o).text().split('/');
+
+						arr[1]  = arr[1].toHTMLEntity();
+
+						html += '<p>'+ arr.join('/') +'</p>';
+					});
+
+					console.log(html);
+				})
+
+
+		},  // initEvent
+
+
+		// 获取目录
+		getPokitListByName: function(name) {
+
+			let that = this;
+
+			$('#jiloading').show();
+			$.ajax({
+				type: 'POST', dataType: 'json',
+				url: '../../api/get/pokit.php',
+				data: { name: name },
+				success: function(data) {
+					$('#jiloading').hide();
+
+					let pokitId = localStorage.getItem('POKIT_NCE');
+
+					if ( data.result ) {
+						let list = data.rows,
+							html = '';
+
+						list.forEach(function(o, i) {
+							let on = o.id === pokitId ? 'on' : '';
+
+							html += `<a class="${ on }" data-id="${ o.id }">${ o.title }</a>`;
+						});
+
+						$('.J_pokitList').html(html);
+
+						if ( pokitId ) {
+							$('.J_pokitList a.on').trigger('click');
+						} else {
+							$('.J_pokitList a').eq(0).trigger('click');
+						}
+
+					}
+				}
+			});
+
+		},  // getPokitListByName
+
+
+		// 获取数据
+		getPokitById: function(pokitId) {
+
+			localStorage.setItem('POKIT_NCE', pokitId);
+
+			$('#jiloading').show();
+			$.ajax({
+				type: 'POST', dataType: 'json',
+				url: '../../api/get/pokit.php',
+				data: { id: pokitId },
+				success: function(data) {
+					$('#jiloading').hide();
+
+					if ( data.result ) {
+						data = data.rows[0];
+						$('.J_pokitTitle').html( data.title );
+						$('.J_pokitText').html( data.text );
+						$('.J_pokitImage').css({backgroundImage: 'url("../img/pokit/'+ data.name +'/'+ data.image +'.png")'})
+						$('.J_pokitWords').html( data.words );
+						$('.J_pokitNotes').html( data.notes );
+						$('.J_pokitTranslation').html( data.translation );
+						$('.J_pokitId').text( data.id );
+					}
+				}
+			});
+
+		},  // getPokitById
+
+
+	};
+
+	pokit.init();
+
+})();
+
+
+</script>
+</body>
+</html>

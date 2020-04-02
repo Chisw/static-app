@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QD UI 文档 v1.0 </title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+	<link rel="stylesheet" type="text/css" href="QDUI.css">
+</head>
+<style type="text/css">
+
+html, body {
+	min-width: 1500px;
+	overflow-x: hidden;
+	background: #fafafa;
+}
+
+a {
+	color: #4A70FF;
+	text-decoration: none;
+}
+
+.demo-navi {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 200px;
+	padding: 20px;
+	background: #F5F5F5;
+}
+
+.demo-navi a {
+	display: block;
+	line-height: 24px;
+	font-size: 14px;
+	color: #4A70FF;
+}
+
+.demo-navi a:hover {
+	text-decoration: underline;
+}
+
+.demo-main {
+	position: relative;
+	top: 0;
+	bottom: 0;
+	left: 240px;
+	max-width: 1000px;
+	padding: 20px 40px;
+}
+
+.demo-main h3 {
+	margin-top: 32px;
+}
+
+.demo-main p {
+	padding-left: 20px;
+	font-size: 14px;
+}
+
+.demo-main .demo-box {
+	margin-left: 20px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	padding: 30px;
+	background: #fff;
+	box-shadow: 0 0 16px rgba(0,0,0, .03);
+}
+
+.demo-main pre,
+.demo-main code {
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 12px 4px 0 0;
+	border: 1px solid #EAF0FC;
+	border-radius: 4px;
+	padding: 0 10px;
+	line-height: 22px;
+	font-size: 12px;
+	background: #F0F5FF;
+	font-family: "consolas";
+}
+
+#demo-copy-input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+
+</style>
+<body>
+
+	<input type="input" id="demo-copy-input">
+
+
+	<div class="demo-navi">
+
+		<h4>目录</h4>
+
+	</div><!-- .demo-navi -->
+
+
+
+	<div class="demo-main">
+
+
+		<h2>QD UI 文档 v1.0 </h2>
+
+
+		<h3>0. 概述</h3>
+
+			<p>针对公司将在企点QQ中内嵌页面所做的组件</p>
+			<p>使用此组件需同时引入【QDUI.css、 QDUI.js】两个文件，后者依赖于 jQuery 2.1.1+</p>
+			<p>如果你看到了一个 css class 是以 '-' 开头的，表示这是前一个 class 的私有 class，或者叫约束 class，往往用作区别同一组件的不同样式</p>
+			<p>QDUI.js 将在全局生成一个 QD 对象，实现组件交互，定义了若干事件和方法，将在下文分别提及</p>
+			<p>下文中所有 $ 打头的变量均指使用 $() 后转换为 jQ Obj 的对象</p>
+			<p>组件的 class 全部使用 [qd] 为前缀；组件选中状态全部使用 [class="on"]，禁用全部使用 [disabled]</p>
+			<div class="demo-box">
+				<i class="qd-radio on"></i> 选中的单选
+				<a class="qd-btn" disabled>禁用的按钮</a>
+				<br>
+				<code><i class="qd-radio on"></i> 选中的单选</code>
+				<code><a class="qd-btn" disabled>禁用的按钮</a></code>
+			</div>
+
+			<p>墙裂建议使用 body 代理各组件事件， [safe-click] 事件可以免去组件的活性判断<a href="#safe-click">去看看</a></p>
+
+			<p>作者：@jisuowei 2019/1/3</p>
+
+
+		<h3>1. 容器 Container</h3>
+
+			<p><b>中央容器</b>：</p>
+			<p>！！！绝对定位！！！横向居中，纵向撑满</p>
+			<p>目前此项目中的容器宽度有两种，默认为 500px；另一种弹出窗口为 860px，请添加 [class="-wide"]</p>
+			<p>下例只用于示意，实际应用中并不会出现虚线，且高度应该撑满 body</p>
+
+			<div class="demo-box">
+				<div ct style="margin:0 auto;width:500px;outline:1px dashed #4A70FF;padding:20px 0;">500px</div>
+				<div ct wide style="margin:0 auto;width:860px;outline:1px dashed #4A70FF;padding:20px 0;margin-top:20px;">860px</div>
+				<code><div class="qd-container">500px</div></code>
+				<code><div class="qd-container -wide">860px</div></code>
+			</div>
+
+
+		<h3>2. 按钮 Btn</h3>
+
+			<p>正常按钮：建议使用 a 标签渲染按钮，如果不用跳转的话，不必加 href 属性</p>
+			<p>浅色按钮：在正常按钮的基础上，添加 [ light ] 属性</p>
+			<p>空心按钮：在正常按钮的基础上，添加 [ plain ] 属性</p>
+			<p>图标按钮：在正常按钮的基础上，添加 [ icon ] 属性；值是对应的图标，目前可选项有 [ plus | search | back ]</p>
+
+			<div class="demo-box">
+				<a class="qd-btn">绑定</a>
+				<a class="qd-btn" disabled>绑定</a>
+				<a class="qd-btn" light>取消</a>
+				<a class="qd-btn" disabled light>取消</a>
+				<a class="qd-btn" plain>推送报价系统</a>
+				<a class="qd-btn" disabled plain>推送报价系统</a>
+				<a class="qd-btn" icon="plus">新增联系人</a>
+				<a class="qd-btn" disabled icon="plus">新增联系人</a>
+				<br>
+				<code><a class="qd-btn">绑定</a></code>
+				<code><a class="qd-btn" disabled>绑定</a></code>
+				<code><a class="qd-btn" light>取消</a></code>
+				<code><a class="qd-btn" disabled light>取消</a></code>
+				<code><a class="qd-btn" plain>推送报价系统</a></code>
+				<code><a class="qd-btn" disabled plain>推送报价系统</a></code>
+				<code><a class="qd-btn" icon="plus">新增联系人</a></code>
+				<code><a class="qd-btn" disabled icon="plus">新增联系人</a></code>
+			</div>
+
+			<p>小号、大号按钮 请添加属性 [ small | medium | large ]</p>
+
+			<div class="demo-box">
+				<a class="qd-btn" small>small</a>
+				<a class="qd-btn">default</a>
+				<a class="qd-btn" medium>medium</a>
+				<a class="qd-btn" large>large</a>
+				<br>
+				<code><a class="qd-btn" small>small</a></code>
+				<code><a class="qd-btn">default</a></code>
+				<code><a class="qd-btn" medium>medium</a></code>
+				<code><a class="qd-btn" large>large</a></code>
+			</div>
+
+
+			<p id="safe-click">安全事件：组件完成 UI 交互后，在【未被禁用】的前提下，会自动触发自定义的 [safe-click] 事件</p>
+			<p>使用 [safe-click] 事件绑定代理，可以免去组件的活性判断</p>
+			<p>可以配合 $ 扩展的两个方法 $el.able() $el.disable() 来激活、失活组件：本质上就是删除、添加 [disabled]</p>
+			<p>另外 $el.isDisabled() 会返回组件是否被禁用</p>
+			<p>注意：两个控制方法没有以 d 结尾；检测方法是以 d 结尾的</p>
+
+			<div class="demo-box">
+				<a class="qd-btn J_demoSafeClick">按钮1</a>
+				<a class="qd-btn J_demoSafeClick" disabled>按钮2</a>
+				<a class="qd-btn J_demoActive" light small>激活它俩</a>
+				<a class="qd-btn J_demoFreeze" light small>失活它俩</a>
+				<br>
+				<code><a class="qd-btn J_demoSafeClick">按钮1</a></code>
+				<code><a class="qd-btn J_demoSafeClick" disabled>按钮2</a></code>
+				<code><a class="qd-btn J_demoActive" light small>激活它俩</a></code>
+				<code><a class="qd-btn J_demoFreeze" light small>失活它俩</a></code>
+<pre>
+$('body')
+    .on('safe-click', '.J_demoSafeClick', function() {
+        QD.toast( $(this).text() + ' clicked');
+    })
+    .on('safe-click', '.J_demoActive', function() {
+        $('.J_demoSafeClick').able();
+    })
+    .on('safe-click', '.J_demoFreeze', function() {
+        $('.J_demoSafeClick').disable();
+    })
+</pre>
+			</div>
+
+
+		<h3>3. 单选 Radio</h3>
+
+			<p><b>单选</b>：这里使用了 i 标签模拟了 input[type="radio"]</p>
+			<p>仍然通过 name 属性来判别实现单选</p>
+
+			<div class="demo-box">
+				性别：
+				<i name="sex" value="1" class="qd-radio on"></i> 男
+				<i name="sex" value="0" class="qd-radio"></i> 女
+				<i name="sex" value="2" class="qd-radio" disabled></i> 保密
+				<br>
+				<code><i name="sex" value="1" class="qd-radio on"></i> 男</code>
+				<code><i name="sex" value="0" class="qd-radio"></i> 女</code>
+				<code><i name="sex" value="2" class="qd-radio" disabled></i> 保密</code>
+			</div>
+
+			<p>存在强制选中的情况</p>
+
+			<div class="demo-box">
+				国籍：
+				<i name="nation" value="0" class="qd-radio on" disabled></i> 中国
+				<i name="nation" value="1" class="qd-radio"></i> 美国
+				<i name="nation" value="2" class="qd-radio"></i> 其它
+				<br>
+				<code><i name="nation" value="0" class="qd-radio on" disabled></i> 中国</code>
+				<code><i name="nation" value="1" class="qd-radio"></i> 美国</code>
+				<code><i name="nation" value="2" class="qd-radio"></i> 其它</code>
+			</div>
+
+			<p>由于不是真正的 input，所以在取值时，不能使用 $input.val() 方法</p>
+			<p>可以使用全局对象 QD 的如下方法，传入 name，获取对应 value，未获取到则返回 undefined（可复制到控制台运行）</p>
+
+			<div class="demo-box">
+				<code>QD.radio('sex');</code>
+			</div>
+
+
+		<h3>4. 复选 Checkbox</h3>
+
+			<p><b>复选</b>：仍然是通过 i 标签模拟实现，需指定相同 name</p>
+
+			<div class="demo-box">
+				爱好：
+				<i name="hobby" class="qd-checkbox-all half"></i> 全部
+				<i name="hobby" value="撸代码" class="qd-checkbox on" disabled></i> 撸代码
+				<i name="hobby" value="打游戏" class="qd-checkbox" disabled></i> 打游戏
+				<i name="hobby" value="阅读" class="qd-checkbox on"></i> 阅读
+				<i name="hobby" value="骑行" class="qd-checkbox on"></i> 骑行
+				<i name="hobby" value="书法" class="qd-checkbox"></i> 书法
+				<br>
+				<code><i name="hobby" class="qd-checkbox-all half"></i> 全部</code>
+				<code><i name="hobby" value="撸代码" class="qd-checkbox on" disabled></i> 撸代码</code>
+				<code><i name="hobby" value="打游戏" class="qd-checkbox" disabled></i> 打游戏</code>
+				<code><i name="hobby" value="阅读" class="qd-checkbox on"></i> 阅读</code>
+				<code><i name="hobby" value="骑行" class="qd-checkbox on"></i> 骑行</code>
+				<code><i name="hobby" value="书法" class="qd-checkbox"></i> 书法</code>
+			</div>
+
+			<p>需要注意的是：</p>
+			<p>【复选框-全部】的 class 为 .qd-checkbox-all</p>
+			<p>全未选中，移除 .half .on 两个 class；部分选中，移除 .on 添加 .half；全部选中，移除 .half 添加 .on</p>
+			<p>【复选框-反选】的 class 为 .qd-checkbox-reverse</p>
+			<p>会将同 name 的复选框反选；理论上给任何标签 添加 name 属性，和 [class="qd-checkbox-reverse"] 即可实现反选</p>
+
+			<div class="demo-box">
+				技能：
+				<i name="skill" class="qd-checkbox-all half"></i> 全部
+				<i name="skill" value="HTML" class="qd-checkbox on"></i> HTML
+				<i name="skill" value="CSS" class="qd-checkbox on"></i> CSS
+				<i name="skill" value="JS" class="qd-checkbox"></i> JS
+				<a name="skill" class="qd-btn qd-checkbox-reverse" style="margin-left:40px;">反选</a>
+				<br>
+				<code><i name="skill" class="qd-checkbox-all half"></i> 全部</code>
+				<code><i name="skill" value="HTML" class="qd-checkbox on"></i> HTML</code>
+				<code><i name="skill" value="CSS" class="qd-checkbox on"></i> CSS</code>
+				<code><i name="skill" value="JS" class="qd-checkbox"></i> JS</code>
+				<code><i name="skill" value="JS" class="qd-checkbox"></i> JS</code>
+				<code><a name="skill" class="qd-btn qd-checkbox-reverse" style="margin-left:40px;">反选</a></code>
+			</div>
+
+			<p>取值：与单选框类似，返回选中的复选框 value 的集合；无选中返回空数组 [] ！！！</p>
+
+			<div class="demo-box">
+				<code>QD.checkbox('skill');</code>
+			</div>
+
+
+		<h3>5. 输入框 Input</h3>
+
+			<p>默认宽度 100%；带按钮的输入框，按钮固定宽度 80px，输入框部分自动适应；</p>
+			<p>支持 [max-len="n"] [max-len-tip="tip text"] [only-price] [only-amount]</p>
+
+            <div class="demo-box">
+                <div style="width: 400px;">
+                    <input class="qd-input" placeholder="只能输入5个字的输入框" max-len="5">
+                    <br>
+					<br>
+                    <input class="qd-input" disabled placeholder="禁用">
+                    <br>
+					<br>
+					<input class="qd-input" medium icon="date" readonly placeholder="请选择">
+					<br>
+					<br>
+					<input class="qd-input" medium icon="search" placeholder="搜索">
+					<br>
+					<br>
+					<div class="qd-group">
+                        <div class="group-input">
+                            <input class="qd-input" placeholder="带按钮的搜索框">
+                        </div>
+                        <a class="qd-btn" icon="search">查询</a>
+                    </div>
+					<br>
+				</div>
+				<code><input class="qd-input" placeholder="只能输入5个字的输入框" max-len="5"></code>
+				<code><input class="qd-input" disabled placeholder="禁用"></code>
+				<code><input class="qd-input" medium icon="date" readonly placeholder="请选择"></code>
+				<code><input class="qd-input" medium icon="search" placeholder="搜索"></code>
+<pre>
+<div class="qd-group">
+    <div class="group-input">
+        <input class="qd-input" placeholder="带按钮的搜索框">
+    </div>
+    <a class="qd-btn" icon="search">查询</a>
+</div>
+</pre>
+            </div>
+
+		<h3>6. 表格 Table</h3>
+
+			<p>默认宽度 100%，列宽调整请直接在 DOM 上指定 width 属性</p>
+			<p>默认带有 tr:hover；给 table 添加 [unhover] 可以去除 hover 效果</p>
+			<p>默认文本居左，更改请配合使用属性 [ lt | ct | gt ] </p>
+
+			<div class="demo-box">
+				<table class="qd-table" style="width:320px;">
+					<thead>
+						<tr>
+							<th width="120" ct>姓名</th>
+							<th width="100"   >性别</th>
+							<th width="100"   >年龄</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td ct>嵇所伟</td>
+							<td   >男</td>
+							<td   >28</td>
+						</tr>
+						<tr>
+							<td ct>嵇所伟</td>
+							<td   >男</td>
+							<td   >28</td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+<pre>
+<table class="qd-table" style="width:320px;">
+    <thead>
+        <tr>
+            <th width="120" ct>姓名</th>
+            <th width="100"   >性别</th>
+            <th width="100"   >年龄</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td ct>嵇所伟</td>
+            <td   >男</td>
+            <td   >28</td>
+        </tr>
+        <tr>
+            <td ct>嵇所伟</td>
+            <td   >男</td>
+            <td   >28</td>
+        </tr>
+    </tbody>
+</table>
+</pre>
+			</div>
+
+
+		<h3>7. 标签 Tag</h3>
+
+			<div class="demo-box">
+				<i class="qd-tag">这是一个标签</i>
+				<i class="qd-tag -c0">标签 -c0</i>
+				<i class="qd-tag -c1">标签 -c1</i>
+				<i class="qd-tag -c2">标签 -c2</i>
+				<i class="qd-tag -c3">标签 -c3</i>
+				<i class="qd-tag -c5">标签 -c5</i>
+				<i class="qd-tag -c4">标签 -c4</i>
+				<br>
+				<code><i class="qd-tag">这是一个标签</i></code>
+				<code><i class="qd-tag -c0">标签 -c0</i></code>
+				<code><i class="qd-tag -c1">标签 -c1</i></code>
+				<code><i class="qd-tag -c2">标签 -c2</i></code>
+				<code><i class="qd-tag -c3">标签 -c3</i></code>
+				<code><i class="qd-tag -c5">标签 -c5</i></code>
+				<code><i class="qd-tag -c4">标签 -c4</i></code>
+			</div>
+
+
+		<h3>8. 标签页 Tab</h3>
+
+			<p>默认宽度为 100%，支持 [safe-click]；如需右侧放置元素，可放置在 .head-right 中</p>
+			<p>此为链接跳转形式</p>
+
+			<div class="demo-box">
+				<div class="qd-tab">
+					<div class="tab-head">
+						<a class="tab-item on">Tab1</a>
+						<a class="tab-item">Tab2</a>
+						<a class="tab-item">Tab3</a>
+						<a class="tab-item" disabled>Tab4</a>
+						<div class="head-right">
+							<a class="qd-btn">右侧按钮</a>
+						</div>
+					</div>
+				</div>
+				<br>
+<pre>
+<div class="qd-tab">
+    <div class="tab-head">
+        <a class="tab-item on">Tab1</a>
+        <a class="tab-item">Tab2</a>
+        <a class="tab-item">Tab3</a>
+        <a class="tab-item" disabled>Tab4</a>
+        <div class="head-right">
+            <a class="qd-btn">右侧按钮</a>
+        </div>
+    </div>
+</div>
+</pre>
+			</div>
+
+			<p>如需在同页面切换显示的，添加 .tab-body，会自动按照索引依次显示</p>
+
+			<div class="demo-box">
+				<div class="qd-tab">
+					<div class="tab-head">
+						<a class="tab-item on">Tab1</a>
+						<a class="tab-item">Tab2</a>
+					</div>
+					<div class="tab-body">
+						<div class="tab-content on">content1</div>
+						<div class="tab-content">content2</div>
+					</div>
+				</div>
+				<br>
+<pre>
+<div class="qd-tab">
+    <div class="tab-head">
+        <a class="tab-item on">Tab1</a>
+        <a class="tab-item">Tab2</a>
+    </div>
+    <div class="tab-body">
+        <div class="tab-content on">content1</div>
+        <div class="tab-content">content2</div>
+    </div>
+</div>
+</pre>
+		</div>
+
+		<p>另外一种样式请给 .qd-tab 添加 [unpadding] 属性</p>
+
+		<div class="demo-box">
+			<div class="qd-tab" unpadding>
+				<div class="tab-head">
+					<a class="tab-item on">全部</a>
+					<a class="tab-item">需求待确认</a>
+					<a class="tab-item">需求已确认</a>
+					<a class="tab-item">报价待推送</a>
+					<a class="tab-item">报价待确认</a>
+					<a class="tab-item">报价已取消</a>
+					<a class="tab-item">已下单</a>
+				</div>
+			</div>
+			<br>
+<pre>
+<div class="qd-tab" unpadding>
+    ...
+</div>
+</pre>
+		</div>
+
+
+		<h3>9. 分页 Pagi</h3>
+
+		<h3>10. QD.toast()</h3>
+
+			<p>该方法指定了两个参数 QD.toast(text, time)； text 为显示的文本（必填）；time 为显示的时长（毫秒数），默认 2000</p>
+			<div class="demo-box">
+				<a href="javascript:(QD.toast('2s 后消失'));" class="qd-btn">2s</a>
+				<a href="javascript:(QD.toast('5s 后消失', 5000));" class="qd-btn">5s</a>
+				<br>
+				<code>QD.toast('2s 后消失');</code>
+				<code>QD.toast('5s 后消失', 5000);</code>
+			</div>
+
+
+		<h3>11. QD.open()</h3>
+
+			<p>由于 btn 非常规的设计布局，btn 仍以 html 片段形式填充</p>
+			<p>btn 事件绑定仍通过指定 [class="J_*"] 代理；[class="qd-dialog-cancel"] 可以实现【取消】功能</p>
+			<p>按钮默认居右，如需放置在左侧，请给 btn 添加 [class="left"]，且在拼接 html 时，将居左的按钮优先拼接</p>
+			<div class="demo-box">
+				<a class="qd-btn J_demoDialog">Open</a>
+				<br>
+<pre>
+QD.open({
+    title: '标题',
+    content: 'HTML 片段',
+    btn:
+        '<a class="qd-btn left J_demoDialogAdd" icon="plus">新增联系人</a>' +
+        '<a class="qd-btn qd-dialog-cancel" light>取消</a>' +
+        '<a class="qd-btn J_demoDialogComfirm">确定</a>'
+});
+</pre>
+<pre>
+.on('safe-click', '.J_demoDialogAdd', function() {
+    QD.toast('点击了添加联系人');
+})
+.on('safe-click', '.J_demoDialogComfirm', function() {
+    QD.toast('点击了确定');
+})
+</pre>
+			</div>
+
+			<p>由于 btn 是以 html 形式填充，所以未实现类似 layer.open({ close: function(){..} }) 的回调绑定，只能通过 事件代理</p>
+			<p>QD.open() 将会返回一个 dialog 的 uuid，可以通过 QD.close(uuid) 来关闭它</p>
+			<p>在使用 [safe-click] 代理的前提下，QD.closeWith($btn) 也可以关闭按钮所在的 dialog</p>
+			<p>QD.closeWith($btn) 这种方式虽稍显愚蠢，但根据当前的项目情况，已是最佳之选</p>
+
+			<div class="demo-box">
+				<a class="qd-btn J_demoDialogClose">弹框</a>
+				<br>
+<pre>
+.on('click', '.J_demoDialogClose', function() {
+    QD.open({
+        title: '主动关闭',
+        content: '<a class="qd-btn J_demoDialogCloseBtn">关闭</a>',
+        btn: '<a class="qd-btn J_demoDialogCloseBtn">关闭</a>'
+    });
+})
+.on('safe-click', '.J_demoDialogCloseBtn', function() {
+    QD.closeWith( $(this) );
+})
+</pre>
+			</div>
+
+		<h3>12. QD.alert()</h3>
+
+			<p>基于 QD.open() 的改写，用法相同，省去了 title 参数，即使设置了 title 也会被过滤掉</p>
+
+			<div class="demo-box">
+				<a class="qd-btn J_demoAlert">Alert</a>
+				<br>
+<pre>
+QD.alert({
+    content: '一个朴素的警告框',
+    btn:
+        '<a class="qd-btn qd-dialog-cancel" light>取消</a>' +
+        '<a class="qd-btn J_demoAlertComfirm">确定</a>'
+});
+
+.on('safe-click', '.J_demoAlertComfirm', function() {
+    QD.closeWith( $(this) );
+    QD.toast('点击了确定');
+})
+</pre>
+			</div>
+
+			<p>小号的，用法同上</p>
+
+			<div class="demo-box">
+				<a class="qd-btn J_demoMiniAlert">MiniAlert</a>
+				<br>
+<pre>
+QD.miniAlert({
+    content: 'mini alert',
+    btn: '<a class="qd-btn qd-dialog-cancel">知道了</a>'
+});
+</pre>
+			</div>
+
+		<h3>13. 标题头 Title</h3>
+
+			<div class="demo-box">
+				<div class="qd-title">
+					<span class="title-name">标题头</span>
+					<div class="title-right">
+						<a class="qd-btn">按钮</a>
+					</div>
+				</div>
+				<br>
+<pre>
+<div class="qd-title">
+    <span class="title-name">标题头</span>
+    <div class="title-right">
+        <a class="qd-btn">按钮</a>
+    </div>
+</div>
+</pre>
+			</div>
+
+		<h3>14. 加载层 Loading</h3>
+
+			<p>用作 AJAX 请求时，防止用户误触</p>
+			<p>QD.loading() 调用，QD.close(loadingId) 关闭</p>
+
+			<div class="demo-box">
+				<a class="qd-btn J_demoLoading">加载一个</a>
+				<br>
+<pre>
+.on('safe-click', '.J_demoLoading', function() {
+    var loadingId = QD.loading();
+    setTimeout(function(){
+    	QD.close(loadingId)
+    }, 2000);
+})
+</pre>
+			</div>
+
+
+
+
+
+	</div><!-- .demo-main -->
+
+</body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="QDUI.js"></script>
+<script type="text/javascript">
+
+
+(function() {
+
+	// 生成导航
+	let html = '';
+	$('.demo-main h3').each(function(i, o) {
+		$(o).attr('id', 'demo-'+ i);
+		html += '<a href="#demo-'+ i +'">'+ $(o).text() +'</a>';
+	});
+	$('.demo-navi').append(html);
+
+
+	// 格式化 demo code
+	$('pre,code').each(function(i, o) {
+		var content = $(o).html();
+		content = content.replace(/</g, '&lt;').replace(/=""/g, '');
+		$(o).html(content).after('<a class="qd-btn J_copy" light small>复制</a><br>');
+	});
+
+
+	// 事件代理
+	$('body')
+		// 复制代码
+		.on('click', '.J_copy', function() {
+			var val = $(this).prev().text();
+			$('#demo-copy-input').val(val).select();
+			document.execCommand('Copy');
+			QD.toast('复制成功');
+		})
+		// 事件示例
+		.on('safe-click', '.J_demoSafeClick', function() {
+			QD.toast( $(this).text() + ' clicked' );
+		})
+		.on('safe-click', '.J_demoActive', function() {
+		    $('.J_demoSafeClick').able();
+		})
+        .on('safe-click', '.J_demoFreeze', function() {
+            $('.J_demoSafeClick').disable();
+        })
+		// dialog 示例
+		.on('click', '.J_demoDialog', function() {
+            QD.open({
+                title: '标题',
+                content: 'HTML 片段',
+                btn:
+                    '<a class="qd-btn left J_demoDialogAdd" icon="plus">新增联系人</a>' +
+                	'<a class="qd-btn qd-dialog-cancel" light>取消</a>' +
+					'<a class="qd-btn J_demoDialogComfirm">确定</a>'
+            });
+		})
+		.on('safe-click', '.J_demoDialogAdd', function() {
+		    QD.toast('点击了添加联系人');
+		})
+		.on('safe-click', '.J_demoDialogComfirm', function() {
+			QD.toast('点击了确定');
+		})
+		.on('click', '.J_demoDialogClose', function() {
+            QD.open({
+                title: '主动关闭',
+                content: '<a class="qd-btn J_demoDialogCloseBtn">关闭</a>',
+                btn: '<a class="qd-btn J_demoDialogCloseBtn">关闭</a>'
+            });
+		})
+		.on('safe-click', '.J_demoDialogCloseBtn', function() {
+		    QD.closeWith( $(this) );
+		})
+		// 加载
+		.on('safe-click', '.J_demoLoading', function() {
+            var loadingId = QD.loading();
+            setTimeout(function(){
+                QD.close(loadingId);
+			}, 2000);
+		})
+		// alert
+		.on('safe-click', '.J_demoAlert', function() {
+		    QD.alert({
+				content: '一个朴素的警告框',
+				btn:
+                    '<a class="qd-btn qd-dialog-cancel" light>取消</a>' +
+                    '<a class="qd-btn J_demoAlertComfirm">确定</a>'
+			});
+		})
+		.on('safe-click', '.J_demoAlertComfirm', function() {
+		    QD.closeWith( $(this) );
+		    QD.toast('点击了确定');
+		})
+		.on('safe-click', '.J_demoMiniAlert', function() {
+		    QD.miniAlert({
+				content: 'mini alert',
+				btn: '<a class="qd-btn qd-dialog-cancel">知道了</a>'
+			})
+		})
+
+})();
+
+
+</script>
+</html>
+

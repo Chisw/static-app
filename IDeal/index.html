@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IDeal</title>
+  <meta charset="utf-8" contet="devi">
+  <meta name="viewport" content="width=800">
+  <link rel="stylesheet" type="text/css" href="./prism/prism.min.css">
+  <style>
+    * {
+      border: none;
+      outline: none;
+      padding: 0;
+      font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    }
+    html, body {
+      background: #efefef;
+    }
+    label {
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+    .container {
+      margin: 0 auto;
+      padding: 20px 0;
+      max-width: 720px;
+    }
+    .container pre {
+      font-size: 12px;
+    }
+    .mb-1 {
+      margin-bottom: .5rem;
+    }
+    .mb-2 {
+      margin-bottom: 1rem;
+    }
+    .selection {
+      font-size: 12px;
+    }
+    .value {
+      display: block;
+      width: 100%;
+      height: 3rem;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    .operation {
+      margin-top: .5rem;
+      text-align: right;
+    }
+    .copy-btn {
+      width: 6rem;
+      height: 2rem;
+      color: #fff;
+      background: black;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      opacity: .85;
+    }
+    .copy-btn:active {
+      opacity: 1;
+    }
+    .copied {
+      line-height: 2rem;
+      color: gray;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body id="body">
+  <div class="container">
+
+    <h2>IDeal #ID generator#</h2>
+
+    <div class="selection mb-2">
+      <label>
+        <input class="caps" type="checkbox" > Caps
+      </label>
+      <label>
+        <input class="separate" type="checkbox"> Separate with '-' each 4 char
+      </label>
+    </div>
+
+    <div class="mb-2">
+      <p class="mb-1"><b><i>Time ID</i></b></p>
+      <div class="selection mb-1">
+        <label>Length:</label>
+        <label> <input class="len-radio" type="radio" name="time" value="8" checked> Raw 8+</label>
+        <label> <input class="len-radio" type="radio" name="time" value="12"> 12</label>
+        <label> <input class="len-radio" type="radio" name="time" value="16"> 16</label>
+        <label> <input class="len-radio" type="radio" name="time" value="20"> 20</label>
+        <label> <input class="len-radio" type="radio" name="time" value="24"> 24</label>
+        <label> <input class="len-radio" type="radio" name="time" value="32"> 32</label>
+      </div>
+
+      <input id="time-value" class="value" readonly>
+      <div class="operation">
+        <span id="time-copied" class="copied"></span>
+        <input class="copy-btn" type="button" value="Copy" name="time">
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <p class="mb-1"><b><i>Random ID</i></b></p>
+      <div class="selection mb-1">
+        <label>Length:</label>
+        <label> <input class="len-radio" type="radio" name="random" value="4"> 4</label>
+        <label> <input class="len-radio" type="radio" name="random" value="6" checked> 6</label>
+        <label> <input class="len-radio" type="radio" name="random" value="8"> 8</label>
+        <label> <input class="len-radio" type="radio" name="random" value="12"> 12</label>
+        <label> <input class="len-radio" type="radio" name="random" value="16"> 16</label>
+        <label> <input class="len-radio" type="radio" name="random" value="20"> 20</label>
+        <label> <input class="len-radio" type="radio" name="random" value="24"> 24</label>
+        <label> <input class="len-radio" type="radio" name="random" value="32"> 32</label>
+      </div>
+      
+      <input id="random-value" class="value" readonly>
+      <div class="operation">
+        <span id="random-copied" class="copied"></span>
+        <input class="copy-btn" type="button" value="Copy" name="random" >
+      </div>
+    </div>
+
+    <pre style="margin-top:3rem;"><code class="language-js" id="code-show"></code></pre>
+
+</body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script id="code">
+;(function() {
+
+  const IDeal = {
+    R: () => Math.random().toString(36)[2],
+    T: () => Date.now().toString(36),
+    NR(n) {
+      return Array.from('*'.repeat(n)).map(this.R).join('')
+    },
+    generate(type, len, isCap, isSep) {
+      let id = ''
+      if (type == 'time') {
+        const isRaw = len <= 8
+        id = isRaw ? this.T() : `${this.T()}${this.NR(32)}`.substring(0, Math.max(8, len))
+      } else {
+        id = this.NR(len)
+      }
+      if (isSep && (id.length > 4) && (id.length % 4 === 0)) {
+        id = id.match(/[a-zA-Z0-9]{4}/g).join('-')
+      }
+      return isCap ? id.toUpperCase() : id
+    },
+  }
+
+  $('body')
+    .on('init click', '.copy-btn, .len-radio', function(e) {
+      const type = $(this).attr('name')
+      const len = $(`[name=${type}]:checked`).val()
+      const isCap = $('.caps').prop('checked')
+      const isSep = $('.separate').prop('checked')
+      const $input = $(`#${type}-value`)
+      if (e.target.type === 'button' && e.type === 'click') {
+        $input.select()
+        document.execCommand('copy')
+        const $span = $(`<span>[ ${$input.val()} ] copied</span>`)
+        $(`#${type}-copied`).html('').append($span)
+        $span.fadeOut(3000)
+      }
+      const id = IDeal.generate(type, len, isCap, isSep)
+      $input.val(id)
+    })
+    .on('click', '.caps', function() {
+      const isCap = $(this).prop('checked')
+      $('.value').each(function () {
+        const _id = $(this).val()
+        $(this).val(isCap ? _id.toUpperCase() : _id.toLowerCase())
+      })
+    })
+    .on('click', '.separate', function () {
+      const isSep = $(this).prop('checked')
+      $('.value').each(function () {
+        const _id = $(this).val()
+        if (isSep && (_id.length > 4) && (_id.length % 4 === 0)) {
+          $(this).val(_id.match(/[a-zA-Z0-9]{4}/g).join('-'))
+        } else {
+          $(this).val(_id.replace(/-/g, ''))
+        }
+      })
+    })
+
+  $('.copy-btn').trigger('init')
+
+}());
+</script>
+<script>
+;(function() {
+  document.getElementById('code-show').innerHTML = document.getElementById('code').innerHTML
+}());
+</script>
+<script type="text/javascript" src="./prism/prism.min.js"></script>
+</html>

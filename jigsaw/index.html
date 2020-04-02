@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>拼图大师-奇斯威克</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href="../../static/img/favicon.ico" rel="shortcut icon" />
+<style>
+
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	border: none;
+	text-decoration: none;
+	font-family: "微软雅黑";
+}
+
+html, body {
+	background: #000;
+}
+
+#jigsaw-box {
+	position: relative;
+	margin: 40px auto;
+	width: 600px;
+	height: 600px;
+	background: #fff;
+}
+
+#jigsaw-box > div {
+	float: left;
+	width: 200px;
+	height: 200px;
+}
+
+#jigsaw-box .jigsaw-slice {
+	position: absolute;
+	z-index: 1;
+	background: url("img.jpg") no-repeat;
+	background-size: 600px;
+	transition: top .23s, left .23s, box-shadow .1s, outline .1s;
+}
+#jigsaw-box .jigsaw-slice.on {
+	z-index: 2;
+	outline: 2px solid #fff;
+	box-shadow: 0 0 12px rgba(0,0,0, 1);
+}
+#jigsaw-box .jigsaw-slice:nth-child(1) {background-position: left top;}
+#jigsaw-box .jigsaw-slice:nth-child(2) {background-position: center top;}
+#jigsaw-box .jigsaw-slice:nth-child(3) {background-position: right top;}
+#jigsaw-box .jigsaw-slice:nth-child(4) {background-position: left center;}
+#jigsaw-box .jigsaw-slice:nth-child(5) {background-position: center center;}
+#jigsaw-box .jigsaw-slice:nth-child(6) {background-position: right center;}
+#jigsaw-box .jigsaw-slice:nth-child(7) {background-position: left bottom;}
+#jigsaw-box .jigsaw-slice:nth-child(8) {background-position: center bottom;}
+#jigsaw-box .jigsaw-slice:nth-child(9) {background-position: right bottom;}
+
+
+</style>
+</head>
+<body>
+
+
+	<div id="jigsaw-box">
+
+		<div class="jigsaw-slice" data-index="1" data-curr=""></div>
+		<div class="jigsaw-slice" data-index="2" data-curr=""></div>
+		<div class="jigsaw-slice" data-index="3" data-curr=""></div>
+		<div class="jigsaw-slice" data-index="4" data-curr=""></div>
+		<div class="jigsaw-slice" data-index="5" data-curr=""></div>
+		<div class="jigsaw-slice" data-index="6" data-curr=""></div>
+		<div class="jigsaw-slice" data-index="7" data-curr=""></div>
+		<div class="jigsaw-slice" data-index="8" data-curr=""></div>
+		<div class="jigsaw-slice" data-index="9" data-curr=""></div>
+		
+	</div>
+
+
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+(function() {
+
+	var arr = [];
+	$('.jigsaw-slice').each(function(i, o) {
+		arr.push($(o));
+	});
+
+	arr.sort(function(a, b){ return Math.random() > .5 ? -1 : 1; })
+
+	arr.forEach(function(o, i) {
+
+		i = i + 1;
+
+		let row = Math.ceil( i / 3 ) - 1,
+			col = i % 3 !== 0 ? i % 3 - 1 : 2;
+
+		o.css({top: 200 * row +'px', left: 200 * col +'px'}).attr('data-curr', i);
+	})
+
+	$('body')
+		.on('click', '.jigsaw-slice', function() {
+
+			let $slice = $(this),
+				$other = $('.jigsaw-slice.on'),
+				len    = $other.length;
+
+			if ( len === 0 ) {
+				$slice.addClass('on');
+			} else {
+				$slice.addClass('on');
+				
+				let sliceTop  = $slice.css('top'),
+					sliceLeft = $slice.css('left'),
+					sliceCurr = $slice.data('curr'),
+					otherTop  = $other.css('top'),
+					otherLeft = $other.css('left'),
+					otherCurr = $other.data('curr');
+
+				$slice.css({top: otherTop, left: otherLeft}).attr('data-curr', otherCurr);
+				$other.css({top: sliceTop, left: sliceLeft}).attr('data-curr', sliceCurr);
+				setTimeout(function() {
+					$slice.removeClass('on');
+					$other.removeClass('on');
+				}, 230)
+			}
+
+
+		})
+
+
+
+})();
+
+
+
+</script>
+</body>
+</html>

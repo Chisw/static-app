@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tomato Timer</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+<link href="../../static/img/favicon.ico" rel="shortcut icon">
+<style type="text/css">
+
+@font-face {font-family: 'digital'; src: url('ds-digital-webfont.woff2') format('woff');}
+@font-face {font-family: 'texasled'; src: url('texas-led-webfont.woff2') format('woff');}
+
+/** {outline:1px solid #000;}*/
+* {margin:0;padding:0;font-family:texasled;}
+html,body {width:100%;height:100%;overflow:hidden;}
+
+#t-box {width:100%;height:100%;padding:0 6%;box-sizing:border-box;}
+
+.center {margin:0 auto;max-width:720px;}
+.t-click {cursor: pointer;}
+
+#t-digi {width:100%;padding:30px 0 0 0;text-align:center;font-family:digital;font-size:6rem;}
+
+#t-tip-box {position:relative;width:100%;text-align:center;padding:20px 0;color:#888;}
+.t-tip {font-size:12px;}
+
+#t-btn-box {width:100%;padding-top:50px;}
+#t-btn-box #t-btn-group {text-align:center;}
+#t-btn-box #t-btn-group span {display:inline-block;width:45%;height:100%;text-decoration:none;line-height:32px;font-size:1.5rem;}
+
+#t-opts label {display:inline-block;}
+#t-opts label.t-title {margin:1.6rem 0 .6rem 0;font-size:12px;}
+#t-opts div input {display:none;}
+#t-opts div input + span {opacity:.2;}
+#t-opts div input:checked + span {opacity:1;}
+#t-opts div label {width:30%;font-size:18px;}
+
+#t-mask {display:none;position:absolute;top:0;right:0;bottom:0;left:0;}
+#t-mask > div {display:none;position:absolute;top:24%;left:50%;margin-left:-140px;width:280px;min-height:120px;padding:20px 20px 40px 20px;box-sizing:border-box;background: #393A3F;outline: 2px dotted #5F5F63;}
+#t-mask > div .t-mask-btn {position:absolute;bottom:20px;right:20px;}
+#t-mask > div .t-mask-btn span {margin-left:30px;padding:8px;}
+
+#t-copy {position:absolute;width:88%;max-width:720px;bottom:0;padding:0.8rem 0;font-size:12px;text-align:center;color:#888;}
+
+
+
+#t-box.wechat {color:#fff;background:#393A3F;}
+#t-box.wechat #t-digi {color:#fff;}
+#t-box.wechat #t-opts label.t-title {color:#98B2CB;}
+#t-mask.wechat {background:rgba(57,58,63,.9);}
+#t-mask.wechat > div {border:1px dotted #98B2CB;color:#98B2CB;background:#393A3F;}
+#t-mask.wechat > div .t-mask-btn span {color:#fff;}
+
+#t-box.light {color:#000;background:#fff;}
+#t-box.light #t-digi {color:#000;}
+#t-box.light #t-opts label.t-title {color:#888;}
+#t-mask.light {background:rgba(255,255,255,.9);}
+#t-mask.light > div {border:1px dotted #888;color:#888;background:#fff;}
+#t-mask.light > div .t-mask-btn span {color:#000;}
+
+#t-box.geek {color:#0b0;background:#000;}
+#t-box.geek #t-digi {color:#0f0;}
+#t-box.geek #t-opts label.t-title {color:#555;}
+#t-mask.geek {background:rgba(0,0,0,.9);}
+#t-mask.geek > div {border:1px dotted #0b0;color:#0b0;background:#000;}
+#t-mask.geek > div .t-mask-btn span {color:#0f0;}
+
+</style>
+</head>
+<body>
+
+
+	<div id="t-box" class="wechat">
+
+		<div class="center">
+
+
+			<div id="t-digi">25:00</div>
+
+
+			<div id="t-tip-box">
+				<span class="t-tip" id="t-tip-abc">PLEASE CLICK LAUNCH</span><br>
+				<span class="t-tip" id="t-tip-xyz">TO TOMATO</span>
+			</div>
+
+
+
+			<div id="t-opts">
+
+				<label class="t-title">BELL</label>
+				<div>
+					<label><input type="radio" name="bell" value="off" checked><span>#OFF</span></label>
+					<label><input type="radio" name="bell" value="clank"><span>#CLANK</span></label>
+					<label><input type="radio" name="bell" value="bubble"><span>#BUBBLE</span></label>
+				</div>
+
+				<label class="t-title">THEME</label>
+				<div>
+					<label class="t-click"><input type="radio" name="theme" value="wechat" checked><span>#WECHAT</span></label>
+					<label class="t-click"><input type="radio" name="theme" value="light"><span>#LIGHT</span></label>
+					<label class="t-click"><input type="radio" name="theme" value="geek"><span>#GEEK</span></label>
+				</div>
+
+				<label class="t-title">TOMATO TIMES (LAST 24 HOURS)</label>
+				<div>
+					<label id="t-times">0</label>
+				</div>
+			</div>
+
+
+
+			<div id="t-btn-box">
+				<div id="t-btn-group">
+					<span class="t-btn t-click" id="t-btn-launch">LAUNCH</span>
+					<span class="t-btn t-click" id="t-btn-share">SHARE</span>
+				</div>
+			</div>
+
+
+			<div id="t-copy" class="t-click">DESIGN x CODE BY JISUOWEI.COM</div>
+
+		</div>
+
+		<div id="t-mask">
+
+			<div id="t-mask-reset">
+				ARE YOU SURE TO RESET THIS<br><br>TOMATO?
+				<div class="t-mask-btn">
+					<span class="t-click t-mask-close reset-tomato">YES</span>
+					<span class="t-click t-mask-close">NO</span>
+				</div>
+			</div>
+
+			<div id="t-mask-share" style="text-align:center;">
+				<img style="width:100px;" src="data:image/png;base64,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">
+				<br><br>
+				JISUOWEI.COM/APP/TOMATO<br><br>
+				THANK YOU<br><br>
+				<div class="t-mask-btn">
+					<span class="t-click t-mask-close">CLOSE</span>
+				</div>
+			</div>
+
+			<div id="t-mask-homepage">
+				ARE YOU SURE TO GO TO<br><br>JISUOWEI.COM?
+				<div class="t-mask-btn">
+					<span class="t-click t-mask-close home-page">YES</span>
+					<span class="t-click t-mask-close">NO</span>
+				</div>
+			</div>
+
+			<div id="t-mask-timeout">
+				GOOD JOB,TIME IS OUT,<br><br>HAVE A BREAK NOW. ^_^
+				<div class="t-mask-btn">
+					<span class="t-click t-mask-close">OK</span>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<audio preload id="t-bell-bubble"><source src="bubble.mp3"><source src="bubble.ogg"></audio>
+	<audio preload id="t-bell-clank" ><source src="clank.mp3"><source src="clank.ogg"></audio>
+	<audio preload id="t-bell-click" ><source src="click.mp3"><source src="click.ogg"></audio>
+
+</body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+(function(){
+
+	Date.prototype.getYMD = function(symbol) {
+		var S = symbol?symbol:'-',
+			y = this.getFullYear(),
+			m = this.getMonth()+1,
+			d = this.getDate(),
+			h = this.getHours(),
+			M = this.getMinutes(),
+			s = this.getSeconds();
+		return y + S + (m>9?m:'0'+m) + S + (d>9?d:'0'+d) +' '+ (h>9?h:'0'+h) +':'+ (M>9?M:'0'+M) +':'+ (s>9?s:'0'+s);
+	}
+
+	String.prototype.getTime = function(ox) {
+		var suffix = ox?' 23:59:59':' 00:00:00';
+		var str = this.replace(/'-'/g,'/');
+		return new Date(str + suffix).getTime();
+	}
+
+	var cookie = {
+		set: function(name,value,expires,path,domain,secure) {
+			var cookieName = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+			if(expires instanceof Date) { cookieName += ';expires=' + expires;}
+			if(path) { cookieName += ';path=' + path;}
+			if(domain) { cookieName += ';domain=' + domain;}
+			if(secure) { cookieName += ';secure' }
+			document.cookie = cookieName;
+		},
+
+		setDate: function(day) {
+			var date = null;
+			if ( typeof day == 'number' && day > 0 ) {
+				date = new Date();
+				date.setDate(date.getDate() + day);
+			} else {
+				throw new Error('您输入的日期不正确');
+			}
+			return date;
+		},
+
+		get: function(name){
+			var cookieName = encodeURIComponent(name) + '=';
+			var cookieStart = document.cookie.indexOf(cookieName);
+			var cookieValue = null;
+
+			if(cookieStart > -1 ) {
+				var cookieEnd = document.cookie.indexOf(';',cookieStart);
+				if ( cookieEnd == -1 ){
+					cookieEnd = document.cookie.length;
+				}
+				cookieValue = document.cookie.substring(cookieStart + cookieName.length, cookieEnd);
+			}
+			return decodeURIComponent(cookieValue);
+		},
+
+		del: function(name){
+			document.cookie = name +'='+ name +';expires=' + new Date(0);
+		}
+	};
+
+
+	var TMT = {
+		abc: '',
+		xyz: '',
+		out: 0 || 25*60,
+		timer: null,
+		isInit: true
+	}
+
+
+	function getTimes() {
+		var arr = cookie.get('times').split(';');
+		var res = [];
+		arr.forEach(function(data, index){
+			if(data) {
+				res.push(data)
+			}
+		})
+		var num = 0,
+			h24 = new Date().getTime() - 24*60*60*1000,
+			set = [];
+		res.forEach(function(data, index){
+			if( data >= h24 ) {
+				set.push(data);
+				num++
+			}
+		})
+		cookie.set('times',set.join(';'));
+		$('#t-times').text(num);
+	}
+	getTimes();
+
+
+	function resetTomato() {
+		clearInterval(TMT.timer);
+
+		TMT = {
+			abc: '',
+			xyz: '',
+			out: 25*60,
+			timer: null
+		}
+		$('#t-digi').text('25:00');
+		$('#t-tip-abc').text('PLEASE CLICK LAUNCH');
+		$('#t-tip-xyz').text('TO TOMATO');
+		$('#t-btn-launch').text('LAUNCH');
+	}
+
+
+	$('body')
+	.on('click','#t-btn-launch',function(){
+
+		var $this = $(this);
+
+		if($this.text()=='LAUNCH') {
+
+			if(TMT.timer) return
+
+			TMT.abc = new Date().getTime();
+			TMT.xyz = TMT.abc + TMT.out*1000;
+
+			$('#t-tip-abc').text(new Date(TMT.abc).getYMD());
+			$('#t-tip-xyz').text(new Date(TMT.xyz).getYMD());
+
+
+			TMT.timer = setInterval(function(){
+				TMT.out--
+				if(TMT.out==0) {
+
+					var bell = window['t-bell-'+ $('[name=bell]:checked').val()]
+					bell && bell.play();
+
+					$('#t-mask, #t-mask-timeout').show();
+
+					cookie.set(
+						'times',
+						(cookie.get('times') +';'+ TMT.xyz +';')
+					)
+
+					getTimes();
+
+					resetTomato();
+
+				}
+				var mm = Math.floor(TMT.out/60),
+					ss = TMT.out%60;
+				$('#t-digi').text( (mm>9?mm:'0'+mm) +':'+ (ss>9?ss:'0'+ss) );
+
+			}, 1000);
+
+			$this.text('RESET');
+
+		} else {
+
+			$('#t-mask, #t-mask-reset').show();
+
+		}
+
+	})
+	.on('click','[name=theme]',function(){
+
+		var val = $(this).val();
+		$('#t-box, #t-mask').removeClass().addClass(val);
+
+		cookie.set('theme',val);
+
+	})
+	.on('click','[name=bell]:checked',function(){
+
+		var val = $(this).val();
+		var bell = window['t-bell-'+ val]
+		bell && bell.play();
+
+		cookie.set('bell',val);
+
+	})
+	.on('click','.t-click',function(){
+
+		if(TMT.isInit) return
+		window['t-bell-click'].play();
+
+	})
+	.on('click','.t-mask-close',function(){
+
+		$('#t-mask, #t-mask>div').hide();
+
+	})
+	.on('click','.reset-tomato',function(){
+
+		resetTomato();
+
+	})
+	.on('click','#t-btn-share',function(){
+
+		$('#t-mask, #t-mask-share').show();
+
+	})
+	.on('click','#t-copy',function(){
+
+		$('#t-mask, #t-mask-homepage').show();
+
+	})
+	.on('click','.home-page',function(){
+
+		location.href = '//jisuowei.com'
+
+	})
+
+
+	$('[name=bell][value='+ cookie.get('bell') +']').trigger('click');
+	$('[name=theme][value='+ cookie.get('theme') +']').trigger('click');
+	TMT.isInit = null
+
+	if(cookie.get('times')=='null') {
+		cookie.set('times',';')
+	}
+
+})();
+
+</script>
+</html>

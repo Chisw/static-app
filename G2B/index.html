@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GPS2Baidu</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<style>
+textarea {
+  display: block;
+  width: 600px;
+  height: 200px;
+}
+.container {
+  width: 620px;
+  margin: 0 auto;
+}
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>GPS 批量转百度坐标</h2>
+
+    <textarea id="data" placeholder='粘贴 GPS 数据：[{"lng": 123.45, "lat": 32.10}]'></textarea>
+
+    <input onclick="encrypt()" type="button" value="转换">
+
+    <textarea id="res" readonly></textarea>
+  <div>
+
+</body>
+<script language="javascript" src="./GPS.js"></script>
+<script>
+
+function encrypt() {
+  const val = document.getElementById('data').value
+  const data = JSON.parse(val)
+
+  const res = data
+    .map(p => {
+      let _p = GPS.gcj_encrypt( p.lat, p.lng);
+      return GPS.bd_encrypt(_p.lat, _p.lon);
+    })
+    .map(p => {
+      return {
+        lng: p.lon,
+        lat: p.lat
+      }
+    })
+
+  document.getElementById('res').value = JSON.stringify(res)
+}
+
+</script>
+</html>
+
+
+

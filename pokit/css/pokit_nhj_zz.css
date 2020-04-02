@@ -1,0 +1,97 @@
+
+/* mixed title */
+.pokit-mixed-title {
+	font-size: 16px;
+	font-family: "宋体";
+}
+
+.pokit-mixed {
+
+}
+
+
+/* text */
+.pokit-text {
+	float: left;
+	width: 420px;
+	padding-top: 20px;
+}
+
+.pokit-text p {
+	margin-bottom: .8rem;
+	font-family: "楷体";
+	font-size: 18px;
+	line-height: 22px;
+	text-align: justify;
+}
+
+
+.pokit-text p sup {
+	font-size: 12px;
+	color: #222;
+}
+
+
+/* image */
+.pokit-image {
+	float: right;
+	width: 200px;
+	height: 240px;
+	background-size: 200px;
+	background-repeat: no-repeat;
+}
+
+
+/* words */
+.pokit-words-title {
+	margin-top: 28px;
+	font-size: 16px;
+	font-family: "宋体";
+}
+
+.pokit-words {
+	padding-top: 14px;
+	columns: 2;
+}
+
+.pokit-words p {
+	line-height: 24px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+
+
+/* notes */
+.pokit-notes-title {
+	margin-top: 28px;
+	font-size: 16px;
+	font-family: "宋体";
+}
+
+.pokit-notes {
+	padding-top: 14px;
+}
+
+.pokit-notes p {
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 24px;
+}
+
+
+/* translation */
+.pokit-translation-title {
+	margin-top: 28px;
+	font-size: 16px;
+	font-family: "宋体";
+}
+
+.pokit-translation {
+	padding-top: 14px;
+}
+
+.pokit-translation p {
+	font-family: "宋体";
+	font-size: 14px;
+	line-height: 24px;
+}

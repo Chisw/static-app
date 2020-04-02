@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TextLocker-文本加密器-奇斯威克</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="viewport" content="width=480,user-scalable=0">
+	<link href="//jisuowei.com/favicon.ico" rel="shortcut icon">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<style type="text/css">
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Consolas, 微软雅黑;
+	font-size: 12px;
+}
+
+html, body {
+	background: #525659;
+}
+
+.text-locker-container {
+	box-sizing: border-box;
+	margin: 0 auto;
+	width: 480px;
+	background: #fff;
+	padding: 20px;
+}
+
+.output-box {
+	box-sizing: border-box;
+	border-radius: 4px;
+	border: 1px solid #dcdfe6;
+	width: 100%;
+	padding: 10px 16px;
+	min-height: 60px;
+	outline: none;
+	resize: vertical;
+}
+
+</style>
+<body>
+<div id="jisuowei">
+
+
+	<div class="text-locker-container">
+
+		<el-tabs>
+
+			<el-tab-pane label="简易文本加密器">
+
+				<el-form label-width="60px">
+
+					<el-form-item label="明文：">
+						<el-input type="textarea" placeholder="请输入" rows="6" v-model="text"></el-input>
+					</el-form-item>
+
+					<el-form-item label="密钥：">
+						<el-row :gutter="10">
+							<el-col :span="12">
+								<el-input placeholder="请输入" size="small" v-model="key"></el-input>
+							</el-col>
+							<el-col :span="5">
+								<el-button type="primary" size="small" icon="el-icon-arrow-down" @click="lock">加密</el-button>
+							</el-col>
+							<el-col :span="5">
+								<el-button type="primary" size="small" icon="el-icon-arrow-up" @click="unlock">解密</el-button>
+							</el-col>
+						</el-row>
+
+					</el-form-item>
+
+					<el-form-item label="密文：">
+						<el-input type="textarea" id="copy-locked" placeholder="请点击加密" rows="6" v-model="textLocked"></el-input>
+						<el-button @click="copy('copy-locked')" size="mini" :disabled="textLocked.length === 0">复制</el-button>
+					</el-form-item>
+
+				</el-form>
+
+			</el-tab-pane>
+
+		</el-tabs>
+
+
+	</div><!-- .text-locker-container -->
+
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+(function(){
+
+	let vm = new Vue({
+		el: '#jisuowei',
+
+		data: {
+		  text: '这是一个秘密',
+      key: 'secret',
+			textLocked: '',
+		},
+
+		created: function() {
+
+		},
+
+		methods: {
+			/*
+				# lockText
+				pa        [+]*
+				- text    [string]*  待加密的文本
+				- key     [string]*  密钥
+				- isHTML  [boolean]  是否输出为 HTML 实体标签，默认输出为 unicode 码
+				- unlock  [boolean]  是否为解密模式
+			*/
+			lockText(pa) {
+
+				if (!pa.text || !pa.key) return '[Error: Text and key are necessary!]';
+
+				let keyList = pa.key.split('');
+
+				if (!pa.unlock) {  // lock
+
+					let textList = pa.text.split(''),
+
+						lockList = [],
+						res = '';
+
+					lockList = textList.map((data, index) => {
+						let unicode = data.charCodeAt(0),
+							increment = keyList[index % keyList.length].charCodeAt(0),
+							locked = unicode + increment;
+
+						return locked.toString(32).toUpperCase();
+					});
+
+					lockList.forEach((data, index) => {
+						res += (index === 0 ? '' : 'WXYZ'[index % 4]) + data;
+					});
+
+					return res;
+
+				} else {  // unlock
+
+					let lockList = pa.text.split(/[WXYZ]/ig);
+
+					return lockList.map((data, index) => {
+
+						let unicode = parseInt(data, 32),
+							increment = keyList[index % keyList.length].charCodeAt(0),
+							unlocked = unicode - increment;
+
+						if (pa.isHTML) {
+							return '&#' + unlocked + ';';
+						} else {
+							unlocked = unlocked.toString(16);
+							unlocked = '0000'.substring(0, 4 - unlocked.length) + unlocked;
+
+							return '\\u' + unlocked;
+						}
+
+					}).join('');
+				}
+
+			},  // lockText
+
+			lock: function() {
+
+				if ( this.text.length === 0 || this.key.length === 0 ) {
+					this.$message({message: '请输入', type: 'error'});
+				}
+
+			this.textLocked = this.lockText({
+				text: this.text,
+				key:  this.key
+			});
+
+			this.$message({message: '加密成功', type: 'success'});
+
+			},  // lock
+
+			unlock: function() {
+
+				if ( this.textLocked.length === 0 || this.key.length === 0 ) {
+					this.$message({message: '请输入', type: 'error'});
+				}
+
+				this.text = unescape(
+					this.lockText({
+						text:   this.textLocked,
+						key:    this.key,
+						unlock: true,
+						// isHTML: true
+					}).replace(/\\u/g, '%u')
+				)
+
+				this.$message({message: '解密成功', type: 'success'})
+			},  // unlock
+
+
+			copy: function(id) {
+				document.getElementById(id).select()
+				document.execCommand('Copy')
+				this.$message({message: '复制成功', type: 'success'})
+			},  // copyLocked
+
+		},
+
+	});
+
+}());
+</script>
+</html>

@@ -1,0 +1,90 @@
+
+/* mixed title */
+.pokit-mixed-title {
+	font-size: 16px;
+	font-family: "Times", "楷体";
+}
+
+.pokit-mixed {
+
+}
+
+
+/* text */
+.pokit-text {
+	float: left;
+	width: 420px;
+}
+
+.pokit-text p {
+	margin-bottom: .3rem;
+	font-family: "Georgia";
+	font-size: 14px;
+	line-height: 22px;
+	text-align: justify;
+}
+
+
+/* image */
+.pokit-image {
+	float: right;
+	width: 200px;
+	height: 240px;
+	background-size: 200px;
+	background-repeat: no-repeat;
+}
+
+
+/* words */
+.pokit-words-title {
+	margin-top: 28px;
+	font-size: 16px;
+	font-family: "Tahoma", "楷体";
+}
+
+.pokit-words {
+	padding-top: 14px;
+	columns: 2;
+}
+
+.pokit-words p {
+	font-family: "Times", "宋体";
+	font-size: 14px;
+	line-height: 24px;
+}
+
+
+/* notes */
+.pokit-notes-title {
+	margin-top: 28px;
+	font-size: 16px;
+	font-family: "Tahoma", "楷体";
+}
+
+.pokit-notes {
+	padding-top: 14px;
+}
+
+.pokit-notes p {
+	font-family: "Times", "宋体";
+	font-size: 14px;
+	line-height: 24px;
+}
+
+
+/* translation */
+.pokit-translation-title {
+	margin-top: 28px;
+	font-size: 16px;
+	font-family: "Tahoma", "楷体";
+}
+
+.pokit-translation {
+	padding-top: 14px;
+}
+
+.pokit-translation p {
+	font-family: "宋体";
+	font-size: 14px;
+	line-height: 24px;
+}

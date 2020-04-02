@@ -1,0 +1,2705 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>JiDiary 2.0 日记阅读器 Demo</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content=" width=720,user-scalable=0">
+<script type="text/javascript">
+var aJiDiary = [
+
+{'d':'20090101','w':'','c':'sometext here'},
+{'d':'20090102','w':'','c':'sometext here'},
+{'d':'20090103','w':'','c':'sometext here'},
+{'d':'20090104','w':'','c':'sometext here'},
+{'d':'20090105','w':'','c':'sometext here'},
+{'d':'20090106','w':'','c':'sometext here'},
+{'d':'20090107','w':'','c':'sometext here'},
+{'d':'20090108','w':'','c':'sometext here'},
+{'d':'20090109','w':'','c':'sometext here'},
+{'d':'20090110','w':'','c':'sometext here'},
+{'d':'20090111','w':'','c':'sometext here'},
+{'d':'20090112','w':'','c':'sometext here'},
+{'d':'20090113','w':'','c':'sometext here'},
+{'d':'20090114','w':'','c':'sometext here'},
+{'d':'20090115','w':'','c':'sometext here'},
+{'d':'20090116','w':'','c':'sometext here'},
+{'d':'20090117','w':'','c':'sometext here'},
+{'d':'20090118','w':'','c':'sometext here'},
+{'d':'20090119','w':'','c':'sometext here'},
+{'d':'20090120','w':'','c':'sometext here'},
+{'d':'20090121','w':'','c':'sometext here'},
+{'d':'20090122','w':'','c':'sometext here'},
+{'d':'20090123','w':'','c':'sometext here'},
+{'d':'20090124','w':'','c':'sometext here'},
+{'d':'20090125','w':'','c':'sometext here'},
+{'d':'20090126','w':'初一','c':'sometext here'},
+{'d':'20090127','w':'初二','c':'sometext here'},
+{'d':'20090128','w':'初三','c':'sometext here'},
+{'d':'20090129','w':'初四','c':'sometext here'},
+{'d':'20090130','w':'初五','c':'sometext here'},
+{'d':'20090131','w':'初六','c':'sometext here'},
+
+{'d':'20090201','w':'初七','c':'sometext here'},
+{'d':'20090202','w':'','c':'sometext here'},
+{'d':'20090203','w':'','c':'sometext here'},
+{'d':'20090204','w':'','c':'sometext here'},
+{'d':'20090205','w':'','c':'sometext here'},
+{'d':'20090206','w':'','c':'sometext here'},
+{'d':'20090207','w':'','c':'sometext here'},
+{'d':'20090208','w':'','c':'sometext here'},
+{'d':'20090209','w':'','c':'sometext here'},
+{'d':'20090210','w':'','c':'sometext here'},
+{'d':'20090211','w':'','c':'sometext here'},
+{'d':'20090212','w':'','c':'sometext here'},
+{'d':'20090213','w':'','c':'sometext here'},
+{'d':'20090214','w':'','c':'sometext here'},
+{'d':'20090215','w':'','c':'sometext here'},
+{'d':'20090216','w':'','c':'sometext here'},
+{'d':'20090217','w':'','c':'sometext here'},
+{'d':'20090218','w':'','c':'sometext here'},
+{'d':'20090219','w':'','c':'sometext here'},
+{'d':'20090220','w':'','c':'sometext here'},
+{'d':'20090221','w':'','c':'sometext here'},
+{'d':'20090222','w':'','c':'sometext here'},
+{'d':'20090223','w':'','c':'sometext here'},
+{'d':'20090224','w':'','c':'sometext here'},
+{'d':'20090225','w':'','c':'sometext here'},
+{'d':'20090226','w':'','c':'sometext here'},
+{'d':'20090227','w':'','c':'sometext here'},
+{'d':'20090228','w':'','c':'sometext here'},
+{'d':'20090229','w':'','c':'sometext here'},
+
+{'d':'20090301','w':'','c':'sometext here'},
+{'d':'20090302','w':'','c':'sometext here'},
+{'d':'20090303','w':'','c':'sometext here'},
+{'d':'20090304','w':'','c':'sometext here'},
+{'d':'20090305','w':'','c':'sometext here'},
+{'d':'20090306','w':'','c':'sometext here'},
+{'d':'20090307','w':'','c':'sometext here'},
+{'d':'20090308','w':'','c':'sometext here'},
+{'d':'20090309','w':'','c':'sometext here'},
+{'d':'20090310','w':'','c':'sometext here'},
+{'d':'20090311','w':'','c':'sometext here'},
+{'d':'20090312','w':'','c':'sometext here'},
+{'d':'20090313','w':'','c':'sometext here'},
+{'d':'20090314','w':'','c':'sometext here'},
+{'d':'20090315','w':'','c':'sometext here'},
+{'d':'20090316','w':'','c':'sometext here'},
+{'d':'20090317','w':'','c':'sometext here'},
+{'d':'20090318','w':'','c':'sometext here'},
+{'d':'20090319','w':'','c':'sometext here'},
+{'d':'20090320','w':'','c':'sometext here'},
+{'d':'20090321','w':'','c':'sometext here'},
+{'d':'20090322','w':'','c':'sometext here'},
+{'d':'20090323','w':'','c':'sometext here'},
+{'d':'20090324','w':'','c':'sometext here'},
+{'d':'20090325','w':'','c':'sometext here'},
+{'d':'20090326','w':'','c':'sometext here'},
+{'d':'20090327','w':'','c':'sometext here'},
+{'d':'20090328','w':'','c':'sometext here'},
+{'d':'20090329','w':'','c':'sometext here'},
+{'d':'20090330','w':'','c':'sometext here'},
+{'d':'20090331','w':'','c':'sometext here'},
+
+{'d':'20090401','w':'','c':'sometext here'},
+{'d':'20090402','w':'','c':'sometext here'},
+{'d':'20090403','w':'','c':'sometext here'},
+{'d':'20090404','w':'清明','c':'sometext here'},
+{'d':'20090405','w':'','c':'sometext here'},
+{'d':'20090406','w':'','c':'sometext here'},
+{'d':'20090407','w':'','c':'sometext here'},
+{'d':'20090408','w':'','c':'sometext here'},
+{'d':'20090409','w':'','c':'sometext here'},
+{'d':'20090410','w':'','c':'sometext here'},
+{'d':'20090411','w':'','c':'sometext here'},
+{'d':'20090412','w':'','c':'sometext here'},
+{'d':'20090413','w':'','c':'sometext here'},
+{'d':'20090414','w':'','c':'sometext here'},
+{'d':'20090415','w':'','c':'sometext here'},
+{'d':'20090416','w':'','c':'sometext here'},
+{'d':'20090417','w':'','c':'sometext here'},
+{'d':'20090418','w':'','c':'sometext here'},
+{'d':'20090419','w':'','c':'sometext here'},
+{'d':'20090420','w':'','c':'sometext here'},
+{'d':'20090421','w':'','c':'sometext here'},
+{'d':'20090422','w':'','c':'sometext here'},
+{'d':'20090423','w':'','c':'sometext here'},
+{'d':'20090424','w':'','c':'sometext here'},
+{'d':'20090425','w':'','c':'sometext here'},
+{'d':'20090426','w':'','c':'sometext here'},
+{'d':'20090427','w':'','c':'sometext here'},
+{'d':'20090428','w':'','c':'sometext here'},
+{'d':'20090429','w':'','c':'sometext here'},
+{'d':'20090430','w':'','c':'sometext here'},
+
+{'d':'20090501','w':'','c':'sometext here'},
+{'d':'20090502','w':'','c':'sometext here'},
+{'d':'20090503','w':'','c':'sometext here'},
+{'d':'20090504','w':'','c':'sometext here'},
+{'d':'20090505','w':'','c':'sometext here'},
+{'d':'20090506','w':'','c':'sometext here'},
+{'d':'20090507','w':'','c':'sometext here'},
+{'d':'20090508','w':'','c':'sometext here'},
+{'d':'20090509','w':'','c':'sometext here'},
+{'d':'20090510','w':'','c':'sometext here'},
+{'d':'20090511','w':'','c':'sometext here'},
+{'d':'20090512','w':'','c':'sometext here'},
+{'d':'20090513','w':'','c':'sometext here'},
+{'d':'20090514','w':'','c':'sometext here'},
+{'d':'20090515','w':'','c':'sometext here'},
+{'d':'20090516','w':'','c':'sometext here'},
+{'d':'20090517','w':'','c':'sometext here'},
+{'d':'20090518','w':'','c':'sometext here'},
+{'d':'20090519','w':'','c':'sometext here'},
+{'d':'20090520','w':'','c':'sometext here'},
+{'d':'20090521','w':'','c':'sometext here'},
+{'d':'20090522','w':'','c':'sometext here'},
+{'d':'20090523','w':'','c':'sometext here'},
+{'d':'20090524','w':'','c':'sometext here'},
+{'d':'20090525','w':'','c':'sometext here'},
+{'d':'20090526','w':'','c':'sometext here'},
+{'d':'20090527','w':'','c':'sometext here'},
+{'d':'20090528','w':'端午','c':'sometext here'},
+{'d':'20090529','w':'','c':'sometext here'},
+{'d':'20090530','w':'','c':'sometext here'},
+{'d':'20090531','w':'','c':'sometext here'},
+
+{'d':'20090601','w':'','c':'sometext here'},
+{'d':'20090602','w':'','c':'sometext here'},
+{'d':'20090603','w':'','c':'sometext here'},
+{'d':'20090604','w':'','c':'sometext here'},
+{'d':'20090605','w':'','c':'sometext here'},
+{'d':'20090606','w':'','c':'sometext here'},
+{'d':'20090607','w':'','c':'sometext here'},
+{'d':'20090608','w':'','c':'sometext here'},
+{'d':'20090609','w':'','c':'sometext here'},
+{'d':'20090610','w':'','c':'sometext here'},
+{'d':'20090611','w':'','c':'sometext here'},
+{'d':'20090612','w':'','c':'sometext here'},
+{'d':'20090613','w':'','c':'sometext here'},
+{'d':'20090614','w':'','c':'sometext here'},
+{'d':'20090615','w':'','c':'sometext here'},
+{'d':'20090616','w':'','c':'sometext here'},
+{'d':'20090617','w':'','c':'sometext here'},
+{'d':'20090618','w':'','c':'sometext here'},
+{'d':'20090619','w':'','c':'sometext here'},
+{'d':'20090620','w':'','c':'sometext here'},
+{'d':'20090621','w':'','c':'sometext here'},
+{'d':'20090622','w':'','c':'sometext here'},
+{'d':'20090623','w':'','c':'sometext here'},
+{'d':'20090624','w':'','c':'sometext here'},
+{'d':'20090625','w':'','c':'sometext here'},
+{'d':'20090626','w':'','c':'sometext here'},
+{'d':'20090627','w':'','c':'sometext here'},
+{'d':'20090628','w':'','c':'sometext here'},
+{'d':'20090629','w':'','c':'sometext here'},
+{'d':'20090630','w':'','c':'sometext here'},
+
+{'d':'20090701','w':'','c':'sometext here'},
+{'d':'20090702','w':'','c':'sometext here'},
+{'d':'20090703','w':'','c':'sometext here'},
+{'d':'20090704','w':'','c':'sometext here'},
+{'d':'20090705','w':'','c':'sometext here'},
+{'d':'20090706','w':'','c':'sometext here'},
+{'d':'20090707','w':'','c':'sometext here'},
+{'d':'20090708','w':'','c':'sometext here'},
+{'d':'20090709','w':'','c':'sometext here'},
+{'d':'20090710','w':'','c':'sometext here'},
+{'d':'20090711','w':'','c':'sometext here'},
+{'d':'20090712','w':'','c':'sometext here'},
+{'d':'20090713','w':'','c':'sometext here'},
+{'d':'20090714','w':'','c':'sometext here'},
+{'d':'20090715','w':'','c':'sometext here'},
+{'d':'20090716','w':'','c':'sometext here'},
+{'d':'20090717','w':'','c':'sometext here'},
+{'d':'20090718','w':'','c':'sometext here'},
+{'d':'20090719','w':'','c':'sometext here'},
+{'d':'20090720','w':'','c':'sometext here'},
+{'d':'20090721','w':'','c':'sometext here'},
+{'d':'20090722','w':'','c':'sometext here'},
+{'d':'20090723','w':'','c':'sometext here'},
+{'d':'20090724','w':'','c':'sometext here'},
+{'d':'20090725','w':'','c':'sometext here'},
+{'d':'20090726','w':'','c':'sometext here'},
+{'d':'20090727','w':'','c':'sometext here'},
+{'d':'20090728','w':'','c':'sometext here'},
+{'d':'20090729','w':'','c':'sometext here'},
+{'d':'20090730','w':'','c':'sometext here'},
+{'d':'20090731','w':'','c':'sometext here'},
+
+{'d':'20090801','w':'','c':'sometext here'},
+{'d':'20090802','w':'','c':'sometext here'},
+{'d':'20090803','w':'','c':'sometext here'},
+{'d':'20090804','w':'','c':'sometext here'},
+{'d':'20090805','w':'','c':'sometext here'},
+{'d':'20090806','w':'','c':'sometext here'},
+{'d':'20090807','w':'','c':'sometext here'},
+{'d':'20090808','w':'','c':'sometext here'},
+{'d':'20090809','w':'','c':'sometext here'},
+{'d':'20090810','w':'','c':'sometext here'},
+{'d':'20090811','w':'','c':'sometext here'},
+{'d':'20090812','w':'','c':'sometext here'},
+{'d':'20090813','w':'','c':'sometext here'},
+{'d':'20090814','w':'','c':'sometext here'},
+{'d':'20090815','w':'','c':'sometext here'},
+{'d':'20090816','w':'','c':'sometext here'},
+{'d':'20090817','w':'','c':'sometext here'},
+{'d':'20090818','w':'','c':'sometext here'},
+{'d':'20090819','w':'','c':'sometext here'},
+{'d':'20090820','w':'','c':'sometext here'},
+{'d':'20090821','w':'','c':'sometext here'},
+{'d':'20090822','w':'','c':'sometext here'},
+{'d':'20090823','w':'','c':'sometext here'},
+{'d':'20090824','w':'','c':'sometext here'},
+{'d':'20090825','w':'','c':'sometext here'},
+{'d':'20090826','w':'','c':'sometext here'},
+{'d':'20090827','w':'','c':'sometext here'},
+{'d':'20090828','w':'','c':'sometext here'},
+{'d':'20090829','w':'','c':'sometext here'},
+{'d':'20090830','w':'','c':'sometext here'},
+{'d':'20090831','w':'','c':'sometext here'},
+
+{'d':'20090901','w':'','c':'sometext here'},
+{'d':'20090902','w':'','c':'sometext here'},
+{'d':'20090903','w':'','c':'sometext here'},
+{'d':'20090904','w':'','c':'sometext here'},
+{'d':'20090905','w':'','c':'sometext here'},
+{'d':'20090906','w':'','c':'sometext here'},
+{'d':'20090907','w':'','c':'sometext here'},
+{'d':'20090908','w':'','c':'sometext here'},
+{'d':'20090909','w':'','c':'sometext here'},
+{'d':'20090910','w':'','c':'sometext here'},
+{'d':'20090911','w':'','c':'sometext here'},
+{'d':'20090912','w':'','c':'sometext here'},
+{'d':'20090913','w':'','c':'sometext here'},
+{'d':'20090914','w':'','c':'sometext here'},
+{'d':'20090915','w':'','c':'sometext here'},
+{'d':'20090916','w':'','c':'sometext here'},
+{'d':'20090917','w':'','c':'sometext here'},
+{'d':'20090918','w':'','c':'sometext here'},
+{'d':'20090919','w':'','c':'sometext here'},
+{'d':'20090920','w':'','c':'sometext here'},
+{'d':'20090921','w':'','c':'sometext here'},
+{'d':'20090922','w':'','c':'sometext here'},
+{'d':'20090923','w':'','c':'sometext here'},
+{'d':'20090924','w':'','c':'sometext here'},
+{'d':'20090925','w':'','c':'sometext here'},
+{'d':'20090926','w':'','c':'sometext here'},
+{'d':'20090927','w':'','c':'sometext here'},
+{'d':'20090928','w':'','c':'sometext here'},
+{'d':'20090929','w':'','c':'sometext here'},
+{'d':'20090930','w':'','c':'sometext here'},
+
+{'d':'20091001','w':'','c':'sometext here'},
+{'d':'20091002','w':'','c':'sometext here'},
+{'d':'20091003','w':'','c':'sometext here'},
+{'d':'20091004','w':'','c':'sometext here'},
+{'d':'20091005','w':'','c':'sometext here'},
+{'d':'20091006','w':'','c':'sometext here'},
+{'d':'20091007','w':'','c':'sometext here'},
+{'d':'20091008','w':'','c':'sometext here'},
+{'d':'20091009','w':'','c':'sometext here'},
+{'d':'20091010','w':'','c':'sometext here'},
+{'d':'20091011','w':'','c':'sometext here'},
+{'d':'20091012','w':'','c':'sometext here'},
+{'d':'20091013','w':'','c':'sometext here'},
+{'d':'20091014','w':'','c':'sometext here'},
+{'d':'20091015','w':'','c':'sometext here'},
+{'d':'20091016','w':'','c':'sometext here'},
+{'d':'20091017','w':'','c':'sometext here'},
+{'d':'20091018','w':'','c':'sometext here'},
+{'d':'20091019','w':'','c':'sometext here'},
+{'d':'20091020','w':'','c':'sometext here'},
+{'d':'20091021','w':'','c':'sometext here'},
+{'d':'20091022','w':'','c':'sometext here'},
+{'d':'20091023','w':'','c':'sometext here'},
+{'d':'20091024','w':'','c':'sometext here'},
+{'d':'20091025','w':'','c':'sometext here'},
+{'d':'20091026','w':'','c':'sometext here'},
+{'d':'20091027','w':'','c':'sometext here'},
+{'d':'20091028','w':'','c':'sometext here'},
+{'d':'20091029','w':'','c':'sometext here'},
+{'d':'20091030','w':'','c':'sometext here'},
+{'d':'20091031','w':'','c':'sometext here'},
+
+{'d':'20091101','w':'','c':'sometext here'},
+{'d':'20091102','w':'','c':'sometext here'},
+{'d':'20091103','w':'','c':'sometext here'},
+{'d':'20091104','w':'','c':'sometext here'},
+{'d':'20091105','w':'','c':'sometext here'},
+{'d':'20091106','w':'','c':'sometext here'},
+{'d':'20091107','w':'','c':'sometext here'},
+{'d':'20091108','w':'','c':'sometext here'},
+{'d':'20091109','w':'','c':'sometext here'},
+{'d':'20091110','w':'','c':'sometext here'},
+{'d':'20091111','w':'','c':'sometext here'},
+{'d':'20091112','w':'','c':'sometext here'},
+{'d':'20091113','w':'','c':'sometext here'},
+{'d':'20091114','w':'','c':'sometext here'},
+{'d':'20091115','w':'','c':'sometext here'},
+{'d':'20091116','w':'','c':'sometext here'},
+{'d':'20091117','w':'','c':'sometext here'},
+{'d':'20091118','w':'','c':'sometext here'},
+{'d':'20091119','w':'','c':'sometext here'},
+{'d':'20091120','w':'','c':'sometext here'},
+{'d':'20091121','w':'','c':'sometext here'},
+{'d':'20091122','w':'','c':'sometext here'},
+{'d':'20091123','w':'','c':'sometext here'},
+{'d':'20091124','w':'','c':'sometext here'},
+{'d':'20091125','w':'','c':'sometext here'},
+{'d':'20091126','w':'','c':'sometext here'},
+{'d':'20091127','w':'','c':'sometext here'},
+{'d':'20091128','w':'','c':'sometext here'},
+{'d':'20091129','w':'','c':'sometext here'},
+{'d':'20091130','w':'','c':'sometext here'},
+
+{'d':'20091201','w':'','c':'sometext here'},
+{'d':'20091202','w':'','c':'sometext here'},
+{'d':'20091203','w':'','c':'sometext here'},
+{'d':'20091204','w':'','c':'sometext here'},
+{'d':'20091205','w':'','c':'sometext here'},
+{'d':'20091206','w':'','c':'sometext here'},
+{'d':'20091207','w':'','c':'sometext here'},
+{'d':'20091208','w':'','c':'sometext here'},
+{'d':'20091209','w':'','c':'sometext here'},
+{'d':'20091210','w':'','c':'sometext here'},
+{'d':'20091211','w':'','c':'sometext here'},
+{'d':'20091212','w':'','c':'sometext here'},
+{'d':'20091213','w':'','c':'sometext here'},
+{'d':'20091214','w':'','c':'sometext here'},
+{'d':'20091215','w':'','c':'sometext here'},
+{'d':'20091216','w':'','c':'sometext here'},
+{'d':'20091217','w':'','c':'sometext here'},
+{'d':'20091218','w':'','c':'sometext here'},
+{'d':'20091219','w':'','c':'sometext here'},
+{'d':'20091220','w':'','c':'sometext here'},
+{'d':'20091221','w':'','c':'sometext here'},
+{'d':'20091222','w':'','c':'sometext here'},
+{'d':'20091223','w':'','c':'sometext here'},
+{'d':'20091224','w':'','c':'sometext here'},
+{'d':'20091225','w':'','c':'sometext here'},
+{'d':'20091226','w':'','c':'sometext here'},
+{'d':'20091227','w':'','c':'sometext here'},
+{'d':'20091228','w':'','c':'sometext here'},
+{'d':'20091229','w':'','c':'sometext here'},
+{'d':'20091230','w':'','c':'sometext here'},
+{'d':'20091231','w':'','c':'sometext here'},
+
+
+
+{'d':'20100101','w':'晴 元旦','c':'sometext here'},
+{'d':'20100102','w':'晴','c':'sometext here'},
+{'d':'20100103','w':'晴','c':'sometext here'},
+{'d':'20100104','w':'晴','c':'sometext here'},
+{'d':'20100105','w':'晴','c':'sometext here'},
+{'d':'20100106','w':'晴','c':'sometext here'},
+{'d':'20100107','w':'晴','c':'sometext here'},
+{'d':'20100108','w':'晴','c':'sometext here'},
+{'d':'20100109','w':'晴','c':'sometext here'},
+{'d':'20100110','w':'小雨夹雪','c':'sometext here'},
+{'d':'20100111','w':'阴','c':'sometext here'},
+{'d':'20100112','w':'晴','c':'sometext here'},
+{'d':'20100113','w':'晴','c':'sometext here'},
+{'d':'20100114','w':'晴','c':'sometext here'},
+{'d':'20100115','w':'晴','c':'sometext here'},
+{'d':'20100116','w':'晴','c':'sometext here'},
+{'d':'20100117','w':'晴','c':'sometext here'},
+{'d':'20100118','w':'晴','c':'sometext here'},
+{'d':'20100119','w':'雾','c':'sometext here'},
+{'d':'20100120','w':'多云','c':'sometext here'},
+{'d':'20100121','w':'晴','c':'sometext here'},
+{'d':'20100122','w':'晴','c':'sometext here'},
+{'d':'20100123','w':'晴','c':'sometext here'},
+{'d':'20100124','w':'小雨','c':'sometext here'},
+{'d':'20100125','w':'晴','c':'sometext here'},
+{'d':'20100126','w':'晴','c':'sometext here'},
+{'d':'20100127','w':'小雨','c':'sometext here'},
+{'d':'20100128','w':'晴','c':'sometext here'},
+{'d':'20100129','w':'晴','c':'sometext here'},
+{'d':'20100130','w':'小雨转晴','c':'sometext here'},
+{'d':'20100131','w':'晴','c':'sometext here'},
+
+{'d':'20100201','w':'晴','c':'sometext here'},
+{'d':'20100202','w':'晴','c':'sometext here'},
+{'d':'20100203','w':'晴','c':'sometext here'},
+{'d':'20100204','w':'晴','c':'sometext here'},
+{'d':'20100205','w':'晴','c':'sometext here'},
+{'d':'20100206','w':'晴转小雨','c':'sometext here'},
+{'d':'20100207','w':'小雨 二十四','c':'sometext here'},
+{'d':'20100208','w':'晴','c':'sometext here'},
+{'d':'20100209','w':'小雨','c':'sometext here'},
+{'d':'20100210','w':'小雨','c':'sometext here'},
+{'d':'20100211','w':'大雪','c':'sometext here'},
+{'d':'20100212','w':'阴','c':'sometext here'},
+{'d':'20100213','w':'阴','c':'sometext here'},
+{'d':'20100214','w':'雪 春节情人节','c':'sometext here'},
+{'d':'20100215','w':'阴 初二','c':'sometext here'},
+{'d':'20100216','w':'阴 初三','c':'sometext here'},
+{'d':'20100217','w':'晴 初四','c':'sometext here'},
+{'d':'20100218','w':'晴 初五','c':'sometext here'},
+{'d':'20100219','w':'晴','c':'sometext here'},
+{'d':'20100220','w':'晴','c':'sometext here'},
+{'d':'20100221','w':'晴','c':'sometext here'},
+{'d':'20100222','w':'晴','c':'sometext here'},
+{'d':'20100223','w':'晴','c':'sometext here'},
+{'d':'20100224','w':'晴','c':'sometext here'},
+{'d':'20100225','w':'晴','c':'sometext here'},
+{'d':'20100226','w':'晴 上灯','c':'sometext here'},
+{'d':'20100227','w':'晴','c':'sometext here'},
+{'d':'20100228','w':'晴 元宵','c':'sometext here'},
+
+{'d':'20100301','w':'晴','c':'sometext here'},
+{'d':'20100302','w':'雨','c':'sometext here'},
+{'d':'20100303','w':'雨','c':'sometext here'},
+{'d':'20100304','w':'阴','c':'sometext here'},
+{'d':'20100305','w':'雨','c':'sometext here'},
+{'d':'20100306','w':'阴','c':'sometext here'},
+{'d':'20100307','w':'晴','c':'sometext here'},
+{'d':'20100308','w':'阴','c':'sometext here'},
+{'d':'20100309','w':'雪','c':'sometext here'},
+{'d':'20100310','w':'晴','c':'sometext here'},
+{'d':'20100311','w':'晴 生日','c':'sometext here'},
+{'d':'20100312','w':'晴','c':'sometext here'},
+{'d':'20100313','w':'晴','c':'sometext here'},
+{'d':'20100314','w':'晴','c':'sometext here'},
+{'d':'20100315','w':'阴','c':'sometext here'},
+{'d':'20100316','w':'晴','c':'sometext here'},
+{'d':'20100317','w':'晴','c':'sometext here'},
+{'d':'20100318','w':'晴','c':'sometext here'},
+{'d':'20100319','w':'晴','c':'sometext here'},
+{'d':'20100320','w':'阴','c':'sometext here'},
+{'d':'20100321','w':'晴','c':'sometext here'},
+{'d':'20100322','w':'晴','c':'sometext here'},
+{'d':'20100323','w':'雨','c':'sometext here'},
+{'d':'20100324','w':'阴','c':'sometext here'},
+{'d':'20100325','w':'阴','c':'sometext here'},
+{'d':'20100326','w':'晴','c':'sometext here'},
+{'d':'20100327','w':'阴','c':'sometext here'},
+{'d':'20100328','w':'晴','c':'sometext here'},
+{'d':'20100329','w':'晴','c':'sometext here'},
+{'d':'20100330','w':'晴','c':'sometext here'},
+{'d':'20100331','w':'阴','c':'sometext here'},
+
+{'d':'20100401','w':'小雨','c':'sometext here'},
+{'d':'20100402','w':'晴','c':'sometext here'},
+{'d':'20100403','w':'晴','c':'sometext here'},
+{'d':'20100404','w':'晴','c':'sometext here'},
+{'d':'20100405','w':'晴','c':'sometext here'},
+{'d':'20100406','w':'晴','c':'sometext here'},
+{'d':'20100407','w':'晴','c':'sometext here'},
+{'d':'20100408','w':'晴','c':'sometext here'},
+{'d':'20100409','w':'晴','c':'sometext here'},
+{'d':'20100410','w':'晴','c':'sometext here'},
+{'d':'20100411','w':'小雨','c':'sometext here'},
+{'d':'20100412','w':'晴转雨','c':'sometext here'},
+{'d':'20100413','w':'晴','c':'sometext here'},
+{'d':'20100414','w':'小雨','c':'sometext here'},
+{'d':'20100415','w':'晴','c':'sometext here'},
+{'d':'20100416','w':'晴','c':'sometext here'},
+{'d':'20100417','w':'晴','c':'sometext here'},
+{'d':'20100418','w':'小雨','c':'sometext here'},
+{'d':'20100419','w':'晴','c':'sometext here'},
+{'d':'20100420','w':'晴','c':'sometext here'},
+{'d':'20100421','w':'小雨','c':'sometext here'},
+{'d':'20100422','w':'晴','c':'sometext here'},
+{'d':'20100423','w':'晴','c':'sometext here'},
+{'d':'20100424','w':'晴','c':'sometext here'},
+{'d':'20100425','w':'晴转雨','c':'sometext here'},
+{'d':'20100426','w':'晴','c':'sometext here'},
+{'d':'20100427','w':'晴','c':'sometext here'},
+{'d':'20100428','w':'晴','c':'sometext here'},
+{'d':'20100429','w':'晴','c':'sometext here'},
+{'d':'20100430','w':'晴','c':'sometext here'},
+
+{'d':'20100501','w':'晴','c':'sometext here'},
+{'d':'20100502','w':'晴','c':'sometext here'},
+{'d':'20100503','w':'晴','c':'sometext here'},
+{'d':'20100504','w':'晴','c':'sometext here'},
+{'d':'20100505','w':'小雨转晴','c':'sometext here'},
+{'d':'20100506','w':'晴','c':'sometext here'},
+{'d':'20100507','w':'晴','c':'sometext here'},
+{'d':'20100508','w':'晴','c':'sometext here'},
+{'d':'20100509','w':'晴','c':'sometext here'},
+{'d':'20100510','w':'晴','c':'sometext here'},
+{'d':'20100511','w':'晴','c':'sometext here'},
+{'d':'20100512','w':'晴','c':'sometext here'},
+{'d':'20100513','w':'晴','c':'sometext here'},
+{'d':'20100514','w':'晴转小雨','c':'sometext here'},
+{'d':'20100515','w':'小雨转阴','c':'sometext here'},
+{'d':'20100516','w':'阴','c':'sometext here'},
+{'d':'20100517','w':'晴','c':'sometext here'},
+{'d':'20100518','w':'晴','c':'sometext here'},
+{'d':'20100519','w':'晴','c':'sometext here'},
+{'d':'20100520','w':'晴','c':'sometext here'},
+{'d':'20100521','w':'阴','c':'sometext here'},
+{'d':'20100522','w':'阴','c':'sometext here'},
+{'d':'20100523','w':'晴','c':'sometext here'},
+{'d':'20100524','w':'晴','c':'sometext here'},
+{'d':'20100525','w':'晴','c':'sometext here'},
+{'d':'20100526','w':'晴','c':'sometext here'},
+{'d':'20100527','w':'晴','c':'sometext here'},
+{'d':'20100528','w':'晴','c':'sometext here'},
+{'d':'20100529','w':'晴','c':'sometext here'},
+{'d':'20100530','w':'晴','c':'sometext here'},
+{'d':'20100531','w':'晴','c':'sometext here'},
+
+{'d':'20100601','w':'晴','c':'sometext here'},
+{'d':'20100602','w':'晴','c':'sometext here'},
+{'d':'20100603','w':'晴','c':'sometext here'},
+{'d':'20100604','w':'晴','c':'sometext here'},
+{'d':'20100605','w':'晴','c':'sometext here'},
+{'d':'20100606','w':'晴 365','c':'sometext here'},
+{'d':'20100607','w':'晴 364','c':'sometext here'},
+{'d':'20100608','w':'晴 363','c':'sometext here'},
+{'d':'20100609','w':'雨 362','c':'sometext here'},
+{'d':'20100610','w':'阴 361','c':'sometext here'},
+{'d':'20100611','w':'晴 360','c':'sometext here'},
+{'d':'20100612','w':'晴 359','c':'sometext here'},
+{'d':'20100613','w':'晴 358','c':'sometext here'},
+{'d':'20100614','w':'灰 357','c':'sometext here'},
+{'d':'20100615','w':'灰 356','c':'sometext here'},
+{'d':'20100616','w':'晴 端午节 355','c':'sometext here'},
+{'d':'20100617','w':'晴 354','c':'sometext here'},
+{'d':'20100618','w':'晴 353','c':'sometext here'},
+{'d':'20100619','w':'晴 352','c':'sometext here'},
+{'d':'20100620','w':'晴 351','c':'sometext here'},
+{'d':'20100621','w':'晴 350','c':'sometext here'},
+{'d':'20100622','w':'晴 349','c':'sometext here'},
+{'d':'20100623','w':'晴 348','c':'sometext here'},
+{'d':'20100624','w':'晴 347','c':'sometext here'},
+{'d':'20100625','w':'晴 346','c':'sometext here'},
+{'d':'20100626','w':'晴 345','c':'sometext here'},
+{'d':'20100627','w':'晴 344','c':'sometext here'},
+{'d':'20100628','w':'雨转晴 343','c':'sometext here'},
+{'d':'20100629','w':'晴 342','c':'sometext here'},
+{'d':'20100630','w':'晴 341','c':'sometext here'},
+
+{'d':'20100701','w':'晴 340','c':'sometext here'},
+{'d':'20100702','w':'雨转晴转雨 339','c':'sometext here'},
+{'d':'20100703','w':'晴 338','c':'sometext here'},
+{'d':'20100704','w':'晴 337','c':'sometext here'},
+{'d':'20100705','w':'晴 336','c':'sometext here'},
+{'d':'20100706','w':'晴 335','c':'sometext here'},
+{'d':'20100707','w':'晴 334','c':'sometext here'},
+{'d':'20100708','w':'晴 333','c':'sometext here'},
+{'d':'20100709','w':'晴 332','c':'sometext here'},
+{'d':'20100710','w':'雨 331','c':'sometext here'},
+{'d':'20100711','w':'晴 330','c':'sometext here'},
+{'d':'20100712','w':'雨 329','c':'sometext here'},
+{'d':'20100713','w':'晴 328','c':'sometext here'},
+{'d':'20100714','w':'晴 327','c':'sometext here'},
+{'d':'20100715','w':'晴 326','c':'sometext here'},
+{'d':'20100716','w':'晴 325','c':'sometext here'},
+{'d':'20100717','w':'晴 324','c':'sometext here'},
+{'d':'20100718','w':'晴 323','c':'sometext here'},
+{'d':'20100719','w':'晴 322','c':'sometext here'},
+{'d':'20100720','w':'晴转雨 321','c':'sometext here'},
+{'d':'20100721','w':'晴 320','c':'sometext here'},
+{'d':'20100722','w':'晴转雨 319','c':'sometext here'},
+{'d':'20100723','w':'晴转雨 318','c':'sometext here'},
+{'d':'20100724','w':'晴 317','c':'sometext here'},
+{'d':'20100725','w':'晴 316','c':'sometext here'},
+{'d':'20100726','w':'晴 315','c':'sometext here'},
+{'d':'20100727','w':'晴 314','c':'sometext here'},
+{'d':'20100728','w':'晴 313','c':'sometext here'},
+{'d':'20100729','w':'晴 312','c':'sometext here'},
+{'d':'20100730','w':'晴 311','c':'sometext here'},
+{'d':'20100731','w':'晴 310','c':'sometext here'},
+
+{'d':'20100801','w':'晴 309','c':'sometext here'},
+{'d':'20100802','w':'晴转雨 308','c':'sometext here'},
+{'d':'20100803','w':'晴 307','c':'sometext here'},
+{'d':'20100804','w':'晴 306','c':'sometext here'},
+{'d':'20100805','w':'晴转雨 305','c':'sometext here'},
+{'d':'20100806','w':'晴 304','c':'sometext here'},
+{'d':'20100807','w':'晴 303','c':'sometext here'},
+{'d':'20100808','w':'晴 302','c':'sometext here'},
+{'d':'20100809','w':'晴 301','c':'sometext here'},
+{'d':'20100810','w':'晴 300','c':'sometext here'},
+{'d':'20100811','w':'晴 299','c':'sometext here'},
+{'d':'20100812','w':'晴 298','c':'sometext here'},
+{'d':'20100813','w':'晴 297','c':'sometext here'},
+{'d':'20100814','w':'晴 296','c':'sometext here'},
+{'d':'20100815','w':'晴转雨 295','c':'sometext here'},
+{'d':'20100816','w':'阴雨 七夕 294','c':'sometext here'},
+{'d':'20100817','w':'晴 293','c':'sometext here'},
+{'d':'20100818','w':'晴 292','c':'sometext here'},
+{'d':'20100819','w':'晴 291','c':'sometext here'},
+{'d':'20100820','w':'晴 290','c':'sometext here'},
+{'d':'20100821','w':'晴 289','c':'sometext here'},
+{'d':'20100822','w':'晴 288','c':'sometext here'},
+{'d':'20100823','w':'大雨 287','c':'sometext here'},
+{'d':'20100824','w':'阴 286','c':'sometext here'},
+{'d':'20100825','w':'晴 285','c':'sometext here'},
+{'d':'20100826','w':'晴转雨 284','c':'sometext here'},
+{'d':'20100827','w':'晴转雨 283','c':'sometext here'},
+{'d':'20100828','w':'雨转晴 282','c':'sometext here'},
+{'d':'20100829','w':'晴 281','c':'sometext here'},
+{'d':'20100830','w':'晴 280','c':'sometext here'},
+{'d':'20100831','w':'晴 279','c':'sometext here'},
+
+{'d':'20100901','w':'雨 278','c':'sometext here'},
+{'d':'20100902','w':'晴 277','c':'sometext here'},
+{'d':'20100903','w':'雨 276','c':'sometext here'},
+{'d':'20100904','w':'晴转雨 275','c':'sometext here'},
+{'d':'20100905','w':'晴 274','c':'sometext here'},
+{'d':'20100906','w':'晴 273','c':'sometext here'},
+{'d':'20100907','w':'晴 272','c':'sometext here'},
+{'d':'20100908','w':'晴 271','c':'sometext here'},
+{'d':'20100909','w':'晴 270','c':'sometext here'},
+{'d':'20100910','w':'晴 269','c':'sometext here'},
+{'d':'20100911','w':'晴 268','c':'sometext here'},
+{'d':'20100912','w':'晴 267','c':'sometext here'},
+{'d':'20100913','w':'晴 266','c':'sometext here'},
+{'d':'20100914','w':'雨转晴 265','c':'sometext here'},
+{'d':'20100915','w':'晴 264','c':'sometext here'},
+{'d':'20100916','w':'晴 263','c':'sometext here'},
+{'d':'20100917','w':'晴 262','c':'sometext here'},
+{'d':'20100918','w':'晴 261','c':'sometext here'},
+{'d':'20100919','w':'晴 260','c':'sometext here'},
+{'d':'20100920','w':'晴 259','c':'sometext here'},
+{'d':'20100921','w':'晴 258','c':'sometext here'},
+{'d':'20100922','w':'阴雨 257','c':'sometext here'},
+{'d':'20100923','w':'晴 256','c':'sometext here'},
+{'d':'20100924','w':'晴 255','c':'sometext here'},
+{'d':'20100925','w':'晴 254','c':'sometext here'},
+{'d':'20100926','w':'晴 253','c':'sometext here'},
+{'d':'20100927','w':'晴 252','c':'sometext here'},
+{'d':'20100928','w':'晴 251','c':'sometext here'},
+{'d':'20100929','w':'晴 250','c':'sometext here'},
+{'d':'20100930','w':'晴 249','c':'sometext here'},
+
+{'d':'20101001','w':'小雨 248','c':'sometext here'},
+{'d':'20101002','w':'小雨 247','c':'sometext here'},
+{'d':'20101003','w':'晴 246','c':'sometext here'},
+{'d':'20101004','w':'晴 245','c':'sometext here'},
+{'d':'20101005','w':'晴 244','c':'sometext here'},
+{'d':'20101006','w':'晴 243','c':'sometext here'},
+{'d':'20101007','w':'晴 242','c':'sometext here'},
+{'d':'20101008','w':'晴 241','c':'sometext here'},
+{'d':'20101009','w':'晴 240','c':'sometext here'},
+{'d':'20101010','w':'晴 239','c':'sometext here'},
+{'d':'20101011','w':'晴 238','c':'sometext here'},
+{'d':'20101012','w':'晴 237','c':'sometext here'},
+{'d':'20101013','w':'晴 236','c':'sometext here'},
+{'d':'20101014','w':'晴 235','c':'sometext here'},
+{'d':'20101015','w':'晴 234','c':'sometext here'},
+{'d':'20101016','w':'晴 233','c':'sometext here'},
+{'d':'20101017','w':'晴 232','c':'sometext here'},
+{'d':'20101018','w':'晴 231','c':'sometext here'},
+{'d':'20101019','w':'晴 230','c':'sometext here'},
+{'d':'20101020','w':'晴 229','c':'sometext here'},
+{'d':'20101021','w':'晴 228','c':'sometext here'},
+{'d':'20101022','w':'晴 227','c':'sometext here'},
+{'d':'20101023','w':'小雨 226','c':'sometext here'},
+{'d':'20101024','w':'晴 225','c':'sometext here'},
+{'d':'20101025','w':'晴 224','c':'sometext here'},
+{'d':'20101026','w':'晴 223','c':'sometext here'},
+{'d':'20101027','w':'晴 222','c':'sometext here'},
+{'d':'20101028','w':'晴 221','c':'sometext here'},
+{'d':'20101029','w':'晴 220','c':'sometext here'},
+{'d':'20101030','w':'晴 219','c':'sometext here'},
+{'d':'20101031','w':'晴 218','c':'sometext here'},
+
+{'d':'20101101','w':'晴 217','c':'sometext here'},
+{'d':'20101102','w':'晴 216','c':'sometext here'},
+{'d':'20101103','w':'晴 215','c':'sometext here'},
+{'d':'20101104','w':'晴 214','c':'sometext here'},
+{'d':'20101105','w':'晴 213','c':'sometext here'},
+{'d':'20101106','w':'晴 212','c':'sometext here'},
+{'d':'20101107','w':'晴 211','c':'sometext here'},
+{'d':'20101108','w':'晴 210','c':'sometext here'},
+{'d':'20101109','w':'晴 209','c':'sometext here'},
+{'d':'20101110','w':'晴 208','c':'sometext here'},
+{'d':'20101111','w':'晴 207','c':'sometext here'},
+{'d':'20101112','w':'晴 206','c':'sometext here'},
+{'d':'20101113','w':'晴 205','c':'sometext here'},
+{'d':'20101114','w':'小雨 204','c':'sometext here'},
+{'d':'20101115','w':'晴 203','c':'sometext here'},
+{'d':'20101116','w':'晴 202','c':'sometext here'},
+{'d':'20101117','w':'晴 201','c':'sometext here'},
+{'d':'20101118','w':'晴 200','c':'sometext here'},
+{'d':'20101119','w':'晴 199','c':'sometext here'},
+{'d':'20101120','w':'晴 198','c':'sometext here'},
+{'d':'20101121','w':'大风 197','c':'sometext here'},
+{'d':'20101122','w':'晴 196','c':'sometext here'},
+{'d':'20101123','w':'晴 195','c':'sometext here'},
+{'d':'20101124','w':'晴 194','c':'sometext here'},
+{'d':'20101125','w':'晴 193','c':'sometext here'},
+{'d':'20101126','w':'晴 192','c':'sometext here'},
+{'d':'20101127','w':'晴 191','c':'sometext here'},
+{'d':'20101128','w':'晴 190','c':'sometext here'},
+{'d':'20101129','w':'晴 189','c':'sometext here'},
+{'d':'20101130','w':'晴 188','c':'sometext here'},
+
+{'d':'20101201','w':'晴 187','c':'sometext here'},
+{'d':'20101202','w':'晴 186','c':'sometext here'},
+{'d':'20101203','w':'晴 185','c':'sometext here'},
+{'d':'20101204','w':'晴 184','c':'sometext here'},
+{'d':'20101205','w':'晴 183','c':'sometext here'},
+{'d':'20101206','w':'晴 182','c':'sometext here'},
+{'d':'20101207','w':'晴 181','c':'sometext here'},
+{'d':'20101208','w':'晴 180','c':'sometext here'},
+{'d':'20101209','w':'晴 179','c':'sometext here'},
+{'d':'20101210','w':'晴 178','c':'sometext here'},
+{'d':'20101211','w':'晴 177','c':'sometext here'},
+{'d':'20101212','w':'雨 176','c':'sometext here'},
+{'d':'20101213','w':'雨 175','c':'sometext here'},
+{'d':'20101214','w':'阴 174','c':'sometext here'},
+{'d':'20101215','w':'晴 173','c':'sometext here'},
+{'d':'20101216','w':'晴 172','c':'sometext here'},
+{'d':'20101217','w':'晴 171','c':'sometext here'},
+{'d':'20101218','w':'晴 170','c':'sometext here'},
+{'d':'20101219','w':'晴 169','c':'sometext here'},
+{'d':'20101220','w':'晴 168','c':'sometext here'},
+{'d':'20101221','w':'晴 167','c':'sometext here'},
+{'d':'20101222','w':'晴 166','c':'sometext here'},
+{'d':'20101223','w':'晴 165','c':'sometext here'},
+{'d':'20101224','w':'晴 164','c':'sometext here'},
+{'d':'20101225','w':'晴 163','c':'sometext here'},
+{'d':'20101226','w':'晴 162','c':'sometext here'},
+{'d':'20101227','w':'晴 161','c':'sometext here'},
+{'d':'20101228','w':'晴 160','c':'sometext here'},
+{'d':'20101229','w':'晴 159','c':'sometext here'},
+{'d':'20101230','w':'晴 158','c':'sometext here'},
+{'d':'20101231','w':'晴 157','c':'sometext here'},
+
+
+
+{'d':'20110101','w':'晴 156','c':'sometext here'},
+{'d':'20110102','w':'晴 155','c':'sometext here'},
+{'d':'20110103','w':'晴 154','c':'sometext here'},
+{'d':'20110104','w':'晴 153','c':'sometext here'},
+{'d':'20110105','w':'晴 152','c':'sometext here'},
+{'d':'20110106','w':'晴 151','c':'sometext here'},
+{'d':'20110107','w':'晴 150','c':'sometext here'},
+{'d':'20110108','w':'晴 149','c':'sometext here'},
+{'d':'20110109','w':'晴 148','c':'sometext here'},
+{'d':'20110110','w':'晴 147','c':'sometext here'},
+{'d':'20110111','w':'晴 146','c':'sometext here'},
+{'d':'20110112','w':'晴 145','c':'sometext here'},
+{'d':'20110113','w':'晴 144','c':'sometext here'},
+{'d':'20110114','w':'晴 143','c':'sometext here'},
+{'d':'20110115','w':'晴 142','c':'sometext here'},
+{'d':'20110116','w':'晴 141','c':'sometext here'},
+{'d':'20110117','w':'晴 140','c':'sometext here'},
+{'d':'20110118','w':'雪 139','c':'sometext here'},
+{'d':'20110119','w':'晴 138','c':'sometext here'},
+{'d':'20110120','w':'雪 137','c':'sometext here'},
+{'d':'20110121','w':'晴 136','c':'sometext here'},
+{'d':'20110122','w':'晴 135','c':'sometext here'},
+{'d':'20110123','w':'晴 134','c':'sometext here'},
+{'d':'20110124','w':'晴 133','c':'sometext here'},
+{'d':'20110125','w':'晴 132','c':'sometext here'},
+{'d':'20110126','w':'晴 131','c':'sometext here'},
+{'d':'20110127','w':'晴转小雪 130','c':'sometext here'},
+{'d':'20110128','w':'晴夹小雪花 129','c':'sometext here'},
+{'d':'20110129','w':'晴 128','c':'sometext here'},
+{'d':'20110130','w':'晴 127','c':'sometext here'},
+{'d':'20110131','w':'晴 126','c':'sometext here'},
+
+{'d':'20110201','w':'晴 125','c':'sometext here'},
+{'d':'20110202','w':'晴 124','c':'sometext here'},
+{'d':'20110203','w':'晴 123','c':'sometext here'},
+{'d':'20110204','w':'晴 122','c':'sometext here'},
+{'d':'20110205','w':'晴 121','c':'sometext here'},
+{'d':'20110206','w':'晴 120','c':'sometext here'},
+{'d':'20110207','w':'晴转小雨 119','c':'sometext here'},
+{'d':'20110208','w':'阴 118','c':'sometext here'},
+{'d':'20110209','w':'阴转小雨 117','c':'sometext here'},
+{'d':'20110210','w':'雪转小雪 116','c':'sometext here'},
+{'d':'20110211','w':'晴 115','c':'sometext here'},
+{'d':'20110212','w':'晴 114','c':'sometext here'},
+{'d':'20110213','w':'小雪转阴 113','c':'sometext here'},
+{'d':'20110214','w':'晴 112','c':'sometext here'},
+{'d':'20110215','w':'晴 111','c':'sometext here'},
+{'d':'20110216','w':'雪 110','c':'sometext here'},
+{'d':'20110217','w':'晴 109','c':'sometext here'},
+{'d':'20110218','w':'晴 108','c':'sometext here'},
+{'d':'20110219','w':'晴 109','c':'sometext here'},
+{'d':'20110220','w':'晴 108','c':'sometext here'},
+{'d':'20110221','w':'晴 107','c':'sometext here'},
+{'d':'20110222','w':'晴 106','c':'sometext here'},
+{'d':'20110223','w':'晴 105','c':'sometext here'},
+{'d':'20110224','w':'晴 104','c':'sometext here'},
+{'d':'20110225','w':'晴 103','c':'sometext here'},
+{'d':'20110226','w':'小雨 102','c':'sometext here'},
+{'d':'20110227','w':'小雨 101','c':'sometext here'},
+{'d':'20110228','w':'阴转小雨 100','c':'sometext here'},
+
+{'d':'20110301','w':'阴转晴 99','c':'sometext here'},
+{'d':'20110302','w':'晴 98','c':'sometext here'},
+{'d':'20110303','w':'晴 97','c':'sometext here'},
+{'d':'20110304','w':'晴 96','c':'sometext here'},
+{'d':'20110305','w':'晴 95','c':'sometext here'},
+{'d':'20110306','w':'晴 94','c':'sometext here'},
+{'d':'20110307','w':'晴 93','c':'sometext here'},
+{'d':'20110308','w':'晴 92','c':'sometext here'},
+{'d':'20110309','w':'晴 91','c':'sometext here'},
+{'d':'20110310','w':'晴 90','c':'sometext here'},
+{'d':'20110311','w':'晴 89','c':'sometext here'},
+{'d':'20110312','w':'晴 88','c':'sometext here'},
+{'d':'20110313','w':'晴 87','c':'sometext here'},
+{'d':'20110314','w':'小雨 86','c':'sometext here'},
+{'d':'20110315','w':'晴 85','c':'sometext here'},
+{'d':'20110316','w':'晴 84','c':'sometext here'},
+{'d':'20110317','w':'晴 83','c':'sometext here'},
+{'d':'20110318','w':'晴 82','c':'sometext here'},
+{'d':'20110319','w':'阴转小雨 81','c':'sometext here'},
+{'d':'20110320','w':'晴 80','c':'sometext here'},
+{'d':'20110321','w':'雨 79','c':'sometext here'},
+{'d':'20110322','w':'晴 78','c':'sometext here'},
+{'d':'20110323','w':'晴 77','c':'sometext here'},
+{'d':'20110324','w':'晴 76','c':'sometext here'},
+{'d':'20110325','w':'晴 75','c':'sometext here'},
+{'d':'20110326','w':'晴 74','c':'sometext here'},
+{'d':'20110327','w':'晴 73','c':'sometext here'},
+{'d':'20110328','w':'晴 72','c':'sometext here'},
+{'d':'20110329','w':'晴 71','c':'sometext here'},
+{'d':'20110330','w':'晴 70','c':'sometext here'},
+{'d':'20110331','w':'晴 69','c':'sometext here'},
+
+{'d':'20110401','w':'晴 68','c':'sometext here'},
+{'d':'20110402','w':'雨 67','c':'sometext here'},
+{'d':'20110403','w':'晴 66','c':'sometext here'},
+{'d':'20110404','w':'晴 65','c':'sometext here'},
+{'d':'20110405','w':'晴 64','c':'sometext here'},
+{'d':'20110406','w':'小雨 63','c':'sometext here'},
+{'d':'20110407','w':'阴 62','c':'sometext here'},
+{'d':'20110408','w':'晴 61','c':'sometext here'},
+{'d':'20110409','w':'晴 60','c':'sometext here'},
+{'d':'20110410','w':'晴 59','c':'sometext here'},
+{'d':'20110411','w':'晴 58','c':'sometext here'},
+{'d':'20110412','w':'晴 57','c':'sometext here'},
+{'d':'20110413','w':'晴 56','c':'sometext here'},
+{'d':'20110414','w':'晴 54','c':'sometext here'},
+{'d':'20110415','w':'晴 53','c':'sometext here'},
+{'d':'20110416','w':'晴 52','c':'sometext here'},
+{'d':'20110417','w':'晴 51','c':'sometext here'},
+{'d':'20110418','w':'晴 50','c':'sometext here'},
+{'d':'20110419','w':'晴 49','c':'sometext here'},
+{'d':'20110420','w':'晴 48','c':'sometext here'},
+{'d':'20110421','w':'晴 47','c':'sometext here'},
+{'d':'20110422','w':'晴 46','c':'sometext here'},
+{'d':'20110423','w':'雷阵雨 45','c':'sometext here'},
+{'d':'20110424','w':'晴 44','c':'sometext here'},
+{'d':'20110425','w':'晴 43','c':'sometext here'},
+{'d':'20110426','w':'晴 42','c':'sometext here'},
+{'d':'20110427','w':'晴 41','c':'sometext here'},
+{'d':'20110428','w':'晴 40','c':'sometext here'},
+{'d':'20110429','w':'晴 39','c':'sometext here'},
+{'d':'20110430','w':'晴 38','c':'sometext here'},
+
+{'d':'20110501','w':'晴 37','c':'sometext here'},
+{'d':'20110502','w':'晴转雨 36','c':'sometext here'},
+{'d':'20110503','w':'晴 35','c':'sometext here'},
+{'d':'20110504','w':'晴 34','c':'sometext here'},
+{'d':'20110505','w':'晴 33','c':'sometext here'},
+{'d':'20110506','w':'晴 32','c':'sometext here'},
+{'d':'20110507','w':'晴 31','c':'sometext here'},
+{'d':'20110508','w':'晴 30','c':'sometext here'},
+{'d':'20110509','w':'晴 29','c':'sometext here'},
+{'d':'20110510','w':'雨28','c':'sometext here'},
+{'d':'20110511','w':'阴 27','c':'sometext here'},
+{'d':'20110512','w':'晴 26','c':'sometext here'},
+{'d':'20110513','w':'晴 25','c':'sometext here'},
+{'d':'20110514','w':'晴 24','c':'sometext here'},
+{'d':'20110515','w':'晴 23','c':'sometext here'},
+{'d':'20110516','w':'晴 22','c':'sometext here'},
+{'d':'20110517','w':'晴 21','c':'sometext here'},
+{'d':'20110518','w':'晴 20','c':'sometext here'},
+{'d':'20110519','w':'晴 19','c':'sometext here'},
+{'d':'20110520','w':'晴 18','c':'sometext here'},
+{'d':'20110521','w':'晴 17','c':'sometext here'},
+{'d':'20110522','w':'雨 16','c':'sometext here'},
+{'d':'20110523','w':'阴 15','c':'sometext here'},
+{'d':'20110524','w':'晴 14','c':'sometext here'},
+{'d':'20110525','w':'雨 13','c':'sometext here'},
+{'d':'20110526','w':'晴 12','c':'sometext here'},
+{'d':'20110527','w':'晴 11','c':'sometext here'},
+{'d':'20110528','w':'晴 10','c':'sometext here'},
+{'d':'20110529','w':'晴 9','c':'sometext here'},
+{'d':'20110530','w':'晴 8','c':'sometext here'},
+{'d':'20110531','w':'晴 7','c':'sometext here'},
+
+{'d':'20110601','w':'晴 6','c':'sometext here'},
+{'d':'20110602','w':'晴 5','c':'sometext here'},
+{'d':'20110603','w':'晴 4','c':'sometext here'},
+{'d':'20110604','w':'晴 3','c':'sometext here'},
+{'d':'20110605','w':'晴 2','c':'sometext here'},
+{'d':'20110606','w':'晴 1','c':'sometext here'},
+{'d':'20110607','w':'晴','c':'sometext here'},
+{'d':'20110608','w':'晴','c':'sometext here'},
+{'d':'20110609','w':'晴转雨','c':'sometext here'},
+{'d':'20110610','w':'晴','c':'sometext here'},
+{'d':'20110611','w':'晴','c':'sometext here'},
+{'d':'20110612','w':'晴','c':'sometext here'},
+{'d':'20110613','w':'晴','c':'sometext here'},
+{'d':'20110614','w':'晴','c':'sometext here'},
+{'d':'20110615','w':'晴','c':'sometext here'},
+{'d':'20110616','w':'晴','c':'sometext here'},
+{'d':'20110617','w':'晴','c':'sometext here'},
+{'d':'20110618','w':'雨','c':'sometext here'},
+{'d':'20110619','w':'晴','c':'sometext here'},
+{'d':'20110620','w':'晴','c':'sometext here'},
+{'d':'20110621','w':'晴','c':'sometext here'},
+{'d':'20110622','w':'晴','c':'sometext here'},
+{'d':'20110623','w':'晴','c':'sometext here'},
+{'d':'20110624','w':'晴','c':'sometext here'},
+{'d':'20110625','w':'晴','c':'sometext here'},
+{'d':'20110626','w':'晴','c':'sometext here'},
+{'d':'20110627','w':'晴','c':'sometext here'},
+{'d':'20110628','w':'下午阵雨','c':'sometext here'},
+{'d':'20110629','w':'晴','c':'sometext here'},
+{'d':'20110630','w':'晴','c':'sometext here'},
+
+{'d':'20110701','w':'晴','c':'sometext here'},
+{'d':'20110702','w':'晴','c':'sometext here'},
+{'d':'20110703','w':'晴','c':'sometext here'},
+{'d':'20110704','w':'雨','c':'sometext here'},
+{'d':'20110705','w':'雨','c':'sometext here'},
+{'d':'20110706','w':'雨转晴','c':'sometext here'},
+{'d':'20110707','w':'晴','c':'sometext here'},
+{'d':'20110708','w':'雨转阴','c':'sometext here'},
+{'d':'20110709','w':'晴','c':'sometext here'},
+{'d':'20110710','w':'阴','c':'sometext here'},
+{'d':'20110711','w':'阴晴不定','c':'sometext here'},
+{'d':'20110712','w':'大雨','c':'sometext here'},
+{'d':'20110713','w':'小雨','c':'sometext here'},
+{'d':'20110714','w':'小雨','c':'sometext here'},
+{'d':'20110715','w':'小雨','c':'sometext here'},
+{'d':'20110716','w':'小雨','c':'sometext here'},
+{'d':'20110717','w':'小雨','c':'sometext here'},
+{'d':'20110718','w':'小雨','c':'sometext here'},
+{'d':'20110719','w':'小雨','c':'sometext here'},
+{'d':'20110720','w':'晴','c':'sometext here'},
+{'d':'20110721','w':'晴','c':'sometext here'},
+{'d':'20110722','w':'晴','c':'sometext here'},
+{'d':'20110723','w':'晴','c':'sometext here'},
+{'d':'20110724','w':'晴','c':'sometext here'},
+{'d':'20110725','w':'晴转暴雨','c':'sometext here'},
+{'d':'20110726','w':'阴','c':'sometext here'},
+{'d':'20110727','w':'晴','c':'sometext here'},
+{'d':'20110728','w':'晴','c':'sometext here'},
+{'d':'20110729','w':'晴','c':'sometext here'},
+{'d':'20110730','w':'晴','c':'sometext here'},
+{'d':'20110731','w':'晴','c':'sometext here'},
+
+{'d':'20110801','w':'晴','c':'sometext here'},
+{'d':'20110802','w':'晴转雨','c':'sometext here'},
+{'d':'20110803','w':'晴晚雨','c':'sometext here'},
+{'d':'20110804','w':'晴','c':'sometext here'},
+{'d':'20110805','w':'晴','c':'sometext here'},
+{'d':'20110806','w':'晴','c':'sometext here'},
+{'d':'20110807','w':'晴','c':'sometext here'},
+{'d':'20110808','w':'晴','c':'sometext here'},
+{'d':'20110809','w':'晴转雨','c':'sometext here'},
+{'d':'20110810','w':'小雨','c':'sometext here'},
+{'d':'20110811','w':'小雨','c':'sometext here'},
+{'d':'20110812','w':'阴晴','c':'sometext here'},
+{'d':'20110813','w':'阴晴','c':'sometext here'},
+{'d':'20110814','w':'晴阴','c':'sometext here'},
+{'d':'20110815','w':'晴','c':'sometext here'},
+{'d':'20110816','w':'晴','c':'sometext here'},
+{'d':'20110817','w':'阴晴','c':'sometext here'},
+{'d':'20110818','w':'晴','c':'sometext here'},
+{'d':'20110819','w':'晴','c':'sometext here'},
+{'d':'20110820','w':'晴','c':'sometext here'},
+{'d':'20110821','w':'雨','c':'sometext here'},
+{'d':'20110822','w':'阴','c':'sometext here'},
+{'d':'20110823','w':'阴','c':'sometext here'},
+{'d':'20110824','w':'晴','c':'sometext here'},
+{'d':'20110825','w':'晴','c':'sometext here'},
+{'d':'20110826','w':'晴','c':'sometext here'},
+{'d':'20110827','w':'晴','c':'sometext here'},
+{'d':'20110828','w':'晴','c':'sometext here'},
+{'d':'20110829','w':'晴','c':'sometext here'},
+{'d':'20110830','w':'晴','c':'sometext here'},
+{'d':'20110831','w':'晴','c':'sometext here'},
+
+{'d':'20110901','w':'晴','c':'sometext here'},
+{'d':'20110902','w':'晴','c':'sometext here'},
+{'d':'20110903','w':'晴','c':'sometext here'},
+{'d':'20110904','w':'晴','c':'sometext here'},
+{'d':'20110905','w':'晴','c':'sometext here'},
+{'d':'20110906','w':'晴','c':'sometext here'},
+{'d':'20110907','w':'晴','c':'sometext here'},
+{'d':'20110908','w':'晴转雨','c':'sometext here'},
+{'d':'20110909','w':'晴','c':'sometext here'},
+{'d':'20110910','w':'小雨转晴','c':'sometext here'},
+{'d':'20110911','w':'晴','c':'sometext here'},
+{'d':'20110912','w':'晴','c':'sometext here'},
+{'d':'20110913','w':'晴','c':'sometext here'},
+{'d':'20110914','w':'晴','c':'sometext here'},
+{'d':'20110915','w':'晴','c':'sometext here'},
+{'d':'20110916','w':'晴转大雨','c':'sometext here'},
+{'d':'20110917','w':'阴','c':'sometext here'},
+{'d':'20110918','w':'晴','c':'sometext here'},
+{'d':'20110919','w':'晴','c':'sometext here'},
+{'d':'20110920','w':'小毛雨','c':'sometext here'},
+{'d':'20110921','w':'晴','c':'sometext here'},
+{'d':'20110922','w':'晴','c':'sometext here'},
+{'d':'20110923','w':'晴','c':'sometext here'},
+{'d':'20110924','w':'晴','c':'sometext here'},
+{'d':'20110925','w':'晴','c':'sometext here'},
+{'d':'20110926','w':'晴','c':'sometext here'},
+{'d':'20110927','w':'晴','c':'sometext here'},
+{'d':'20110928','w':'晴','c':'sometext here'},
+{'d':'20110929','w':'晴','c':'sometext here'},
+{'d':'20110930','w':'小雨','c':'sometext here'},
+
+{'d':'20111001','w':'晴','c':'sometext here'},
+{'d':'20111002','w':'小雨','c':'sometext here'},
+{'d':'20111003','w':'晴','c':'sometext here'},
+{'d':'20111004','w':'晴','c':'sometext here'},
+{'d':'20111005','w':'晴','c':'sometext here'},
+{'d':'20111006','w':'晴','c':'sometext here'},
+{'d':'20111007','w':'晴','c':'sometext here'},
+{'d':'20111008','w':'晴','c':'sometext here'},
+{'d':'20111009','w':'晴','c':'sometext here'},
+{'d':'20111010','w':'晴','c':'sometext here'},
+{'d':'20111011','w':'晴','c':'sometext here'},
+{'d':'20111012','w':'晴转小雨','c':'sometext here'},
+{'d':'20111013','w':'晴转小雨','c':'sometext here'},
+{'d':'20111014','w':'晴','c':'sometext here'},
+{'d':'20111015','w':'晴','c':'sometext here'},
+{'d':'20111016','w':'晴','c':'sometext here'},
+{'d':'20111017','w':'晴','c':'sometext here'},
+{'d':'20111018','w':'晴','c':'sometext here'},
+{'d':'20111019','w':'晴','c':'sometext here'},
+{'d':'20111020','w':'晴','c':'sometext here'},
+{'d':'20111021','w':'晴','c':'sometext here'},
+{'d':'20111022','w':'晴','c':'sometext here'},
+{'d':'20111023','w':'晴','c':'sometext here'},
+{'d':'20111024','w':'晴','c':'sometext here'},
+{'d':'20111025','w':'晴','c':'sometext here'},
+{'d':'20111026','w':'晴','c':'sometext here'},
+{'d':'20111027','w':'晴','c':'sometext here'},
+{'d':'20111028','w':'晴转小雨','c':'sometext here'},
+{'d':'20111029','w':'小雨转晴','c':'sometext here'},
+{'d':'20111030','w':'晴','c':'sometext here'},
+{'d':'20111031','w':'晴','c':'sometext here'},
+
+{'d':'20111101','w':'晴','c':'sometext here'},
+{'d':'20111102','w':'晴','c':'sometext here'},
+{'d':'20111103','w':'晴','c':'sometext here'},
+{'d':'20111104','w':'晴','c':'sometext here'},
+{'d':'20111105','w':'阴','c':'sometext here'},
+{'d':'20111106','w':'阴','c':'sometext here'},
+{'d':'20111107','w':'晴','c':'sometext here'},
+{'d':'20111108','w':'晴','c':'sometext here'},
+{'d':'20111109','w':'晴','c':'sometext here'},
+{'d':'20111110','w':'晴','c':'sometext here'},
+{'d':'20111111','w':'晴','c':'sometext here'},
+{'d':'20111112','w':'晴','c':'sometext here'},
+{'d':'20111113','w':'晴','c':'sometext here'},
+{'d':'20111114','w':'晴','c':'sometext here'},
+{'d':'20111115','w':'晴','c':'sometext here'},
+{'d':'20111116','w':'晴','c':'sometext here'},
+{'d':'20111117','w':'晴','c':'sometext here'},
+{'d':'20111118','w':'晴','c':'sometext here'},
+{'d':'20111119','w':'晴','c':'sometext here'},
+{'d':'20111120','w':'晴','c':'sometext here'},
+{'d':'20111121','w':'晴','c':'sometext here'},
+{'d':'20111122','w':'晴','c':'sometext here'},
+{'d':'20111123','w':'晴','c':'sometext here'},
+{'d':'20111124','w':'晴','c':'sometext here'},
+{'d':'20111125','w':'晴','c':'sometext here'},
+{'d':'20111126','w':'晴','c':'sometext here'},
+{'d':'20111127','w':'晴','c':'sometext here'},
+{'d':'20111128','w':'晴','c':'sometext here'},
+{'d':'20111129','w':'晴','c':'sometext here'},
+{'d':'20111130','w':'小雨','c':'sometext here'},
+
+{'d':'20111201','w':'晴','c':'sometext here'},
+{'d':'20111202','w':'晴','c':'sometext here'},
+{'d':'20111203','w':'晴','c':'sometext here'},
+{'d':'20111204','w':'晴','c':'sometext here'},
+{'d':'20111205','w':'晴','c':'sometext here'},
+{'d':'20111206','w':'晴','c':'sometext here'},
+{'d':'20111207','w':'小雨','c':'sometext here'},
+{'d':'20111208','w':'阴','c':'sometext here'},
+{'d':'20111209','w':'晴','c':'sometext here'},
+{'d':'20111210','w':'晴','c':'sometext here'},
+{'d':'20111211','w':'晴','c':'sometext here'},
+{'d':'20111212','w':'晴','c':'sometext here'},
+{'d':'20111213','w':'晴','c':'sometext here'},
+{'d':'20111214','w':'晴','c':'sometext here'},
+{'d':'20111215','w':'晴','c':'sometext here'},
+{'d':'20111216','w':'晴','c':'sometext here'},
+{'d':'20111217','w':'晴','c':'sometext here'},
+{'d':'20111218','w':'晴','c':'sometext here'},
+{'d':'20111219','w':'晴','c':'sometext here'},
+{'d':'20111220','w':'晴','c':'sometext here'},
+{'d':'20111221','w':'晴','c':'sometext here'},
+{'d':'20111222','w':'晴','c':'sometext here'},
+{'d':'20111223','w':'晴','c':'sometext here'},
+{'d':'20111224','w':'晴','c':'sometext here'},
+{'d':'20111225','w':'','c':'sometext here'},
+{'d':'20111226','w':'晴','c':'sometext here'},
+{'d':'20111227','w':'晴','c':'sometext here'},
+{'d':'20111228','w':'晴','c':'sometext here'},
+{'d':'20111229','w':'晴','c':'sometext here'},
+{'d':'20111230','w':'晴','c':'sometext here'},
+{'d':'20111231','w':'晴','c':'sometext here'},
+
+
+
+{'d':'20120101','w':'晴','c':'sometext here'},
+{'d':'20120102','w':'晴','c':'sometext here'},
+{'d':'20120103','w':'晴','c':'sometext here'},
+{'d':'20120104','w':'晴','c':'sometext here'},
+{'d':'20120105','w':'晴','c':'sometext here'},
+{'d':'20120106','w':'晴','c':'sometext here'},
+{'d':'20120107','w':'晴','c':'sometext here'},
+{'d':'20120108','w':'晴','c':'sometext here'},
+{'d':'20120109','w':'晴','c':'sometext here'},
+{'d':'20120110','w':'晴','c':'sometext here'},
+{'d':'20120111','w':'晴','c':'sometext here'},
+{'d':'20120112','w':'晴','c':'sometext here'},
+{'d':'20120113','w':'晴','c':'sometext here'},
+{'d':'20120114','w':'晴','c':'sometext here'},
+{'d':'20120115','w':'晴','c':'sometext here'},
+{'d':'20120116','w':'晴','c':'sometext here'},
+{'d':'20120117','w':'晴','c':'sometext here'},
+{'d':'20120118','w':'雨','c':'sometext here'},
+{'d':'20120119','w':'晴','c':'sometext here'},
+{'d':'20120120','w':'晴','c':'sometext here'},
+{'d':'20120121','w':'晴 晚小雪','c':'sometext here'},
+{'d':'20120122','w':'晴','c':'sometext here'},
+{'d':'20120123','w':'晴 初一','c':'sometext here'},
+{'d':'20120124','w':'晴 初二','c':'sometext here'},
+{'d':'20120125','w':'晴 初三','c':'sometext here'},
+{'d':'20120126','w':'晴 初四','c':'sometext here'},
+{'d':'20120127','w':'晴 初五','c':'sometext here'},
+{'d':'20120128','w':'小雨 初六','c':'sometext here'},
+{'d':'20120129','w':'晴 初七','c':'sometext here'},
+{'d':'20120130','w':'晴','c':'sometext here'},
+{'d':'20120131','w':'晴','c':'sometext here'},
+
+{'d':'20120201','w':'晴','c':'sometext here'},
+{'d':'20120202','w':'晴','c':'sometext here'},
+{'d':'20120203','w':'晴','c':'sometext here'},
+{'d':'20120204','w':'晴','c':'sometext here'},
+{'d':'20120205','w':'晴','c':'sometext here'},
+{'d':'20120206','w':'阴 元宵','c':'sometext here'},
+{'d':'20120207','w':'晴','c':'sometext here'},
+{'d':'20120208','w':'晴','c':'sometext here'},
+{'d':'20120209','w':'晴转小雪','c':'sometext here'},
+{'d':'20120210','w':'晴','c':'sometext here'},
+{'d':'20120211','w':'晴','c':'sometext here'},
+{'d':'20120212','w':'雨夹雪','c':'sometext here'},
+{'d':'20120213','w':'阴转雨','c':'sometext here'},
+{'d':'20120214','w':'阴转雨','c':'sometext here'},
+{'d':'20120215','w':'阴','c':'sometext here'},
+{'d':'20120216','w':'晴','c':'sometext here'},
+{'d':'20120217','w':'晴','c':'sometext here'},
+{'d':'20120218','w':'晴','c':'sometext here'},
+{'d':'20120219','w':'晴','c':'sometext here'},
+{'d':'20120220','w':'阴','c':'sometext here'},
+{'d':'20120221','w':'阴','c':'sometext here'},
+{'d':'20120222','w':'小雨','c':'sometext here'},
+{'d':'20120223','w':'阴','c':'sometext here'},
+{'d':'20120224','w':'阴','c':'sometext here'},
+{'d':'20120225','w':'晴','c':'sometext here'},
+{'d':'20120226','w':'晴','c':'sometext here'},
+{'d':'20120227','w':'晴','c':'sometext here'},
+{'d':'20120228','w':'晴','c':'sometext here'},
+{'d':'20120229','w':'雨','c':'sometext here'},
+
+{'d':'20120301','w':'晴','c':'sometext here'},
+{'d':'20120302','w':'晴','c':'sometext here'},
+{'d':'20120303','w':'晴','c':'sometext here'},
+{'d':'20120304','w':'雨','c':'sometext here'},
+{'d':'20120305','w':'阴','c':'sometext here'},
+{'d':'20120306','w':'晴','c':'sometext here'},
+{'d':'20120307','w':'晴','c':'sometext here'},
+{'d':'20120308','w':'晴','c':'sometext here'},
+{'d':'20120309','w':'晴','c':'sometext here'},
+{'d':'20120310','w':'晴','c':'sometext here'},
+{'d':'20120311','w':'晴','c':'sometext here'},
+{'d':'20120312','w':'晴','c':'sometext here'},
+{'d':'20120313','w':'晴','c':'sometext here'},
+{'d':'20120314','w':'晴','c':'sometext here'},
+{'d':'20120315','w':'小雨大风','c':'sometext here'},
+{'d':'20120316','w':'阴','c':'sometext here'},
+{'d':'20120317','w':'阴转雨','c':'sometext here'},
+{'d':'20120318','w':'阴','c':'sometext here'},
+{'d':'20120319','w':'阴转小雨','c':'sometext here'},
+{'d':'20120320','w':'晴','c':'sometext here'},
+{'d':'20120321','w':'晴','c':'sometext here'},
+{'d':'20120322','w':'雨','c':'sometext here'},
+{'d':'20120323','w':'阴','c':'sometext here'},
+{'d':'20120324','w':'晴','c':'sometext here'},
+{'d':'20120325','w':'晴','c':'sometext here'},
+{'d':'20120326','w':'晴','c':'sometext here'},
+{'d':'20120327','w':'晴','c':'sometext here'},
+{'d':'20120328','w':'晴','c':'sometext here'},
+{'d':'20120329','w':'晴','c':'sometext here'},
+{'d':'20120330','w':'小雨','c':'sometext here'},
+{'d':'20120331','w':'晴','c':'sometext here'},
+
+{'d':'20120401','w':'晴','c':'sometext here'},
+{'d':'20120402','w':'晴','c':'sometext here'},
+{'d':'20120403','w':'晴','c':'sometext here'},
+{'d':'20120404','w':'晴 清明','c':'sometext here'},
+{'d':'20120405','w':'晴','c':'sometext here'},
+{'d':'20120406','w':'晴','c':'sometext here'},
+{'d':'20120407','w':'晴','c':'sometext here'},
+{'d':'20120408','w':'晴','c':'sometext here'},
+{'d':'20120409','w':'晴','c':'sometext here'},
+{'d':'20120410','w':'雨','c':'sometext here'},
+{'d':'20120411','w':'晴','c':'sometext here'},
+{'d':'20120412','w':'晴','c':'sometext here'},
+{'d':'20120413','w':'晴','c':'sometext here'},
+{'d':'20120414','w':'晴','c':'sometext here'},
+{'d':'20120415','w':'晴','c':'sometext here'},
+{'d':'20120416','w':'晴','c':'sometext here'},
+{'d':'20120417','w':'晴','c':'sometext here'},
+{'d':'20120418','w':'晴','c':'sometext here'},
+{'d':'20120419','w':'晴','c':'sometext here'},
+{'d':'20120420','w':'晴 晚雨','c':'sometext here'},
+{'d':'20120421','w':'晴转雨','c':'sometext here'},
+{'d':'20120422','w':'晴','c':'sometext here'},
+{'d':'20120423','w':'晴','c':'sometext here'},
+{'d':'20120424','w':'雨','c':'sometext here'},
+{'d':'20120425','w':'雨','c':'sometext here'},
+{'d':'20120426','w':'晴','c':'sometext here'},
+{'d':'20120427','w':'晴','c':'sometext here'},
+{'d':'20120428','w':'晴','c':'sometext here'},
+{'d':'20120429','w':'阵雨','c':'sometext here'},
+{'d':'20120430','w':'阴转小雨','c':'sometext here'},
+
+{'d':'20120501','w':'小雨','c':'sometext here'},
+{'d':'20120502','w':'晴','c':'sometext here'},
+{'d':'20120503','w':'晴','c':'sometext here'},
+{'d':'20120504','w':'晴','c':'sometext here'},
+{'d':'20120505','w':'晴','c':'sometext here'},
+{'d':'20120506','w':'晴','c':'sometext here'},
+{'d':'20120507','w':'晴','c':'sometext here'},
+{'d':'20120508','w':'晴','c':'sometext here'},
+{'d':'20120509','w':'晴','c':'sometext here'},
+{'d':'20120510','w':'晴','c':'sometext here'},
+{'d':'20120511','w':'晴','c':'sometext here'},
+{'d':'20120512','w':'晴','c':'sometext here'},
+{'d':'20120513','w':'小雨','c':'sometext here'},
+{'d':'20120514','w':'小到中雨','c':'sometext here'},
+{'d':'20120515','w':'晴','c':'sometext here'},
+{'d':'20120516','w':'晴','c':'sometext here'},
+{'d':'20120517','w':'晴','c':'sometext here'},
+{'d':'20120518','w':'晴','c':'sometext here'},
+{'d':'20120519','w':'大到中雨','c':'sometext here'},
+{'d':'20120520','w':'晴','c':'sometext here'},
+{'d':'20120521','w':'晴','c':'sometext here'},
+{'d':'20120522','w':'晴','c':'sometext here'},
+{'d':'20120523','w':'晴转雨','c':'sometext here'},
+{'d':'20120524','w':'晴转中雨','c':'sometext here'},
+{'d':'20120525','w':'晴','c':'sometext here'},
+{'d':'20120526','w':'晴','c':'sometext here'},
+{'d':'20120527','w':'晴','c':'sometext here'},
+{'d':'20120528','w':'晴','c':'sometext here'},
+{'d':'20120529','w':'晴','c':'sometext here'},
+{'d':'20120530','w':'小雨','c':'sometext here'},
+{'d':'20120531','w':'晴','c':'sometext here'},
+
+{'d':'20120601','w':'晴','c':'sometext here'},
+{'d':'20120602','w':'晴','c':'sometext here'},
+{'d':'20120603','w':'晴','c':'sometext here'},
+{'d':'20120604','w':'晴','c':'sometext here'},
+{'d':'20120605','w':'晴','c':'sometext here'},
+{'d':'20120606','w':'晴转小雨','c':'sometext here'},
+{'d':'20120607','w':'晴','c':'sometext here'},
+{'d':'20120608','w':'晴','c':'sometext here'},
+{'d':'20120609','w':'晴','c':'sometext here'},
+{'d':'20120610','w':'沙尘','c':'sometext here'},
+{'d':'20120611','w':'晴','c':'sometext here'},
+{'d':'20120612','w':'晴','c':'sometext here'},
+{'d':'20120613','w':'晴','c':'sometext here'},
+{'d':'20120614','w':'晴','c':'sometext here'},
+{'d':'20120615','w':'晴','c':'sometext here'},
+{'d':'20120616','w':'晴','c':'sometext here'},
+{'d':'20120617','w':'阴转阵雨','c':'sometext here'},
+{'d':'20120618','w':'晴','c':'sometext here'},
+{'d':'20120619','w':'晴','c':'sometext here'},
+{'d':'20120620','w':'晴','c':'sometext here'},
+{'d':'20120621','w':'晴','c':'sometext here'},
+{'d':'20120622','w':'阴','c':'sometext here'},
+{'d':'20120623','w':'小雨转阴','c':'sometext here'},
+{'d':'20120624','w':'晴','c':'sometext here'},
+{'d':'20120625','w':'晴','c':'sometext here'},
+{'d':'20120626','w':'小雨转阴','c':'sometext here'},
+{'d':'20120627','w':'阴雨','c':'sometext here'},
+{'d':'20120628','w':'晴','c':'sometext here'},
+{'d':'20120629','w':'晴','c':'sometext here'},
+{'d':'20120630','w':'晴转雷阵雨','c':'sometext here'},
+
+{'d':'20120701','w':'雨转晴','c':'sometext here'},
+{'d':'20120702','w':'晴','c':'sometext here'},
+{'d':'20120703','w':'雷阵雨','c':'sometext here'},
+{'d':'20120704','w':'雷阵雨','c':'sometext here'},
+{'d':'20120705','w':'晴','c':'sometext here'},
+{'d':'20120706','w':'晴','c':'sometext here'},
+{'d':'20120707','w':'晴','c':'sometext here'},
+{'d':'20120708','w':'阴雨','c':'sometext here'},
+{'d':'20120709','w':'晴','c':'sometext here'},
+{'d':'20120710','w':'阴雨','c':'sometext here'},
+{'d':'20120711','w':'晴','c':'sometext here'},
+{'d':'20120712','w':'雨','c':'sometext here'},
+{'d':'20120713','w':'雨','c':'sometext here'},
+{'d':'20120714','w':'雨','c':'sometext here'},
+{'d':'20120715','w':'晴','c':'sometext here'},
+{'d':'20120716','w':'晴','c':'sometext here'},
+{'d':'20120717','w':'晴','c':'sometext here'},
+{'d':'20120718','w':'晴','c':'sometext here'},
+{'d':'20120719','w':'晴','c':'sometext here'},
+{'d':'20120720','w':'晴','c':'sometext here'},
+{'d':'20120721','w':'晴','c':'sometext here'},
+{'d':'20120722','w':'晴','c':'sometext here'},
+{'d':'20120723','w':'晴','c':'sometext here'},
+{'d':'20120724','w':'晴','c':'sometext here'},
+{'d':'20120725','w':'晴','c':'sometext here'},
+{'d':'20120726','w':'晴','c':'sometext here'},
+{'d':'20120727','w':'晴','c':'sometext here'},
+{'d':'20120728','w':'晴','c':'sometext here'},
+{'d':'20120729','w':'晴','c':'sometext here'},
+{'d':'20120730','w':'晴','c':'sometext here'},
+{'d':'20120731','w':'晴','c':'sometext here'},
+
+{'d':'20120801','w':'晴','c':'sometext here'},
+{'d':'20120802','w':'晴','c':'sometext here'},
+{'d':'20120803','w':'晴','c':'sometext here'},
+{'d':'20120804','w':'晴','c':'sometext here'},
+{'d':'20120805','w':'晴','c':'sometext here'},
+{'d':'20120806','w':'晴','c':'sometext here'},
+{'d':'20120807','w':'晴','c':'sometext here'},
+{'d':'20120808','w':'小雨','c':'sometext here'},
+{'d':'20120809','w':'大雨','c':'sometext here'},
+{'d':'20120810','w':'小雨','c':'sometext here'},
+{'d':'20120811','w':'小雨','c':'sometext here'},
+{'d':'20120812','w':'晴','c':'sometext here'},
+{'d':'20120813','w':'小雨','c':'sometext here'},
+{'d':'20120814','w':'雷阵雨','c':'sometext here'},
+{'d':'20120815','w':'晴','c':'sometext here'},
+{'d':'20120816','w':'小雨','c':'sometext here'},
+{'d':'20120817','w':'晴','c':'sometext here'},
+{'d':'20120818','w':'晴','c':'sometext here'},
+{'d':'20120819','w':'晴','c':'sometext here'},
+{'d':'20120820','w':'晴','c':'sometext here'},
+{'d':'20120821','w':'晴','c':'sometext here'},
+{'d':'20120822','w':'晴','c':'sometext here'},
+{'d':'20120823','w':'晴','c':'sometext here'},
+{'d':'20120824','w':'晴','c':'sometext here'},
+{'d':'20120825','w':'阴转阵雨','c':'sometext here'},
+{'d':'20120826','w':'晴','c':'sometext here'},
+{'d':'20120827','w':'晴转雨','c':'sometext here'},
+{'d':'20120828','w':'雨转晴','c':'sometext here'},
+{'d':'20120829','w':'晴','c':'sometext here'},
+{'d':'20120830','w':'晴','c':'sometext here'},
+{'d':'20120831','w':'晴','c':'sometext here'},
+
+{'d':'20120901','w':'晴','c':'sometext here'},
+{'d':'20120902','w':'晴','c':'sometext here'},
+{'d':'20120903','w':'晴','c':'sometext here'},
+{'d':'20120904','w':'晴','c':'sometext here'},
+{'d':'20120905','w':'晴','c':'sometext here'},
+{'d':'20120906','w':'晴转雨','c':'sometext here'},
+{'d':'20120907','w':'雨转晴','c':'sometext here'},
+{'d':'20120908','w':'晴转小雨','c':'sometext here'},
+{'d':'20120909','w':'小雨','c':'sometext here'},
+{'d':'20120910','w':'晴','c':'sometext here'},
+{'d':'20120911','w':'晴','c':'sometext here'},
+{'d':'20120912','w':'小雨转雷阵雨转晴','c':'sometext here'},
+{'d':'20120913','w':'雨','c':'sometext here'},
+{'d':'20120914','w':'晴','c':'sometext here'},
+{'d':'20120915','w':'晴','c':'sometext here'},
+{'d':'20120916','w':'晴','c':'sometext here'},
+{'d':'20120917','w':'晴','c':'sometext here'},
+{'d':'20120918','w':'晴','c':'sometext here'},
+{'d':'20120919','w':'晴','c':'sometext here'},
+{'d':'20120920','w':'晴','c':'sometext here'},
+{'d':'20120921','w':'晴','c':'sometext here'},
+{'d':'20120922','w':'雨','c':'sometext here'},
+{'d':'20120923','w':'晴','c':'sometext here'},
+{'d':'20120924','w':'晴','c':'sometext here'},
+{'d':'20120925','w':'晴','c':'sometext here'},
+{'d':'20120926','w':'晴','c':'sometext here'},
+{'d':'20120927','w':'晴','c':'sometext here'},
+{'d':'20120928','w':'晴','c':'sometext here'},
+{'d':'20120929','w':'晴','c':'sometext here'},
+{'d':'20120930','w':'晴 中秋','c':'sometext here'},
+
+{'d':'20121001','w':'晴 国庆','c':'sometext here'},
+{'d':'20121002','w':'晴','c':'sometext here'},
+{'d':'20121003','w':'晴','c':'sometext here'},
+{'d':'20121004','w':'晴','c':'sometext here'},
+{'d':'20121005','w':'晴','c':'sometext here'},
+{'d':'20121006','w':'晴','c':'sometext here'},
+{'d':'20121007','w':'晴','c':'sometext here'},
+{'d':'20121008','w':'晴','c':'sometext here'},
+{'d':'20121009','w':'晴','c':'sometext here'},
+{'d':'20121010','w':'晴','c':'sometext here'},
+{'d':'20121011','w':'晴','c':'sometext here'},
+{'d':'20121012','w':'晴','c':'sometext here'},
+{'d':'20121013','w':'晴','c':'sometext here'},
+{'d':'20121014','w':'晴','c':'sometext here'},
+{'d':'20121015','w':'晴','c':'sometext here'},
+{'d':'20121016','w':'晴','c':'sometext here'},
+{'d':'20121017','w':'晴','c':'sometext here'},
+{'d':'20121018','w':'晴','c':'sometext here'},
+{'d':'20121019','w':'晴','c':'sometext here'},
+{'d':'20121020','w':'晴','c':'sometext here'},
+{'d':'20121021','w':'晴','c':'sometext here'},
+{'d':'20121022','w':'阴雨','c':'sometext here'},
+{'d':'20121023','w':'晴','c':'sometext here'},
+{'d':'20121024','w':'晴转雨','c':'sometext here'},
+{'d':'20121025','w':'晴','c':'sometext here'},
+{'d':'20121026','w':'晴','c':'sometext here'},
+{'d':'20121027','w':'晴','c':'sometext here'},
+{'d':'20121028','w':'大雾','c':'sometext here'},
+{'d':'20121029','w':'阴','c':'sometext here'},
+{'d':'20121030','w':'晴','c':'sometext here'},
+{'d':'20121031','w':'晴','c':'sometext here'},
+
+{'d':'20121101','w':'晴','c':'sometext here'},
+{'d':'20121102','w':'晴','c':'sometext here'},
+{'d':'20121103','w':'晴','c':'sometext here'},
+{'d':'20121104','w':'晴','c':'sometext here'},
+{'d':'20121105','w':'晴','c':'sometext here'},
+{'d':'20121106','w':'晴','c':'sometext here'},
+{'d':'20121107','w':'晴','c':'sometext here'},
+{'d':'20121108','w':'晴','c':'sometext here'},
+{'d':'20121109','w':'雨','c':'sometext here'},
+{'d':'20121110','w':'雨','c':'sometext here'},
+{'d':'20121111','w':'晴','c':'sometext here'},
+{'d':'20121112','w':'晴','c':'sometext here'},
+{'d':'20121113','w':'晴','c':'sometext here'},
+{'d':'20121114','w':'晴','c':'sometext here'},
+{'d':'20121115','w':'晴','c':'sometext here'},
+{'d':'20121116','w':'雨','c':'sometext here'},
+{'d':'20121117','w':'晴','c':'sometext here'},
+{'d':'20121118','w':'晴 十月初五','c':'sometext here'},
+{'d':'20121119','w':'晴','c':'sometext here'},
+{'d':'20121120','w':'晴','c':'sometext here'},
+{'d':'20121121','w':'雨','c':'sometext here'},
+{'d':'20121122','w':'雨','c':'sometext here'},
+{'d':'20121123','w':'阴','c':'sometext here'},
+{'d':'20121124','w':'晴','c':'sometext here'},
+{'d':'20121125','w':'雨 十月十二','c':'sometext here'},
+{'d':'20121126','w':'晴','c':'sometext here'},
+{'d':'20121127','w':'晴','c':'sometext here'},
+{'d':'20121128','w':'晴','c':'sometext here'},
+{'d':'20121129','w':'晴','c':'sometext here'},
+{'d':'20121130','w':'晴','c':'sometext here'},
+
+{'d':'20121201','w':'雨','c':'sometext here'},
+{'d':'20121202','w':'晴','c':'sometext here'},
+{'d':'20121203','w':'晴','c':'sometext here'},
+{'d':'20121204','w':'晴','c':'sometext here'},
+{'d':'20121205','w':'晴','c':'sometext here'},
+{'d':'20121206','w':'晴','c':'sometext here'},
+{'d':'20121207','w':'晴','c':'sometext here'},
+{'d':'20121208','w':'晴','c':'sometext here'},
+{'d':'20121209','w':'晴','c':'sometext here'},
+{'d':'20121210','w':'晴','c':'sometext here'},
+{'d':'20121211','w':'晴','c':'sometext here'},
+{'d':'20121212','w':'晴','c':'sometext here'},
+{'d':'20121213','w':'晴','c':'sometext here'},
+{'d':'20121214','w':'雨','c':'sometext here'},
+{'d':'20121215','w':'阴雨','c':'sometext here'},
+{'d':'20121216','w':'阴雨','c':'sometext here'},
+{'d':'20121217','w':'晴','c':'sometext here'},
+{'d':'20121218','w':'晴','c':'sometext here'},
+{'d':'20121219','w':'晴','c':'sometext here'},
+{'d':'20121220','w':'雨','c':'sometext here'},
+{'d':'20121221','w':'晴','c':'sometext here'},
+{'d':'20121222','w':'晴','c':'sometext here'},
+{'d':'20121223','w':'晴','c':'sometext here'},
+{'d':'20121224','w':'晴','c':'sometext here'},
+{'d':'20121225','w':'晴','c':'sometext here'},
+{'d':'20121226','w':'雨雪','c':'sometext here'},
+{'d':'20121227','w':'雨','c':'sometext here'},
+{'d':'20121228','w':'雨','c':'sometext here'},
+{'d':'20121229','w':'雪','c':'sometext here'},
+{'d':'20121230','w':'晴','c':'sometext here'},
+{'d':'20121231','w':'晴','c':'sometext here'},
+
+
+
+{'d':'20130101','w':'晴','c':'sometext here'},
+{'d':'20130102','w':'晴','c':'sometext here'},
+{'d':'20130103','w':'晴','c':'sometext here'},
+{'d':'20130104','w':'小雪','c':'sometext here'},
+{'d':'20130105','w':'晴','c':'sometext here'},
+{'d':'20130106','w':'晴','c':'sometext here'},
+{'d':'20130107','w':'晴','c':'sometext here'},
+{'d':'20130108','w':'晴','c':'sometext here'},
+{'d':'20130109','w':'晴','c':'sometext here'},
+{'d':'20130110','w':'晴','c':'sometext here'},
+{'d':'20130111','w':'晴','c':'sometext here'},
+{'d':'20130112','w':'晴','c':'sometext here'},
+{'d':'20130113','w':'晴','c':'sometext here'},
+{'d':'20130114','w':'晴','c':'sometext here'},
+{'d':'20130115','w':'晴','c':'sometext here'},
+{'d':'20130116','w':'晴','c':'sometext here'},
+{'d':'20130117','w':'晴','c':'sometext here'},
+{'d':'20130118','w':'晴','c':'sometext here'},
+{'d':'20130119','w':'晴','c':'sometext here'},
+{'d':'20130120','w':'雨','c':'sometext here'},
+{'d':'20130121','w':'雨','c':'sometext here'},
+{'d':'20130122','w':'阴','c':'sometext here'},
+{'d':'20130123','w':'晴','c':'sometext here'},
+{'d':'20130124','w':'晴','c':'sometext here'},
+{'d':'20130125','w':'晴','c':'sometext here'},
+{'d':'20130126','w':'晴','c':'sometext here'},
+{'d':'20130127','w':'晴','c':'sometext here'},
+{'d':'20130128','w':'晴','c':'sometext here'},
+{'d':'20130129','w':'晴','c':'sometext here'},
+{'d':'20130130','w':'晴','c':'sometext here'},
+{'d':'20130131','w':'晴','c':'sometext here'},
+
+{'d':'20130201','w':'晴','c':'sometext here'},
+{'d':'20130202','w':'晴','c':'sometext here'},
+{'d':'20130203','w':'雨','c':'sometext here'},
+{'d':'20130204','w':'雨','c':'sometext here'},
+{'d':'20130205','w':'雨','c':'sometext here'},
+{'d':'20130206','w':'阴','c':'sometext here'},
+{'d':'20130207','w':'雪','c':'sometext here'},
+{'d':'20130208','w':'晴','c':'sometext here'},
+{'d':'20130209','w':'晴','c':'sometext here'},
+{'d':'20130210','w':'晴 初一','c':'sometext here'},
+{'d':'20130211','w':'晴转雪 初二','c':'sometext here'},
+{'d':'20130212','w':'晴 初三','c':'sometext here'},
+{'d':'20130213','w':'晴 初四','c':'sometext here'},
+{'d':'20130214','w':'晴转雨 初五 情人节','c':'sometext here'},
+{'d':'20130215','w':'晴','c':'sometext here'},
+{'d':'20130216','w':'晴','c':'sometext here'},
+{'d':'20130217','w':'阴','c':'sometext here'},
+{'d':'20130218','w':'雪','c':'sometext here'},
+{'d':'20130219','w':'雪','c':'sometext here'},
+{'d':'20130220','w':'晴','c':'sometext here'},
+{'d':'20130221','w':'晴','c':'sometext here'},
+{'d':'20130222','w':'晴','c':'sometext here'},
+{'d':'20130223','w':'晴','c':'sometext here'},
+{'d':'20130224','w':'晴','c':'sometext here'},
+{'d':'20130225','w':'晴','c':'sometext here'},
+{'d':'20130226','w':'雨','c':'sometext here'},
+{'d':'20130227','w':'晴','c':'sometext here'},
+{'d':'20130228','w':'晴','c':'sometext here'},
+
+{'d':'20130301','w':'晴','c':'sometext here'},
+{'d':'20130302','w':'晴','c':'sometext here'},
+{'d':'20130303','w':'晴','c':'sometext here'},
+{'d':'20130304','w':'晴','c':'sometext here'},
+{'d':'20130305','w':'晴','c':'sometext here'},
+{'d':'20130306','w':'晴','c':'sometext here'},
+{'d':'20130307','w':'晴','c':'sometext here'},
+{'d':'20130308','w':'晴','c':'sometext here'},
+{'d':'20130309','w':'晴','c':'sometext here'},
+{'d':'20130310','w':'晴','c':'sometext here'},
+{'d':'20130311','w':'晴','c':'sometext here'},
+{'d':'20130312','w':'晴','c':'sometext here'},
+{'d':'20130313','w':'晴','c':'sometext here'},
+{'d':'20130314','w':'晴','c':'sometext here'},
+{'d':'20130315','w':'晴','c':'sometext here'},
+{'d':'20130316','w':'晴转雨','c':'sometext here'},
+{'d':'20130317','w':'雨','c':'sometext here'},
+{'d':'20130318','w':'晴','c':'sometext here'},
+{'d':'20130319','w':'晴转雨','c':'sometext here'},
+{'d':'20130320','w':'晴','c':'sometext here'},
+{'d':'20130321','w':'晴','c':'sometext here'},
+{'d':'20130322','w':'雨','c':'sometext here'},
+{'d':'20130323','w':'阴雨','c':'sometext here'},
+{'d':'20130324','w':'阴','c':'sometext here'},
+{'d':'20130325','w':'晴','c':'sometext here'},
+{'d':'20130326','w':'晴','c':'sometext here'},
+{'d':'20130327','w':'晴','c':'sometext here'},
+{'d':'20130328','w':'晴','c':'sometext here'},
+{'d':'20130329','w':'晴','c':'sometext here'},
+{'d':'20130330','w':'晴','c':'sometext here'},
+{'d':'20130331','w':'晴','c':'sometext here'},
+
+{'d':'20130401','w':'晴','c':'sometext here'},
+{'d':'20130402','w':'晴','c':'sometext here'},
+{'d':'20130403','w':'晴','c':'sometext here'},
+{'d':'20130404','w':'晴','c':'sometext here'},
+{'d':'20130405','w':'雨','c':'sometext here'},
+{'d':'20130406','w':'晴','c':'sometext here'},
+{'d':'20130407','w':'晴','c':'sometext here'},
+{'d':'20130408','w':'晴','c':'sometext here'},
+{'d':'20130409','w':'晴','c':'sometext here'},
+{'d':'20130410','w':'晴','c':'sometext here'},
+{'d':'20130411','w':'晴','c':'sometext here'},
+{'d':'20130412','w':'晴','c':'sometext here'},
+{'d':'20130413','w':'晴','c':'sometext here'},
+{'d':'20130414','w':'晴','c':'sometext here'},
+{'d':'20130415','w':'晴','c':'sometext here'},
+{'d':'20130416','w':'晴','c':'sometext here'},
+{'d':'20130417','w':'晴','c':'sometext here'},
+{'d':'20130418','w':'晴','c':'sometext here'},
+{'d':'20130419','w':'晴','c':'sometext here'},
+{'d':'20130420','w':'雨','c':'sometext here'},
+{'d':'20130421','w':'晴','c':'sometext here'},
+{'d':'20130422','w':'晴','c':'sometext here'},
+{'d':'20130423','w':'雨','c':'sometext here'},
+{'d':'20130424','w':'晴','c':'sometext here'},
+{'d':'20130425','w':'晴','c':'sometext here'},
+{'d':'20130426','w':'晴','c':'sometext here'},
+{'d':'20130427','w':'晴','c':'sometext here'},
+{'d':'20130428','w':'晴','c':'sometext here'},
+{'d':'20130429','w':'晴','c':'sometext here'},
+{'d':'20130430','w':'晴','c':'sometext here'},
+
+{'d':'20130501','w':'晴','c':'sometext here'},
+{'d':'20130502','w':'晴','c':'sometext here'},
+{'d':'20130503','w':'晴','c':'sometext here'},
+{'d':'20130504','w':'晴','c':'sometext here'},
+{'d':'20130505','w':'晴','c':'sometext here'},
+{'d':'20130506','w':'雨','c':'sometext here'},
+{'d':'20130507','w':'雨转晴','c':'sometext here'},
+{'d':'20130508','w':'大风','c':'sometext here'},
+{'d':'20130509','w':'雨','c':'sometext here'},
+{'d':'20130510','w':'晴','c':'sometext here'},
+{'d':'20130511','w':'晴','c':'sometext here'},
+{'d':'20130512','w':'晴','c':'sometext here'},
+{'d':'20130513','w':'晴 ','c':'sometext here'},
+{'d':'20130514','w':'晴','c':'sometext here'},
+{'d':'20130515','w':'雨','c':'sometext here'},
+{'d':'20130516','w':'雨','c':'sometext here'},
+{'d':'20130517','w':'阴雨','c':'sometext here'},
+{'d':'20130518','w':'阴雨','c':'sometext here'},
+{'d':'20130519','w':'晴','c':'sometext here'},
+{'d':'20130520','w':'晴','c':'sometext here'},
+{'d':'20130521','w':'晴','c':'sometext here'},
+{'d':'20130522','w':'晴','c':'sometext here'},
+{'d':'20130523','w':'晴','c':'sometext here'},
+{'d':'20130524','w':'晴','c':'sometext here'},
+{'d':'20130525','w':'晴','c':'sometext here'},
+{'d':'20130526','w':'晴','c':'sometext here'},
+{'d':'20130527','w':'晴','c':'sometext here'},
+{'d':'20130528','w':'晴','c':'sometext here'},
+{'d':'20130529','w':'晴','c':'sometext here'},
+{'d':'20130530','w':'雨','c':'sometext here'},
+{'d':'20130531','w':'雨','c':'sometext here'},
+
+{'d':'20130601','w':'阴雨','c':'sometext here'},
+{'d':'20130602','w':'晴','c':'sometext here'},
+{'d':'20130603','w':'晴','c':'sometext here'},
+{'d':'20130604','w':'晴','c':'sometext here'},
+{'d':'20130605','w':'晴','c':'sometext here'},
+{'d':'20130606','w':'晴','c':'sometext here'},
+{'d':'20130607','w':'大雨','c':'sometext here'},
+{'d':'20130608','w':'小雨','c':'sometext here'},
+{'d':'20130609','w':'阴雨','c':'sometext here'},
+{'d':'20130610','w':'阴','c':'sometext here'},
+{'d':'20130611','w':'阴雨','c':'sometext here'},
+{'d':'20130612','w':'阴','c':'sometext here'},
+{'d':'20130613','w':'晴','c':'sometext here'},
+{'d':'20130614','w':'晴','c':'sometext here'},
+{'d':'20130615','w':'晴','c':'sometext here'},
+{'d':'20130616','w':'晴','c':'sometext here'},
+{'d':'20130617','w':'晴','c':'sometext here'},
+{'d':'20130618','w':'晴','c':'sometext here'},
+{'d':'20130619','w':'晴','c':'sometext here'},
+{'d':'20130620','w':'晴','c':'sometext here'},
+{'d':'20130621','w':'晴','c':'sometext here'},
+{'d':'20130622','w':'晴','c':'sometext here'},
+{'d':'20130623','w':'大雨','c':'sometext here'},
+{'d':'20130624','w':'晴','c':'sometext here'},
+{'d':'20130625','w':'晴','c':'sometext here'},
+{'d':'20130626','w':'阴','c':'sometext here'},
+{'d':'20130627','w':'晴','c':'sometext here'},
+{'d':'20130628','w':'晴','c':'sometext here'},
+{'d':'20130629','w':'晴','c':'sometext here'},
+{'d':'20130630','w':'晴','c':'sometext here'},
+
+{'d':'20130701','w':'晴','c':'sometext here'},
+{'d':'20130702','w':'晴','c':'sometext here'},
+{'d':'20130703','w':'晴','c':'sometext here'},
+{'d':'20130704','w':'晴','c':'sometext here'},
+{'d':'20130705','w':'雨','c':'sometext here'},
+{'d':'20130706','w':'雨','c':'sometext here'},
+{'d':'20130707','w':'雨','c':'sometext here'},
+{'d':'20130708','w':'晴','c':'sometext here'},
+{'d':'20130709','w':'晴','c':'sometext here'},
+{'d':'20130710','w':'晴','c':'sometext here'},
+{'d':'20130711','w':'晴','c':'sometext here'},
+{'d':'20130712','w':'晴','c':'sometext here'},
+{'d':'20130713','w':'晴','c':'sometext here'},
+{'d':'20130714','w':'晴','c':'sometext here'},
+{'d':'20130715','w':'晴','c':'sometext here'},
+{'d':'20130716','w':'晴','c':'sometext here'},
+{'d':'20130717','w':'晴','c':'sometext here'},
+{'d':'20130718','w':'晴','c':'sometext here'},
+{'d':'20130719','w':'晴','c':'sometext here'},
+{'d':'20130720','w':'晴','c':'sometext here'},
+{'d':'20130721','w':'晴','c':'sometext here'},
+{'d':'20130722','w':'晴','c':'sometext here'},
+{'d':'20130723','w':'','c':'sometext here'},
+{'d':'20130724','w':'','c':'sometext here'},
+{'d':'20130725','w':'','c':'sometext here'},
+{'d':'20130726','w':'','c':'sometext here'},
+{'d':'20130727','w':'','c':'sometext here'},
+{'d':'20130728','w':'','c':'sometext here'},
+{'d':'20130729','w':'','c':'sometext here'},
+{'d':'20130730','w':'','c':'sometext here'},
+{'d':'20130731','w':'','c':'sometext here'},
+
+{'d':'20130801','w':'','c':'sometext here'},
+{'d':'20130802','w':'','c':'sometext here'},
+{'d':'20130803','w':'','c':'sometext here'},
+{'d':'20130804','w':'','c':'sometext here'},
+{'d':'20130805','w':'','c':'sometext here'},
+{'d':'20130806','w':'','c':'sometext here'},
+{'d':'20130807','w':'','c':'sometext here'},
+{'d':'20130808','w':'','c':'sometext here'},
+{'d':'20130809','w':'','c':'sometext here'},
+{'d':'20130810','w':'','c':'sometext here'},
+{'d':'20130811','w':'','c':'sometext here'},
+{'d':'20130812','w':'','c':'sometext here'},
+{'d':'20130813','w':'','c':'sometext here'},
+{'d':'20130814','w':'','c':'sometext here'},
+{'d':'20130815','w':'','c':'sometext here'},
+{'d':'20130816','w':'','c':'sometext here'},
+{'d':'20130817','w':'晴','c':'sometext here'},
+{'d':'20130818','w':'晴','c':'sometext here'},
+{'d':'20130819','w':'晴','c':'sometext here'},
+{'d':'20130820','w':'晴','c':'sometext here'},
+{'d':'20130821','w':'晴','c':'sometext here'},
+{'d':'20130822','w':'晴','c':'sometext here'},
+{'d':'20130823','w':'阴','c':'sometext here'},
+{'d':'20130824','w':'雨','c':'sometext here'},
+{'d':'20130825','w':'雨转阴','c':'sometext here'},
+{'d':'20130826','w':'晴','c':'sometext here'},
+{'d':'20130827','w':'','c':'sometext here'},
+{'d':'20130828','w':'','c':'sometext here'},
+{'d':'20130829','w':'晴转暴雨','c':'sometext here'},
+{'d':'20130830','w':'晴','c':'sometext here'},
+{'d':'20130831','w':'晴','c':'sometext here'},
+
+{'d':'20130901','w':'晴','c':'sometext here'},
+{'d':'20130902','w':'晴','c':'sometext here'},
+{'d':'20130903','w':'晴','c':'sometext here'},
+{'d':'20130904','w':'晴','c':'sometext here'},
+{'d':'20130905','w':'雨','c':'sometext here'},
+{'d':'20130906','w':'晴','c':'sometext here'},
+{'d':'20130907','w':'小雨','c':'sometext here'},
+{'d':'20130908','w':'晴','c':'sometext here'},
+{'d':'20130909','w':'晴','c':'sometext here'},
+{'d':'20130910','w':'晴','c':'sometext here'},
+{'d':'20130911','w':'雨','c':'sometext here'},
+{'d':'20130912','w':'晴','c':'sometext here'},
+{'d':'20130913','w':'晴','c':'sometext here'},
+{'d':'20130914','w':'晴','c':'sometext here'},
+{'d':'20130915','w':'晴','c':'sometext here'},
+{'d':'20130916','w':'晴','c':'sometext here'},
+{'d':'20130917','w':'晴','c':'sometext here'},
+{'d':'20130918','w':'晴','c':'sometext here'},
+{'d':'20130919','w':'晴','c':'sometext here'},
+{'d':'20130920','w':'晴 中秋','c':'sometext here'},
+{'d':'20130921','w':'雨','c':'sometext here'},
+{'d':'20130922','w':'晴','c':'sometext here'},
+{'d':'20130923','w':'晴','c':'sometext here'},
+{'d':'20130924','w':'晴转小雨','c':'sometext here'},
+{'d':'20130925','w':'晴','c':'sometext here'},
+{'d':'20130926','w':'','c':'sometext here'},
+{'d':'20130927','w':'晴','c':'sometext here'},
+{'d':'20130928','w':'晴','c':'sometext here'},
+{'d':'20130929','w':'晴','c':'sometext here'},
+{'d':'20130930','w':'晴','c':'sometext here'},
+
+{'d':'20131001','w':'晴','c':'sometext here'},
+{'d':'20131002','w':'晴','c':'sometext here'},
+{'d':'20131003','w':'晴','c':'sometext here'},
+{'d':'20131004','w':'晴','c':'sometext here'},
+{'d':'20131005','w':'晴','c':'sometext here'},
+{'d':'20131006','w':'晴转暴雨','c':'sometext here'},
+{'d':'20131007','w':'雨','c':'sometext here'},
+{'d':'20131008','w':'晴','c':'sometext here'},
+{'d':'20131009','w':'晴','c':'sometext here'},
+{'d':'20131010','w':'','c':'sometext here'},
+{'d':'20131011','w':'','c':'sometext here'},
+{'d':'20131012','w':'','c':'sometext here'},
+{'d':'20131013','w':'','c':'sometext here'},
+{'d':'20131014','w':'','c':'sometext here'},
+{'d':'20131015','w':'','c':'sometext here'},
+{'d':'20131016','w':'','c':'sometext here'},
+{'d':'20131017','w':'晴','c':'sometext here'},
+{'d':'20131018','w':'晴','c':'sometext here'},
+{'d':'20131019','w':'','c':'sometext here'},
+{'d':'20131020','w':'','c':'sometext here'},
+{'d':'20131021','w':'','c':'sometext here'},
+{'d':'20131022','w':'','c':'sometext here'},
+{'d':'20131023','w':'','c':'sometext here'},
+{'d':'20131024','w':'','c':'sometext here'},
+{'d':'20131025','w':'','c':'sometext here'},
+{'d':'20131026','w':'','c':'sometext here'},
+{'d':'20131027','w':'','c':'sometext here'},
+{'d':'20131028','w':'','c':'sometext here'},
+{'d':'20131029','w':'','c':'sometext here'},
+{'d':'20131030','w':'','c':'sometext here'},
+{'d':'20131031','w':'','c':'sometext here'},
+
+{'d':'20131101','w':'','c':'sometext here'},
+{'d':'20131102','w':'','c':'sometext here'},
+{'d':'20131103','w':'晴','c':'sometext here'},
+{'d':'20131104','w':'','c':'sometext here'},
+{'d':'20131105','w':'','c':'sometext here'},
+{'d':'20131106','w':'','c':'sometext here'},
+{'d':'20131107','w':'','c':'sometext here'},
+{'d':'20131108','w':'','c':'sometext here'},
+{'d':'20131109','w':'','c':'sometext here'},
+{'d':'20131110','w':'阴雨','c':'sometext here'},
+{'d':'20131111','w':'','c':'sometext here'},
+{'d':'20131112','w':'','c':'sometext here'},
+{'d':'20131113','w':'','c':'sometext here'},
+{'d':'20131114','w':'','c':'sometext here'},
+{'d':'20131115','w':'','c':'sometext here'},
+{'d':'20131116','w':'','c':'sometext here'},
+{'d':'20131117','w':'','c':'sometext here'},
+{'d':'20131118','w':'','c':'sometext here'},
+{'d':'20131119','w':'','c':'sometext here'},
+{'d':'20131120','w':'','c':'sometext here'},
+{'d':'20131121','w':'晴','c':'sometext here'},
+{'d':'20131122','w':'晴','c':'sometext here'},
+{'d':'20131123','w':'晴','c':'sometext here'},
+{'d':'20131124','w':'晴','c':'sometext here'},
+{'d':'20131125','w':'晴','c':'sometext here'},
+{'d':'20131126','w':'','c':'sometext here'},
+{'d':'20131127','w':'','c':'sometext here'},
+{'d':'20131128','w':'晴','c':'sometext here'},
+{'d':'20131129','w':'','c':'sometext here'},
+{'d':'20131130','w':'','c':'sometext here'},
+
+{'d':'20131201','w':'晴','c':'sometext here'},
+{'d':'20131202','w':'大雾','c':'sometext here'},
+{'d':'20131203','w':'','c':'sometext here'},
+{'d':'20131204','w':'','c':'sometext here'},
+{'d':'20131205','w':'','c':'sometext here'},
+{'d':'20131206','w':'','c':'sometext here'},
+{'d':'20131207','w':'','c':'sometext here'},
+{'d':'20131208','w':'','c':'sometext here'},
+{'d':'20131209','w':'','c':'sometext here'},
+{'d':'20131210','w':'晴','c':'sometext here'},
+{'d':'20131211','w':'','c':'sometext here'},
+{'d':'20131212','w':'','c':'sometext here'},
+{'d':'20131213','w':'','c':'sometext here'},
+{'d':'20131214','w':'','c':'sometext here'},
+{'d':'20131215','w':'','c':'sometext here'},
+{'d':'20131216','w':'','c':'sometext here'},
+{'d':'20131217','w':'','c':'sometext here'},
+{'d':'20131218','w':'','c':'sometext here'},
+{'d':'20131219','w':'','c':'sometext here'},
+{'d':'20131220','w':'','c':'sometext here'},
+{'d':'20131221','w':'','c':'sometext here'},
+{'d':'20131222','w':'晴','c':'sometext here'},
+{'d':'20131223','w':'晴','c':'sometext here'},
+{'d':'20131224','w':'','c':'sometext here'},
+{'d':'20131225','w':'','c':'sometext here'},
+{'d':'20131226','w':'','c':'sometext here'},
+{'d':'20131227','w':'','c':'sometext here'},
+{'d':'20131228','w':'','c':'sometext here'},
+{'d':'20131229','w':'晴','c':'sometext here'},
+{'d':'20131230','w':'晴','c':'sometext here'},
+{'d':'20131231','w':'晴','c':'sometext here'},
+
+
+
+{'d':'20140101','w':'晴','c':'sometext here'},
+{'d':'20140102','w':'','c':'sometext here'},
+{'d':'20140103','w':'','c':'sometext here'},
+{'d':'20140104','w':'','c':'sometext here'},
+{'d':'20140105','w':'','c':'sometext here'},
+{'d':'20140106','w':'','c':'sometext here'},
+{'d':'20140107','w':'','c':'sometext here'},
+{'d':'20140108','w':'','c':'sometext here'},
+{'d':'20140109','w':'','c':'sometext here'},
+{'d':'20140110','w':'','c':'sometext here'},
+{'d':'20140111','w':'','c':'sometext here'},
+{'d':'20140112','w':'','c':'sometext here'},
+{'d':'20140113','w':'','c':'sometext here'},
+{'d':'20140114','w':'','c':'sometext here'},
+{'d':'20140115','w':'','c':'sometext here'},
+{'d':'20140116','w':'','c':'sometext here'},
+{'d':'20140117','w':'','c':'sometext here'},
+{'d':'20140118','w':'','c':'sometext here'},
+{'d':'20140119','w':'','c':'sometext here'},
+{'d':'20140120','w':'','c':'sometext here'},
+{'d':'20140121','w':'','c':'sometext here'},
+{'d':'20140122','w':'','c':'sometext here'},
+{'d':'20140123','w':'','c':'sometext here'},
+{'d':'20140124','w':'晴','c':'sometext here'},
+{'d':'20140125','w':'晴','c':'sometext here'},
+{'d':'20140126','w':'晴','c':'sometext here'},
+{'d':'20140127','w':'晴','c':'sometext here'},
+{'d':'20140128','w':'晴','c':'sometext here'},
+{'d':'20140129','w':'小雨','c':'sometext here'},
+{'d':'20140130','w':'阴','c':'sometext here'},
+{'d':'20140131','w':'晴 初一','c':'sometext here'},
+
+{'d':'20140201','w':'晴 初二','c':'sometext here'},
+{'d':'20140202','w':'晴 初三','c':'sometext here'},
+{'d':'20140203','w':'阴','c':'sometext here'},
+{'d':'20140204','w':'晴','c':'sometext here'},
+{'d':'20140205','w':'晴','c':'sometext here'},
+{'d':'20140206','w':'雨','c':'sometext here'},
+{'d':'20140207','w':'雨','c':'sometext here'},
+{'d':'20140208','w':'雨','c':'sometext here'},
+{'d':'20140209','w':'晴','c':'sometext here'},
+{'d':'20140210','w':'','c':'sometext here'},
+{'d':'20140211','w':'','c':'sometext here'},
+{'d':'20140212','w':'','c':'sometext here'},
+{'d':'20140213','w':'','c':'sometext here'},
+{'d':'20140214','w':'晴','c':'sometext here'},
+{'d':'20140215','w':'晴','c':'sometext here'},
+{'d':'20140216','w':'小雨','c':'sometext here'},
+{'d':'20140217','w':'','c':'sometext here'},
+{'d':'20140218','w':'','c':'sometext here'},
+{'d':'20140219','w':'','c':'sometext here'},
+{'d':'20140220','w':'','c':'sometext here'},
+{'d':'20140221','w':'','c':'sometext here'},
+{'d':'20140222','w':'','c':'sometext here'},
+{'d':'20140223','w':'','c':'sometext here'},
+{'d':'20140224','w':'','c':'sometext here'},
+{'d':'20140225','w':'','c':'sometext here'},
+{'d':'20140226','w':'','c':'sometext here'},
+{'d':'20140227','w':'','c':'sometext here'},
+{'d':'20140228','w':'','c':'sometext here'},
+
+{'d':'20140301','w':'','c':'sometext here'},
+{'d':'20140302','w':'','c':'sometext here'},
+{'d':'20140303','w':'','c':'sometext here'},
+{'d':'20140304','w':'','c':'sometext here'},
+{'d':'20140305','w':'','c':'sometext here'},
+{'d':'20140306','w':'晴','c':'sometext here'},
+{'d':'20140307','w':'晴','c':'sometext here'},
+{'d':'20140308','w':'晴转阴雨','c':'sometext here'},
+{'d':'20140309','w':'晴','c':'sometext here'},
+{'d':'20140310','w':'晴','c':'sometext here'},
+{'d':'20140311','w':'晴','c':'sometext here'},
+{'d':'20140312','w':'雨','c':'sometext here'},
+{'d':'20140313','w':'晴','c':'sometext here'},
+{'d':'20140314','w':'晴','c':'sometext here'},
+{'d':'20140315','w':'晴','c':'sometext here'},
+{'d':'20140316','w':'晴','c':'sometext here'},
+{'d':'20140317','w':'晴','c':'sometext here'},
+{'d':'20140318','w':'晴','c':'sometext here'},
+{'d':'20140319','w':'雨','c':'sometext here'},
+{'d':'20140320','w':'阴','c':'sometext here'},
+{'d':'20140321','w':'晴','c':'sometext here'},
+{'d':'20140322','w':'晴','c':'sometext here'},
+{'d':'20140323','w':'晴','c':'sometext here'},
+{'d':'20140324','w':'','c':'sometext here'},
+{'d':'20140325','w':'','c':'sometext here'},
+{'d':'20140326','w':'','c':'sometext here'},
+{'d':'20140327','w':'晴','c':'sometext here'},
+{'d':'20140328','w':'阴','c':'sometext here'},
+{'d':'20140329','w':'雨','c':'sometext here'},
+{'d':'20140330','w':'晴','c':'sometext here'},
+{'d':'20140331','w':'晴','c':'sometext here'},
+
+{'d':'20140401','w':'晴','c':'sometext here'},
+{'d':'20140402','w':'晴','c':'sometext here'},
+{'d':'20140403','w':'晴','c':'sometext here'},
+{'d':'20140404','w':'晴','c':'sometext here'},
+{'d':'20140405','w':'晴','c':'sometext here'},
+{'d':'20140406','w':'晴','c':'sometext here'},
+{'d':'20140407','w':'','c':'sometext here'},
+{'d':'20140408','w':'','c':'sometext here'},
+{'d':'20140409','w':'','c':'sometext here'},
+{'d':'20140410','w':'','c':'sometext here'},
+{'d':'20140411','w':'','c':'sometext here'},
+{'d':'20140412','w':'雨','c':'sometext here'},
+{'d':'20140413','w':'阴','c':'sometext here'},
+{'d':'20140414','w':'晴','c':'sometext here'},
+{'d':'20140415','w':'晴','c':'sometext here'},
+{'d':'20140416','w':'晴','c':'sometext here'},
+{'d':'20140417','w':'','c':'sometext here'},
+{'d':'20140418','w':'','c':'sometext here'},
+{'d':'20140419','w':'','c':'sometext here'},
+{'d':'20140420','w':'','c':'sometext here'},
+{'d':'20140421','w':'','c':'sometext here'},
+{'d':'20140422','w':'','c':'sometext here'},
+{'d':'20140423','w':'','c':'sometext here'},
+{'d':'20140424','w':'','c':'sometext here'},
+{'d':'20140425','w':'','c':'sometext here'},
+{'d':'20140426','w':'','c':'sometext here'},
+{'d':'20140427','w':'','c':'sometext here'},
+{'d':'20140428','w':'','c':'sometext here'},
+{'d':'20140429','w':'','c':'sometext here'},
+{'d':'20140430','w':'','c':'sometext here'},
+
+{'d':'20140501','w':'','c':'sometext here'},
+{'d':'20140502','w':'','c':'sometext here'},
+{'d':'20140503','w':'','c':'sometext here'},
+{'d':'20140504','w':'','c':'sometext here'},
+{'d':'20140505','w':'','c':'sometext here'},
+{'d':'20140506','w':'','c':'sometext here'},
+{'d':'20140507','w':'','c':'sometext here'},
+{'d':'20140508','w':'','c':'sometext here'},
+{'d':'20140509','w':'','c':'sometext here'},
+{'d':'20140510','w':'','c':'sometext here'},
+{'d':'20140511','w':'','c':'sometext here'},
+{'d':'20140512','w':'','c':'sometext here'},
+{'d':'20140513','w':'','c':'sometext here'},
+{'d':'20140514','w':'','c':'sometext here'},
+{'d':'20140515','w':'','c':'sometext here'},
+{'d':'20140516','w':'','c':'sometext here'},
+{'d':'20140517','w':'','c':'sometext here'},
+{'d':'20140518','w':'','c':'sometext here'},
+{'d':'20140519','w':'','c':'sometext here'},
+{'d':'20140520','w':'','c':'sometext here'},
+{'d':'20140521','w':'','c':'sometext here'},
+{'d':'20140522','w':'','c':'sometext here'},
+{'d':'20140523','w':'','c':'sometext here'},
+{'d':'20140524','w':'','c':'sometext here'},
+{'d':'20140525','w':'','c':'sometext here'},
+{'d':'20140526','w':'','c':'sometext here'},
+{'d':'20140527','w':'','c':'sometext here'},
+{'d':'20140528','w':'','c':'sometext here'},
+{'d':'20140529','w':'晴','c':'sometext here'},
+{'d':'20140530','w':'晴','c':'sometext here'},
+{'d':'20140531','w':'晴','c':'sometext here'}
+
+
+
+];
+</script>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	border: none;
+	text-decoration: none;
+	font-family: 'Microsoft Yahei';
+	font-size: 24px;
+}
+
+html,body {
+	width: 100%;
+	height: 110%;
+}
+
+body {
+	background: #E3E3E3;
+}
+
+a {
+	color: #0090DB;
+}
+
+
+/* 中央容器 */
+#ji-diary-container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -360px;
+	width: 720px;
+	padding-bottom: 600px;
+}
+
+/* 搜索部分 */
+#ji-diary-search-txt {
+	width: 520px;
+	height: 56px;
+	border-radius: 4px;
+	padding: 0 80px 0 12px;
+	box-sizing: border-box;
+	margin: 20px 0 0 20px;
+	font-size: 26px;
+	border: 1px solid #E1E1E1;
+}
+
+#ji-diary-search-btn {
+	width: 100px;
+	height: 56px;
+	display: block;
+	font-size: 26px;
+	line-height: 54px;
+	text-align: center;
+	border: 1px solid #0090DB;
+	border-radius: 4px;
+	box-sizing: border-box;
+	float:right;
+	margin: 20px 20px 0 0;
+} #ji-diary-search-btn:active { border: 1px solid #808080; color: #808080; }
+
+#noKeyWords,
+#ji-diary-search-res-container {
+	display: none;
+}
+
+/* 输入框清除按钮 */
+#resetInput {
+	width: 60px;
+	height: 36px;
+	line-height: 34px;
+	display: block;
+	position: absolute;
+	top: 52px;
+	right: 170px;
+	border-radius: 40px;
+	text-align: center;
+	box-sizing: border-box;
+	border: 1px solid #5c5c5c;
+	color: #5c5c5c;
+	font-size: 16px;
+	display: none;
+}
+
+
+
+/* 中央容器模块 */
+.ji-diary-module {
+	width: 680px;
+	margin: 20px 0 0 20px;
+	background: #F5F5F5;
+	border-radius: 6px;
+	min-height: 96px;
+	border: 1px solid #DBDBDB;
+	float: left;
+	box-sizing: border-box;
+}
+
+.ji-diary-module-title {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 32px 20px 20px 20px;
+}
+.ji-diary-module-title span.right { color: #808080; float: right; }
+
+
+
+
+/* 共用 list 样式 */
+.ji-diary-list ul li {
+	width: 640px;
+	list-style: none;
+	float: left;
+	padding: 20px 20px 20px 20px;
+	line-height: 36px;
+	border-top: 1px dashed #d1d1d1;
+}
+
+.ji-diary-list ul li span {
+	width: 100%;
+	display: inline-block;
+	color: #A2A2A2;
+}
+
+.ji-diary-list ul li p {
+	width: 640px;
+	text-align: justify;
+	font-size: 28px;
+	display: inline-block;
+}
+
+
+
+
+/* 统计容器 */
+.ji-diary-module-counts {
+	width: 220px;
+	height: 148px;
+	float: left;
+	text-align: center;
+}
+.ji-diary-module-counts p { font-size: 48px; margin-top:24px; font-weight: bold; }
+.ji-diary-module-counts span { color: #808080; }
+
+
+
+/* 往年今日 list 容器 */
+#ji-diary-module-past {
+	width: 100%;
+	clear: both;
+	float: left;
+}
+
+/* 往年今日 展开收起 */
+#ji-diary-module-past-toggle {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	display: block;
+	text-align: center;
+	clear: both;
+	border-top: 1px solid #d1d1d1;
+}
+
+
+
+/* 月份选择隐藏 */
+#ji-diary-chosearea-of-m { display: none; }
+/* 年月选择 a 样式 */
+#ji-diary-chosearea-of-y a,
+#ji-diary-chosearea-of-m a {
+	width: 25%;
+	text-align: center;
+	display: block;
+	float: left;
+	font-size: 32px;
+	margin: 20px 0 50px 0;
+}
+/* 重选隐藏 */
+#ji-diary-chosearea-reset {
+	display: none;
+}
+
+
+/* 上下月 */
+#prevNextBtn {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	display: block;
+	clear: both;
+	border-top: 1px solid #d1d1d1;
+	display: none;
+}
+/* 上下月 三部分 */
+#prevNextBtn span {
+	width: 33.33%;
+	text-align: center;
+	display: block;
+	float: left;
+}
+
+
+#backtotop {
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	margin-left: -100px;
+	width: 200px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	background: rgba(0,0,0,0.2);
+	border-radius: 10px;
+	color: #fff;
+}
+
+</style>
+</head>
+<body>
+
+<div id="ji-diary-container">
+
+<!-- 搜索 -->
+	<div class="ji-diary-module">
+
+		<input placeholder="搜搜看" type="text" id="ji-diary-search-txt" /><a href="javascript:;" id="ji-diary-search-btn">搜索</a><a href="javascript:;" id="resetInput">清空</a>
+
+		<p class="ji-diary-module-title" id="noKeyWords"><span style="color:#FF3B40;">你TM的在逗我 不输你想搜个毛啊←_←</span></p>
+
+		<div id="ji-diary-search-res-container">
+			<p class="ji-diary-module-title">根据 "<span id="searchKeyWords"></span>" 搜到了 <span id="searchKeyWordsCounts"></span> 条记录：<span class="right"><a href="javascript:;" id="closeSearch">关闭</a></span></p>
+			<div id="ji-diary-search-res" class="ji-diary-list"></div>			
+		</div>
+
+
+	</div>
+
+
+
+
+<!-- 已记录 -->
+	<div class="ji-diary-module">
+		<p class="ji-diary-module-title">已同步<span class="right" id="ji-diary-count-period">-</span></p>
+
+		<div class="ji-diary-module-counts"><p id="ji-diary-count-month">0</p><span>月</span></div>
+		<div class="ji-diary-module-counts"><p id="ji-diary-count-week">0</p><span>周</span></div>
+		<div class="ji-diary-module-counts"><p id="ji-diary-count-day">0</p><span>天</span></div>	
+
+	</div>
+
+
+
+
+<!-- 往年今日 -->
+	<div class="ji-diary-module" id="pastYearToay">
+		<p class="ji-diary-module-title">往年今日<span id="ji-diary-today" class="right"></span></p>
+
+		<div id="ji-diary-chosearea-of-m-past" class="ji-diary-chosearea"></div>
+		<div id="ji-diary-chosearea-of-d-past" class="ji-diary-chosearea"></div>
+
+		<div id="ji-diary-module-past" class="ji-diary-list"></div>
+
+		<a href="javascript:;" id="ji-diary-module-past-toggle">展开</a>
+
+	</div>
+
+
+
+
+<!-- 年月查找 -->
+	<div class="ji-diary-module" id="searchYM">
+		<p class="ji-diary-module-title">年月查找<span class="right"><span id="choseTip"></span> <a href="javascript:;" id="ji-diary-chosearea-reset">重选</a></span></p>
+
+		<div id="ji-diary-chosearea-of-y"></div>
+		<div id="ji-diary-chosearea-of-m"></div>
+
+		<div id="ji-diary-chosearea-show" class="ji-diary-list"></div>
+
+		<div id="prevNextBtn"><span><a href="javascript:;" id="prevNextBtn-p">上个月</a></span><span id="prevNextBtn-c">当前</span><span><a href="javascript:;" id="prevNextBtn-n">下个月</a></span></div>
+	
+	</div>
+
+	<div class="ji-diary-module"><p style="text-align:center;line-height:96px;color:#5c5c5c;">JiDiary 2.0 ©Jisuowei.com</p></div>
+
+</div><!-- ji-diary-container end -->
+
+
+
+
+
+</body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+window.onload=function(){
+
+// 搜索 ----------------------------------------------------------------------------
+	// 搜索按钮点击事件
+	$('#ji-diary-search-btn').click(function(){
+		// 获取输入值
+		var keyWords = $('#ji-diary-search-txt').val();
+		// 判空
+		if( keyWords != '') {
+			// 空提示隐藏
+			$('#noKeyWords').hide();
+			// 显示 搜索结果框
+			$('#ji-diary-search-res-container').fadeIn(300);
+			// "根据" 字数过多替换
+			var lastKeyWords = keyWords;
+			if(keyWords.length>10){ lastKeyWords = keyWords.substring(0,10) + '..'; }
+			// "根据" 显示
+			$('#searchKeyWords').html(lastKeyWords);
+			// 获取 list
+			getDiaryList(keyWords,"search",'#ji-diary-search-res');
+			// 显示搜到的记录数
+			$('#searchKeyWordsCounts').html($('#ji-diary-search-res li').length);
+		} else {
+			// 隐藏 搜索结果框
+			$('#ji-diary-search-res-container').hide();
+			// 空提示 显示
+			$('#noKeyWords').fadeIn(600);
+		}
+	});
+
+	// 清空事件
+	$('#closeSearch').click(function(){
+		// 显示 搜索结果框
+		$('#ji-diary-search-res-container').fadeOut(300);
+		// 输入框置空
+		$('#ji-diary-search-txt').val('');
+
+		$('#resetInput').fadeOut(100);
+	});
+
+	// 输入框动态判断 清空 按钮
+	$('#ji-diary-search-txt').on('input',function(){
+		if($(this).val().length>0) {
+			$('#resetInput').fadeIn(100);
+		} else {
+			$('#resetInput').fadeOut(100);
+		}
+	});
+	// 清空按钮事件
+	$('#resetInput').click(function(){
+		$(this).fadeOut(100);
+		$('#ji-diary-search-txt').val('');
+		$('#ji-diary-search-txt').focus();
+	});
+
+
+
+// 已记录 自动生成 ---------------------------------------------------------------------------
+	(function(){
+		var start = aJiDiary[0].d;
+		var end = aJiDiary[aJiDiary.length-1].d;
+
+		// 从 .. 至 ..
+		$('#ji-diary-count-period').html(dateConverter(start) + ' - ' + dateConverter(end));
+
+		$('#ji-diary-count-month').html( parseInt((aJiDiary.length-1)/30) );
+		$('#ji-diary-count-week').html( parseInt((aJiDiary.length-1)/7) );
+		$('#ji-diary-count-day').html(aJiDiary.length-1);
+	})();
+
+
+
+// 往年今日 -------------------------------------------------------------------------
+	(function(){
+		var todayY = (new Date().getFullYear() ).toString();
+		var todayM = (new Date().getMonth()+1 ).toString();
+		var todayD = (new Date().getDate() ).toString();
+		if(todayM.length==1){ todayM = '0' + todayM; }
+		if(todayD.length==1){ todayD = '0' + todayD; }
+
+		var today = todayM + todayD;
+
+		// 显示今天
+		$("#ji-diary-today").html( dateConverter(todayY+today).substring(5) );
+
+		// 按日查询 list
+		getDiaryList(today,"memorial",'#ji-diary-module-past');
+
+		// 收起往年今日
+		loadJiModuPastAni();
+
+	})();
+
+
+
+// 年月查找 ------------------------------------------------------------------------------
+	(function(){
+		// 生成月份
+		for(var i=0; i<12; i++){
+			var ele = $('<a href="javascript:;" class="ji-diary-chosearea-m">'+(i+1)+'</a>');
+			$('#ji-diary-chosearea-of-m').append(ele);
+		}
+
+		// 创建年份HTML结构
+		var yearEleStr = '';
+		for(var i=0; i<6; i++){ yearEleStr += '<a href="javascript:;" class="ji-diary-chosearea-y">'+(2009+i)+'</a>'; }
+
+		// 初始化年份
+		$('#ji-diary-chosearea-of-y').html(yearEleStr);
+
+
+		var choseYear = 0;
+		var choseMonth = 0;
+
+		// 年份点击事件
+		$('.ji-diary-chosearea-y').click(function(){
+			// 显示重置按钮
+			$('#ji-diary-chosearea-reset').fadeIn(200);
+			// 更新年份
+			choseYear = parseInt($(this).html());
+			// 显示选中年份
+			$('#choseTip').prepend(choseYear);
+			// 隐藏年选择 显示月选择
+			$('#ji-diary-chosearea-of-y').hide();
+			$('#ji-diary-chosearea-of-m').fadeIn();
+
+		});
+
+
+		// 月份点击事件
+		$('.ji-diary-chosearea-m').click(function(){
+			// 更新月份
+			choseMonth = parseInt($(this).html());
+			// 隐藏月选择
+			$('#ji-diary-chosearea-of-m').hide();
+
+			$('#choseTip').html( $('#choseTip').html() + '/' + choseMonth + ' ');
+
+			var getKey = choseYear*100 + choseMonth;
+
+			// 加载日记
+			getDiaryList(getKey,"month",'#ji-diary-chosearea-show');
+
+			$('#prevNextBtn').show();
+			$('#prevNextBtn-c').html('当前 '+ choseYear + '/' + choseMonth );
+
+		});
+
+
+		// 重选 按钮
+		$('#ji-diary-chosearea-reset').click(function(){
+			// 容器 置空
+			$('#ji-diary-chosearea-show').html('');
+			// 选中年月 置空
+			$('#choseTip').html('');
+			// 月份选择 隐藏
+			$('#ji-diary-chosearea-of-m').hide();
+			// 年份选择 显示
+			$('#ji-diary-chosearea-of-y').fadeIn(200);
+			// 按钮 隐藏
+			$(this).fadeOut(200);
+			// 隐藏 上下月
+			$('#prevNextBtn').hide();
+
+		});
+
+
+
+	// 上个月 下个月
+		// 动画到页首
+		$('#ji-diary-chosearea-of-m a,#prevNextBtn a').click(function(){
+			var dis = $('#searchYM').position().top;
+			$('body,html').animate( { scrollTop: dis}, 480 );
+		});
+		// 上个月
+		$('#prevNextBtn-p').click(function(){
+			setTimeout(function(){
+				choseMonth--;
+				if(choseMonth==0){
+					choseYear--;
+					choseMonth=12;
+				}
+				var getKey = choseYear*100 + choseMonth;
+				getDiaryList(getKey,"month",'#ji-diary-chosearea-show');
+				$('#choseTip,#prevNextBtn-c').html( choseYear + '/' + choseMonth);
+			},580);
+		});
+		// 下个月
+		$('#prevNextBtn-n').click(function(){
+			setTimeout(function(){
+				choseMonth++;
+				if(choseMonth>12){
+					choseYear++;
+					choseMonth=1;
+				}
+				var getKey = choseYear*100 + choseMonth;
+				getDiaryList(getKey,"month",'#ji-diary-chosearea-show');
+				$('#choseTip,#prevNextBtn-c').html( choseYear + '/' + choseMonth);
+			},580);
+		});
+
+
+
+
+	})();
+
+
+
+
+// 回到顶部 ---------------------------------------------------------------------------
+	(function(){
+		var eBackToTop = $("<a href='javascript:;' id='backtotop'>回到顶部</a>");
+		$('body').append(eBackToTop);
+		$(eBackToTop).hide();
+
+		$(eBackToTop).click(function() {
+			$('body,html').animate( { scrollTop: 0 }, 240 );
+			return false;
+		});
+
+		var timer = 0; 
+		$(window).scroll(function() { 
+			if (!timer) { 
+				timer = setTimeout(function() { 
+					if ($(window).scrollTop() > 70) {
+						$('header').animate({'opacity':'0.92'},300);
+						// $('header').slideUp(300);
+						$("#backtotop").fadeIn(300);
+					} else {
+						$('header').animate({'opacity':'1'},300);
+						// $('header').slideDown(300);
+						$("#backtotop").fadeOut(300);
+					}
+					timer = 0; 
+				}, 300); 
+			} 
+		}).trigger('scroll');
+	})();
+
+
+};  // window.onload end
+
+
+
+
+// 日期格式转换器
+function dateConverter(str, type){
+
+	var weekDay = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+
+	// 分别获取 年 月 日
+	var y = parseInt(str.substring(0,4));
+	var m = parseInt(str.substring(4,6));
+	var d = parseInt(str.substring(6,8));
+
+	var myDate = new Date(y,m-1,d); 
+
+	if( type == 'week') {
+		// 有 week 参数返回星期几
+		return weekDay[myDate.getDay()];
+	} else {
+		// return 2008/8/8
+		return y +'/'+ m +'/'+ d;
+	}
+
+}
+
+
+
+// 按需获取日记记录 并返回到指定容器内 -------------------------------------------------------
+function getDiaryList(getKey, type, container){
+
+	var str = '<ul>';
+
+	$.each(aJiDiary, function(entryIndex, entry) {
+
+	// 遍历过滤
+		// 搜索
+		if( type == 'search') {
+			var patt = new RegExp(''+ getKey +'','gi');
+			temp = patt.test(entry.d) || patt.test(entry.c);
+		};
+		// 往年今日
+		if( type == 'memorial') { temp = entry.d.substring(4,8) == getKey };
+		// 年月查找
+		if( type == 'month') { temp = entry.d.substring(0,6) == getKey };
+
+
+	// 开始遍历
+		if(temp) {
+			// 生成 list  日期 + 星期 + 天气 + 内容
+			str += '<li><span>' 
+				+ dateConverter(entry.d) 
+				+ ' '+ dateConverter(entry.d, 'week') +' ' 
+				+ entry.w 
+			+ '</span><p>' 
+				+ (function(){if(entry.c){return entry.c} else {return '<span style="#808080">今天静悄悄的 啥也没发生</span>'}})(); 
+			+ '</p></li>';
+		}
+
+	});
+
+	str += '</ul>';
+
+	// 判空 提示没有记录
+	if(str=='<ul></ul>') {
+		str = '<center><p style="line-height:200px;">你又没写 人家怎么给你显示嘛 (ಥ_ಥ)</p></center>';
+	}
+
+	// return
+	$(container).html(str);
+}
+
+
+
+// 展开收起 --------------------------------------------------------------------------
+function loadJiModuPastAni() {
+	// 保存高度
+	var jiModuPastHeight = $('#ji-diary-module-past').height();
+	// 收起初始化
+	$('#ji-diary-module-past').css({'height':'200px','overflow':'hidden'});
+	// 点击事件
+	$('#ji-diary-module-past-toggle').click(function(){
+		if($(this).html()=='展开'){
+			$(this).html('收起');
+			$('#ji-diary-module-past').animate({'height':jiModuPastHeight},300);
+				// 动画到页首
+				var dis = $('#pastYearToay').position().top;
+				$('body,html').animate( { scrollTop: dis}, 480 );
+
+		} else {
+			$(this).html('展开');
+			$('#ji-diary-module-past').animate({'height':'200px'},300);
+		}
+	});
+
+
+}
+
+
+
+</script>
+</html>

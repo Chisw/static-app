@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TipTriangle</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+<style>
+* {
+	margin:0px;
+	padding:0px;
+}
+body {
+	padding:50px;
+}
+
+.nav_tip {
+	min-width:60px;
+	height:24px;
+	color:white;
+	font-size:12px;
+	text-align:center;
+	line-height:24px;
+	background-color:red;
+	border-radius:3px;
+	display:inline-block;
+	padding:8px;
+
+}
+
+#center {
+	width:200px;
+	position:absolute;
+	left:50%;
+	margin-left:-100px;
+	margin-top:100px;
+	border-radius:10px;
+	background:#ff8700;
+	padding:20px;
+	color:white;
+	font-size:12px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="nav_tip" id="nav_tip_1">Tooltip_1</div>
+<div class="nav_tip" id="nav_tip_2">J</div>
+<div class="nav_tip" id="nav_tip_3">Chiswick</div>
+<div class="nav_tip" id="nav_tip_4">Chiue</div>
+
+<div id="center">
+	function addTriArrow( ele, size, dir){...};
+	<br/><br/>
+	·基于 jQuery<br/>
+	·给任意块级元素添加指示小三角<br/>
+	·支持小三角方向和大小的设置<br/>
+	·支持有 padding 的块级元素<br/>
+	·颜色自动识别块级元素的背景色<br/>
+	<br/>
+	Chisw<br/>2015-09-14 18:03
+
+</div>
+
+
+</body>
+<script language="javascript" src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+addTriArrow("#nav_tip_1", 4, "top");
+addTriArrow("#nav_tip_2", 4, "right");
+addTriArrow("#nav_tip_3", 4, "bottom");
+addTriArrow("#nav_tip_4", 4, "left");
+
+addTriArrow("#center", 12, "bottom");
+
+
+function addTriArrow( ele, size, dir){
+
+	var eleWidth = $(ele).width();
+	var eleHeight = $(ele).height();
+	var elePadding = ($(ele).innerWidth() - $(ele).width())/2;
+	var eleColor = $(ele).css("background-color");
+
+	var triArrow = document.createElement("span");
+	$(ele).prepend(triArrow);
+	$(ele + " span").css({
+		width:'0px',
+		height:'0px',
+		border:size + 'px solid transparent',
+		display:'block',
+		position:'absolute',
+	});
+
+	switch( dir ){
+		case "top":
+			$(ele + " span").css({
+				marginLeft: (eleWidth - size*2) / 2 + 'px',
+				marginTop: -(elePadding + size*2) + 'px',
+				borderBottomColor: eleColor
+			});
+			break;
+		case "right":
+			$(ele + " span").css({
+				marginLeft: eleWidth + elePadding + 'px',
+				marginTop: (eleHeight - size*2)/2 + 'px',
+				borderLeftColor: eleColor
+			});
+			break;
+		case "bottom":
+			$(ele + " span").css({
+				marginLeft: (eleWidth - size*2) / 2 + 'px',
+				marginTop: eleHeight + elePadding + 'px',
+				borderTopColor: eleColor
+			});
+			break;
+		case "left":
+			$(ele + " span").css({
+				marginLeft: -(elePadding + size*2) + 'px',
+				marginTop: (eleHeight - size*2)/2 + 'px',
+				borderRightColor: eleColor
+			});
+			break;
+	}
+}
+
+
+</script>
+</html>

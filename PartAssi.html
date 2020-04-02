@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>分区小能手</title>
+	<meta name="viewport" content="width=720,user-scalable=0">
+	<link href="../static/img/favicon.ico" rel="shortcut icon" />
+<style> 
+
+* {margin:0;padding:0;font-family:"微软雅黑";}
+html,body {width:100%;height:100%;overflow:hidden;background:#363636;}
+
+/* 容器 */
+#dvd_container {position:absolute;left:50%;top:50%;margin-left:-320px;margin-top:-140px;width:640px;height:280px;border:1px solid #000;border-radius:6px;background:#efefef;overflow:hidden;box-shadow:0 5px 20px #000;}
+/* 绘图区 */
+#dvd {position:absolute;top:16px;left:16px;width:320px;height:180px;background:#fff;border-right:1px solid #ccc;border-bottom:1px solid #ccc;}
+/* 提示 */
+#dvd_tip {position:absolute;left:16px;width:320px;bottom:48px;color:#F45454;font-size:12px;text-align:center;}
+/* 右侧面板 */
+#dvd_panel {position:absolute;width:276px;top:16px;right:16px;bottom:16px;border:1px solid #ccc;background:#fff;border-radius:3px;padding:6px;box-sizing:border-box;}
+/* 虚线框 */
+/*#dvd_recta {position:absolute;top:-2px;left:-2px;border:1px dashed #f00;}*/
+/*#dvd_recta {position:absolute;width:0px;height:0px;font-size:0px;margin:0px;padding:0px;border:1px dashed #0099FF;background-color:#C3D5ED;z-index:1000;filter:alpha(opacity:60);opacity:0.6;display:none;}*/
+
+
+/* 网格 */
+.box {width:20px;height:20px;float:left;border-top:1px solid #ccc;border-left:1px solid #ccc;box-sizing:border-box;}
+.box:hover,
+.box.on {background:#f4f4f4;}
+.box.on::after {content:'·';display:block;width:20px;height:20px;line-height:20px;text-align:center;color:#888;}
+.box.on.checked::after {content:'×';}
+
+
+/* 面板详细 */
+#dvd_panel {font-size:14px;}
+#dvd_panel p {border:1px solid #fff; height:22px;line-height:22px;}
+#dvd_panel p:hover {border-radius:3px;border:1px solid #ccc;}
+#dvd_panel label {display:inline-block;width:44px;height:20px;margin:1px;cursor:pointer;border-radius:2px;text-align:center;}
+#dvd_panel label:hover {background:#efefef;}
+#dvd_panel label input {float:left;margin:4px 0 0 6px;cursor:pointer;}
+#dvd_panel i {display:inline-block;width:172px;font-style:normal;color:#888;cursor:default;}
+#dvd_panel span {color:#F45454;cursor:pointer;}
+#dvd_panel i:empty ~ span {display:none;}
+
+/* 遮罩 */
+.dvd_sign {position:absolute;color:#fff;text-shadow:1px 1px 0 #000;text-align:center;border-radius:5px;}
+.dvd_sign.hover {outline:3px solid #f00;outline-offset:-2px;}
+/* 遮罩各颜色 */
+#dvd_A {background-color:rgba(255,0,0,.6);}
+#dvd_B {background-color:rgba(0,255,0,.6);}
+#dvd_C {background-color:rgba(0,0,255,.6);}
+#dvd_D {background-color:rgba(0,255,255,.6);}
+#dvd_E {background-color:rgba(255,0,255,.6);}
+#dvd_F {background-color:rgba(255,255,0,.6);}
+#dvd_G {background-color:rgba(255,127,0,.6);}
+#dvd_H {background-color:rgba(0,0,0,.6);}
+#dvd_I {background-color:rgba(127,127,127,.6);}
+
+
+</style> 
+</head>
+<body>
+
+	<div id="dvd_container">
+
+		<!-- 方格容器 -->
+		<div id="dvd"></div>
+
+		<!-- 提示 -->
+		<div id="dvd_tip"><b style="color:#bbb;">右击已选区域可以快速删除</b></div>
+		<div style="color:#ccc; font-size:12px;position:absolute;bottom:16px;left:16px;width:320px;text-align:center;">分区小能手 v1.01 (c)jisuowei.com 2017.7.19 12:18 </div>
+
+		<!-- 控制面板 -->
+		<div id="dvd_panel">
+			<h5 style="margin-bottom:4px;">选择区域编号</h5>
+			<p><label><input type="radio" name="dvd" value="A" checked> A</label> <i id="dvd_info_A"></i> <span onclick="clearDvd('A');">删除</span></p>
+			<p><label><input type="radio" name="dvd" value="B"> B</label> <i id="dvd_info_B"></i> <span onclick="clearDvd('B');">删除</span></p>
+			<p><label><input type="radio" name="dvd" value="C"> C</label> <i id="dvd_info_C"></i> <span onclick="clearDvd('C');">删除</span></p>
+			<p><label><input type="radio" name="dvd" value="D"> D</label> <i id="dvd_info_D"></i> <span onclick="clearDvd('D');">删除</span></p>
+			<p><label><input type="radio" name="dvd" value="E"> E</label> <i id="dvd_info_E"></i> <span onclick="clearDvd('E');">删除</span></p>
+			<p><label><input type="radio" name="dvd" value="F"> F</label> <i id="dvd_info_F"></i> <span onclick="clearDvd('F');">删除</span></p>
+			<p><label><input type="radio" name="dvd" value="G"> G</label> <i id="dvd_info_G"></i> <span onclick="clearDvd('G');">删除</span></p>
+			<p><label><input type="radio" name="dvd" value="H"> H</label> <i id="dvd_info_H"></i> <span onclick="clearDvd('H');">删除</span></p>
+			<p><label><input type="radio" name="dvd" value="I"> I</label> <i id="dvd_info_I"></i> <span onclick="clearDvd('I');">删除</span></p>
+		</div>
+
+		<!-- 虚线选区 -->
+		<!-- <div id="dvd_recta"></div> -->
+
+	</div>
+
+
+</body> 
+<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+
+// 填充网格
+(function(){
+	var html = '';
+	for(var i=0; i<9; i++) {
+		for(var j=0; j<16; j++) {
+			html += '<div class="box" data-x="'+ j +'" data-y="'+ i +'" ></div>';	// 记录坐标
+		}
+	}
+	$('#dvd').html(html);
+})();
+
+
+
+
+// 面板悬浮高亮
+$('#dvd_panel p span').hover(function(){
+	var code = $(this).parent().find('input').val();
+	$('.dvd_sign').removeClass('hover');
+	$('#dvd_'+code).addClass('hover');
+});
+$('#dvd_panel').on('mouseout',function(){
+	$('.dvd_sign').removeClass('hover');
+});
+
+
+
+(function() {
+	var container = document.getElementById('dvd');
+	// document.onmousedown = function() {
+	container.onmousedown = function() {
+		var boxon = [];
+
+		var $box = $('.box');  // 所有网格
+
+		for(var i=0; i<$box.length; i++) {
+			var o = $box[i];
+			if ($(o).hasClass('box')) {
+				boxon.push(o);
+			}
+		}
+
+		var isSelect = true;
+		var evt = window.event||arguments[0];
+
+		var startX = (evt.x || evt.clientX);
+		var startY = (evt.y || evt.clientY);
+
+		var recta = document.createElement('div');
+		recta.className = 'recta';
+
+		recta.style.cssText = 'position:absolute;width:0px;height:0px;font-size:0px;margin:0px;padding:0px;border:2px dashed #f00;z-index:1000;filter:alpha(opacity:60);opacity:0.6;display:none;'; 
+		document.body.appendChild(recta);
+
+		recta.style.left = startX + 'px';
+		recta.style.top = startY + 'px';
+
+		var _x=null, _y=null;
+
+		clearEventBubble(evt);
+
+		var DIFFER = {};  // 绝对定位位置偏差
+			var container = document.getElementById('dvd_container');
+			DIFFER['x'] = container.offsetLeft + 17;
+			DIFFER['y'] = container.offsetTop + 17;
+		// console.log(DIFFER);
+
+		document.onmousemove = function() {
+			evt = window.event||arguments[0];
+			if (isSelect) {
+				$(recta).show();
+
+				_x = (evt.x || evt.clientX);
+				_y = (evt.y || evt.clientY);
+
+				recta.style.left   = Math.min( _x,  startX) + 'px';
+				recta.style.top    = Math.min( _y,  startY) + 'px';
+				recta.style.width  = Math.abs( _x - startX) + 'px';
+				recta.style.height = Math.abs( _y - startY) + 'px';
+
+				var _l = recta.offsetLeft - DIFFER['x'],  _t = recta.offsetTop - DIFFER['y'];
+				var _w = recta.offsetWidth, _h = recta.offsetHeight;
+
+				for ( var i=0; i<boxon.length; i++) {
+
+					var o = boxon[i];
+
+					var sl = o.offsetWidth + o.offsetLeft;
+					var st = o.offsetHeight + o.offsetTop;
+
+					// 位置比较
+					if (sl > _l && st > _t && o.offsetLeft < _l + _w && o.offsetTop < _t + _h) {
+						$(o).addClass('on');
+					} else {
+						$(o).removeClass('on');
+					}
+				}
+			}
+			clearEventBubble(evt);
+		}
+
+		document.onmouseup = function() {
+			isSelect = false;
+			if(recta) {
+				$(recta).remove();
+				$('.recta').remove();  // 解决右键松开bug
+				confirmDvd();
+			} 
+			boxon = _x = _y = recta = startX = startY = evt = null;
+		}
+
+	}
+
+})(); 
+
+
+
+function confirmDvd() {
+
+	var $boxon = $('.box.on');  // 获取刚被框入的网格
+
+	if(!$boxon.length) {return false;}  // 没有框入不做任何操作
+
+	var flag = true;  // 是否可以被选中
+
+  	// 如果存在 class == checked 的 box  说明已经被占用
+	for(var i=0; i<$boxon.length; i++) {
+		if($($boxon[i]).hasClass('checked')) {
+			flag = false; break;
+		}
+	}
+
+	if(flag) {  // 都没有被占用
+
+		var $ckd1 = $($boxon[0]);				  // 框入的第一个 box
+		var $ckd2 = $($boxon[$boxon.length-1]);	  // 框入的最后一个 box
+
+		// 起始 位置
+		var top1 = $ckd1.position().top,
+			left1 =$ckd1.position().left;
+
+		// 结束 位置
+		var top2 = $ckd2.position().top,
+			left2 =$ckd2.position().left;
+
+		// 获取当前选中的 编号，并清除之前的选区域（如果存在的话）
+		var code = $('input[name=dvd]:checked').val();
+		clearDvd(code);
+
+		// 填充编号相应信息： 起始坐标 + 横纵数目
+		var cols = $ckd2.attr('data-x') - $ckd1.attr('data-x') + 1;
+		var rows = $ckd2.attr('data-y') - $ckd1.attr('data-y') + 1;
+
+		$('#dvd_info_'+code).text( '[' + $ckd1.attr('data-x') + ',' + $ckd1.attr('data-y') + ',' + cols + ',' + rows + '] ' + cols*120 + '×' + rows*120 + 'px' );
+
+		// 绘图区追加 带编号的 遮罩 颜色各异，添加 id 以备删除信息时清除绘图区遮罩
+		$('#dvd').append('<div class="dvd_sign" oncontextmenu="clearDvd(\''+ code+'\');return false;" id="dvd_'+code+'" style="top:'+ (top1+1) +'px;left:'+ (left1+1) +'px;width:'+ (left2-left1+19) +'px;height:'+ (top2-top1+19) +'px;line-height:'+(top2-top1+20)+'px;">'+code+'</div>')
+
+		// 将框入的 box 移除 悬浮的 .on，并标记为已选中的 .checked，再添加对应编号的 .checked_A 以区分颜色
+		$boxon.removeClass('on').addClass('checked').addClass('checked_'+code);
+
+		// 选区完毕自动选中下一个未选区的 编号 radio input
+		$('#dvd_panel i').each(function(index){
+			if($(this).text()=='') {
+				$($('input[name=dvd]')[index]).trigger('click');
+				return false;
+			}
+		})
+
+	} else {  // 存在被占用的 box
+		// 提示信息 并清空悬浮样式
+		$('#dvd_tip').html('× 选区重叠！').fadeIn();
+		setTimeout(function(){$('#dvd_tip').fadeOut().html('<b style="color:#bbb;">右击已选区域可以快速删除</b>').fadeIn()},2000);
+		$boxon.removeClass('on');
+	}
+}
+
+
+// 删除信息
+function clearDvd(code) {
+	$('#dvd_'+code).remove();  // 绘图区移除遮罩
+	$('.checked_'+code).removeClass('checked').removeClass('checked_'+code);  // 清除已被占用 .checked 标记
+	$('#dvd_info_'+code).text('');  // 删除信息
+	$('input[value='+code+']').each(function(){ this.checked = true; });  // 选中删除信息该行的 radio
+}
+
+
+// 冒泡
+function clearEventBubble(evt) {
+	if( evt.stopPropagation ) { evt.stopPropagation(); } else { evt.cancelBubble = true; }
+	if( evt.preventDefault  ) { evt.preventDefault();  } else { evt.returnValue = false; }
+}
+
+
+</script> 
+</html>

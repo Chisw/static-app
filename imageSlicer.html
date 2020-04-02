@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>图片粉碎机-奇斯威克</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<link href="../static/img/favicon.ico" rel="shortcut icon" />
+<style>
+
+html, body {
+	background: #525659;
+}
+
+body {
+	overflow-y: scroll;
+}
+
+.container {
+	position: relative;
+	z-index: 2;
+	box-sizing: border-box;
+	box-shadow: 0 5px 10px rgba(0,0,0, .5);
+	margin: 40px auto;
+	border-radius: 1px;
+	width: 1200px;
+	padding: 30px;
+	background: #fff;
+	overflow: hidden;
+}
+
+.container .container-side {
+	float: left;
+}
+
+.container .container-tab {
+	float: right;
+	width: 800px;
+}
+
+
+.ji-tab {
+	margin-bottom: 4px;
+	border-bottom: 1px solid #DBDBDB;
+	height: 28px;
+}
+
+.ji-tab a {
+	display: inline-block;
+	float: left;
+	border: 1px solid transparent;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin-right: 6px;
+	height: 27px;
+	padding: 0 10px;
+	line-height: 28px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 12px;
+	color: #868686;
+	cursor: pointer;
+}
+
+.ji-tab a:hover {
+	color: #5c5c5c;
+	background: #e5e5e5;
+}
+
+.ji-tab a.on {
+	border: 1px solid #DBDBDB;
+	border-bottom: 2px solid #fff;
+	color: #000;
+	background: #fff;
+	cursor: default;
+}
+
+.ji-tab-box {
+	display: none;
+	min-height: 600px;
+	font-size: 0;
+}
+
+.ji-tab-box.on {
+	display: block;
+}
+
+.ji-tab-box.mosaic {
+	box-shadow: 0 0 12px rgba(0,0,0, .1);
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjk5NEUyRjI5MTM0QjExRTk5Q0FDODMyMzAyMDU1RDVFIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjk5NEUyRjJBMTM0QjExRTk5Q0FDODMyMzAyMDU1RDVFIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTk0RTJGMjcxMzRCMTFFOTlDQUM4MzIzMDIwNTVENUUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTk0RTJGMjgxMzRCMTFFOTlDQUM4MzIzMDIwNTVENUUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6WnmOKAAAABlBMVEX////MzMw46qqDAAAAGElEQVR42mJggAJGKGAYIIGBth8KAAIMAEUQAIElnLuQAAAAAElFTkSuQmCC");
+}
+
+.ji-tab-box.mosaic:hover {
+	outline: 2px dashed #aaa;
+	outline-offset: -2px;
+}
+
+
+#rows, #cols {
+	width: 32px;
+}
+
+#quality {
+	width: 48px;
+}
+
+#file_drag {
+	display: table;
+	position: relative;
+	z-index: 1;
+	width: 800px;
+	height: 600px;
+	text-align: center;
+}
+
+#file_drag span {
+	position: relative;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#file_drag span b {
+	color: #fff;
+	line-height: 48px;
+	font-size: 24px;
+	text-shadow: 0 0 160px rgba(0,0,0, 1), 0 4px 24px rgba(0,0,0, 1);
+}
+
+#file_drag span img {
+	max-width: 800px;
+	max-height: 600px;
+}
+
+#file_drag #file {
+	display: block;
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	opacity: 0;
+}
+
+#img,
+#canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	opacity: 0;
+}
+
+#result {
+	font-size: 0;
+}
+
+#result img {
+	margin: 0 1px 1px 0;
+}
+
+#base64 {
+	box-sizing: border-box;
+	width: 100%;
+	height: 600px;
+	resize: none;
+	overflow: auto;
+}
+
+
+#preview-table {
+	position: absolute;
+	border-collapse: collapse;
+}
+
+#preview-table td {
+	border: 1px solid #f00;
+}
+
+
+
+</style>
+</head>
+<body>
+
+	<div class="container">
+
+		<h2>图片粉碎机</h2>
+
+		<div class="container-side">
+			<h4>粉碎配置</h4>
+			<input id="rows" type="number" min="1" max="10" value="4">行
+			<input id="cols" type="number" min="1" max="10" value="4">列<br>
+			图像品质: <input id="quality" type="number" min="1" max="100" value="100"> 1-100<br>
+			<input type="button" value="预览" disabled id="preview">
+			<input type="button" value="粉碎" disabled id="slice"><br>
+			<br>
+			<a href="//jisuowei.com" target="_blank" style="font-size:12px;">//jisuowei.com</a>
+			<p id="measure"></p>
+			<p id="size"></p>
+		</div>
+
+		<div class="container-tab">
+			
+			<div class="ji-tab">
+				<a href="javascript:;" class="on">上传</a>
+				<a href="javascript:;">碎片</a>
+				<a href="javascript:;">BASE64</a>
+			</div>
+
+			<div class="ji-tab-box on mosaic">
+				<div id="file_drag">
+					<span id="file_drag_cell"><b>点此添加 或 拖拽图片至此<br>若未显示图片 请刷新后重试</b></span>
+					<input id="file" type="file" title="点此添加 或 拖拽图片至此">
+				</div>
+			</div>
+			<div class="ji-tab-box">
+				<div id="result">res</div>
+			</div>
+			<div class="ji-tab-box">
+				<textarea id="base64"></textarea>
+			</div>
+
+		</div>
+
+
+		<img id="img" src="">
+		<canvas id="canvas"></canvas>
+
+	</div>
+
+</body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+(function() {
+
+
+	var imgWidth, imgHeight;
+
+	if ( typeof FileReader === 'undefined' ) {
+		alert('请使用现代浏览器');
+		$('input').attr('disabled','disabled');
+	}
+
+	$('body')
+		// tab 切换
+		.on('click', '.ji-tab a', function() {
+			var $tab = $(this),
+				index = $tab.index();
+
+			$tab.addClass('on').siblings().removeClass('on');
+			$('.ji-tab-box').removeClass('on').eq(index).addClass('on');
+		})
+
+		// 选择文件
+		.on('change', '#file', function() {
+
+			$('.ji-tab a').eq(0).trigger('click');
+
+			var file = this.files[0];
+
+			if( !/image\/\w+/.test(file.type) ) {
+				alert('请确保文件为图像类型');
+				return null;
+			}
+
+			$('#preview, #slice').removeAttr('disabled');
+
+			var FR = new FileReader();
+
+			FR.readAsDataURL(file);
+			
+			FR.onload = function(e){
+
+				var $img = $('#img');
+
+				$('#file_drag_cell').html('<img src="'+ this.result +'">');
+
+				$img.attr('src', this.result).on('load', function() {
+
+					imgWidth  = $img.width(),
+					imgHeight = $img.height();
+
+					$('#canvas').after(`<canvas id="canvas" width="${ imgWidth }" height="${ imgHeight }"></canvas>`).remove();
+
+					var img	   = document.getElementById('img'),
+						canvas = document.getElementById('canvas'),
+						ctx	   = canvas.getContext('2d');
+
+					$('#measure').text( '图像尺寸：'+ imgWidth +'*'+ imgHeight +'px' );
+					$('#size').text( '图像大小：'+ ( file.size / 1024 ).toFixed(2) + 'KB' );
+
+					ctx.drawImage(img, 0, 0, imgWidth, imgHeight);
+
+				});
+
+			}
+		})  // 选择文件
+
+		// 粉碎
+		.on('click', '#slice', function() {
+
+			$('#result').html('');
+
+			var rows = parseInt($('#rows').val()),
+				cols = parseInt($('#cols').val());
+
+			if ( cols > 10 || rows > 10 ) {
+				alert('最大10*10');
+				return null;
+			}
+
+			var imgs = '',
+				base64 = '';
+
+			for (var i = 0; i < rows; i++ ) {
+				for (var j = 0; j < cols; j++ ) {
+
+					var x = j * imgWidth / cols,
+						y = i * imgHeight / rows,
+						width = imgWidth / cols,
+						height = imgHeight / rows;
+
+					var ctx = canvas.getContext('2d'),
+						data = ctx.getImageData(x, y, width, height);
+
+					var newCanvas = document.createElement('canvas'),
+						newCtx    = newCanvas.getContext('2d');
+
+					newCanvas.width  = width;
+					newCanvas.height = height;
+
+					newCtx.putImageData(data, 0, 0);
+
+					var base = newCanvas.toDataURL('image/jpeg', parseFloat( ($('#quality').val()) || 100 ) / 100);  // 图片质量
+
+					base64 += base;
+					imgs   += '<img src="'+ base +'">';
+
+				}
+			}
+
+			$('#result').html(imgs);
+			$('#base64').val(base64);
+
+			$('.ji-tab a').eq(1).trigger('click');
+		})  // 粉碎
+
+		// 预览
+		.on('click', '#preview', function() {
+
+			var rows = parseInt($('#rows').val()),
+				cols = parseInt($('#cols').val()),
+				$img = $('#file_drag_cell img');
+				w    = $img.width(),
+				h    = $img.height(),
+				t    = $img.position().top,
+				l    = $img.position().left;
+
+			var table = '<table style="z-index:2;width:'+ w +'px;height:'+ h +'px;top:'+ t +'px;left:'+ l +'px;" id="preview-table">',
+				rowss = '',
+				colss = '';
+
+
+			for ( var j = 0; j < cols; j++ ) {
+				colss += '<td></td>';
+			}
+
+			for ( var i = 0; i < rows; i++ ) {
+				table += '<tr>' + colss + '</tr>';
+			}
+
+			table += '</table>';
+
+			$('#file_drag_cell table').remove();
+			$('#file_drag_cell').append(table);
+
+		})  // 预览
+
+})();
+
+</script>
+</html>

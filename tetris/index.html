@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tetris-鸡哥JavaScript版俄罗斯方块-奇斯威克</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=480, maximum-scale=1.0, user-scalable=0">
+<style>
+
+@font-face {
+	font-family: 'digital';
+	src: url('./digital.woff2') format('woff');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	outline: none;
+	text-decoration: none;
+}
+body {
+	background: #555;
+	min-height: 700px;
+	overflow: hidden;
+}
+
+
+
+#title {
+	position: absolute;
+	top: 12px;
+	left: 50%;
+	margin-left: -50px;
+	width: 100px;
+	color: #fff;
+	font-size: 16px;
+	z-index: 2;
+	background: #555;
+	text-align: center;
+	font-family: "微软雅黑";
+}
+
+
+#screen {
+	position: absolute;
+	top: 36px;
+	left: 50%;
+	margin-left: -153px;
+	width: 300px;
+	height: 344px;
+	background: #899775;
+	border: 3px solid #333;
+	border-right-color: #9D9D9D;
+	border-bottom-color: #9D9D9D;
+	border-radius: 5px;
+	box-shadow: inset 0 0 6px #000;
+	outline: 4px solid #393939;
+	outline-offset: 10px;
+}
+
+#grid_box {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 162px;
+	height: 322px;
+	border: 1px solid #000;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+#grid {
+	position: absolute;
+	bottom: 1px;
+	left: 1px;
+	width: 160px;
+	height: 384px;
+}
+
+#next i,
+#grid i {
+	display: block;
+	width: 14px;
+	height: 14px;
+	background: #899775;
+	border: 1px solid #838D72;
+	border-radius: 2px;
+	float: left;
+}
+
+#next i::after,
+#grid i::after {
+	content: '';
+	display: block;
+	width: 12px;
+	height: 12px;
+	margin: 1px;
+	background: #838D72;
+	border-radius: 2px;
+}
+
+#next i.on,
+#grid i.on { border: 1px solid #000; }
+
+#next i.on::after,
+#grid i.on::after { background: #000; }
+
+#grid_top i,
+#grid_top i.on,
+#grid_top i::after,
+#grid_top i.on::after {
+	border: 1px solid #899775;
+	background: none;
+}
+
+
+
+#info {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 110px;
+	height: 322px;
+	font-family: 'digital';
+}
+
+#info p {
+	text-align: right;
+	font-size: 28px;
+	height: 24px;
+	margin-bottom: 4px;
+}
+#info p.info_title {font-size: 20px;font-style: italic;height: 20px;margin: 0;color: #838D72;}
+#info p.info_title.on {color:#000;}
+
+#info p span {
+	position: absolute;
+	right: 0;
+}
+
+#info p span.bg {
+	/*position: relative;*/
+	color: #838D72;
+}
+
+#next {
+	position: absolute;
+	top: 200px;
+	right: 16px;
+	width: 64px;
+}
+
+
+#music,
+#coffee {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	opacity: .2;
+	font-size: 36px;
+}
+
+#music {right: 58px;}
+
+#music.on,#coffee.on {opacity: 1;}
+
+
+
+#btns {
+	position: absolute;
+	top: 420px;
+	left: 50%;
+	width: 432px;
+	margin-left: -216px;
+	height: 240px;
+}
+
+
+.btn_dir,
+#btn_enter {
+	position: absolute;
+	background: #00aef0;
+	border: 2px solid #3B2C1A;
+	box-shadow: 0 0 3px #444, 4px 4px 6px #444;
+	background-image: -webkit-linear-gradient(90deg, #ff6600,#ff9900);
+	color: #fff;
+}
+
+.btn_dir:active,
+#btn_enter:active {
+	box-shadow: 0 0 3px #444, inset 0 0 4px #222;
+}
+
+.btn_dir:active i,
+#btn_enter:active i {
+	font-size: 19px;
+}
+
+
+
+.btn_dir::before,
+#btn_enter::before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 8%;
+	left: 8%;
+	width: 84%;
+	height: 84%;
+	border-radius: 50%;
+	background-image: -webkit-linear-gradient(0deg, #ff7700,#ff8800);
+}
+
+.btn_dir:active::before,
+#btn_enter:active::before {
+	top: 9%;
+	left: 9%;
+	width: 82%;
+	height: 82%;	
+}
+
+.btn_dir i,
+#btn_enter i {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: block;
+	font-size: 20px;
+	margin-top: -12px;
+	margin-left: -12px;
+	width: 24px;
+	height: 24px;
+	text-align: center;
+	line-height: 24px;
+	z-index: 2;
+	font-style: normal;
+}
+
+.btn_dir {
+	width: 80px;
+	height: 80px;
+	border-radius: 80px;
+}
+
+
+
+#btn_top   {top: 0;  left: 80px;}
+#btn_right {top: 80px; left: 160px;}
+#btn_btm   {top: 160px; left: 80px;}
+#btn_left  {top: 80px; left: 0;}
+
+#btn_enter {
+	top: 80px;
+	right: 0;
+	width: 136px;
+	height: 136px;
+	border-radius: 148px;
+}
+
+.btn_o {
+	position: absolute;
+	top: 0;
+	width: 48px;
+	height: 24px;
+	line-height: 24px;
+	background: #C6C6C6;
+	border-radius: 12px;
+	border: 1px solid #003B52;
+	color: #fff;
+	background-image: -webkit-linear-gradient(90deg, #0084B8,#00AEF0);
+	box-shadow: 0 0 3px #444, 2px 2px 3px #444;
+	text-align: center;
+}
+.btn_o:active {
+	box-shadow: 0 0 3px #444, inset 0 0 4px #222;
+}
+
+#btn_o_ox    {right: 192px;}
+#btn_o_bgm    {right: 128px;}
+#btn_o_pause {right: 64px;}
+#btn_o_menu  {right: 0;}
+
+
+
+#mask,
+#mask_mask,
+#mask_load {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,.52);
+	display: none;
+	z-index: 5;
+}
+
+#mask_load {
+	display: block;
+	z-index: 4;
+	background: #393A3F;
+}
+
+#loadbar {
+	position: absolute;
+	left: 50%;
+	bottom: 20%;
+	margin-left: -150px;
+	width: 300px;
+	height: 2px;
+	background: #808080;
+}
+#loadbar p {
+	width: 0;
+	height: 100%;
+	background: #0f0;
+}
+
+
+
+#menu {
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	margin-left: -192px;
+	width: 388px;
+	background: #fff;
+	border-radius: 4px;
+	overflow: hidden;
+	display: none;
+	z-index: 5;
+	font-family: "微软雅黑";
+}
+
+#menu li {
+	height: 64px;
+	line-height: 64px;
+	list-style: none;
+	padding-left: 20px;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+#menu li:active {background: #eee;}
+
+#menu li i {
+	width: 32px;
+	text-align: center;
+}
+
+#menu li span {
+	float: right;
+	margin-right: 24px;
+	color: #888;
+}
+
+#ml_bomb_val {
+	font-size: 24px;
+}
+
+
+
+
+#ajax {
+	position: absolute;
+	top: 20px;
+	bottom: 20px;
+	left: 50%;
+	margin-left: -220px;
+	width: 440px;
+	background: #fff;
+	border-radius: 4px;
+	overflow: hidden;
+	display: none;
+	z-index: 6;	
+	font-family: "微软雅黑";
+}
+
+#ajax_in {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0px;
+	left: 0;
+	padding: 24px;
+	overflow: hidden;
+	overflow-y: scroll;
+	padding-bottom: 72px;
+}
+
+#ajax_ox {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 58px;
+	line-height: 58px;
+	background: rgba(200,200,200,.9);
+	text-align: center;
+	font-size: 24px;
+}
+
+#ajax_ox:active {background: rgba(100,100,100,.9)}
+
+#ajax table {font-size: 12px; margin-top: 12px; width: 100%; border-collapse: collapse;}
+#ajax table tr {line-height: 24px;}
+#ajax table tr:nth-child(odd) {background: #efefef;}
+#ajax table tr.dlog_title {background: #aaa; padding: 2px; color: #fff;}
+#ajax table tr.dlog_title .dlog_date {text-align: right;}
+
+#ajax table tr td:nth-child(1) {text-align: center;}
+#ajax table tr.dlog_title td {padding: 0 8px;}
+
+#en_test { margin-top: 12px; font-size:14px;}
+#en_test span {color: #808080;font-size:12px;line-height: 28px;}
+#en_test b {font-size:16px;}
+#en_test i {color: #FFC900;}
+
+#ajax p {font-size: 14px; text-indent: 28px;margin: 8px;text-align: justify;}
+
+
+#copyright {
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	color: #888;
+	text-align: center;
+	font-size: 12px;
+	text-shadow: 1px 1px 0 #333;
+	z-index: 4;
+	font-family: "微软雅黑";
+}
+
+
+#toast {
+	position:fixed;
+	top:-100px;
+	left:50%;
+	margin-left:-210px;
+	width:420px;
+	box-sizing:border-box;
+	border-radius:8px;
+	padding:20px 10px;
+	background:rgba(0,0,0,.9);
+	color:#fff;
+	text-align:center;
+	font-size:16px;
+	line-height: 24px;
+	opacity:0;
+	transition: .32s;
+	z-index:9;
+	font-family: "微软雅黑";
+}
+#toast.on {top:20px;opacity:0.9;}
+
+</style>
+</head>
+<body>
+
+	<h1 id="title">JiTetris</h1>
+
+	<div id="screen">
+		<div id="grid_box">
+			<div id="grid">
+				<div id="grid_top">
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				</div>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+			</div>
+		</div>
+
+		<div id="info">
+
+			<p class="info_title">SCORE</p>
+			<p>
+				<span class="bg">8888888</span>
+				<span id="score"></span>
+			</p>
+
+			<p class="info_title">HI-SCORE</p>
+			<p>
+				<span class="bg">8888888</span>
+				<span id="score_hi"></span>
+			</p>
+
+			<p class="info_title">LEVEL</p>
+			<p>
+				<span class="bg">88/88</span>
+				<span id="level"></span>
+			</p>
+
+			<p class="info_title">SPEED</p>
+			<p>
+				<span class="bg">88</span>
+				<span id="speed"></span>
+			</p>
+
+			<div id="next">
+				<i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i>
+				<i></i><i></i><i></i><i></i>
+			</div>
+
+			<div id="music">🔈</div>
+			<div id="coffee">☕️</div>
+
+		</div>
+
+	</div>
+
+	<div id="btns">
+		<div class="btn_dir" id="btn_top"><i>▲</i></div>
+		<div class="btn_dir" id="btn_right"><i>▶︎</i></div>
+		<div class="btn_dir" id="btn_btm"><i>▼</i></div>
+		<div class="btn_dir" id="btn_left"><i>◀︎</i></div>
+
+		<div id="btn_enter"><i>●</i></div>
+
+		<div class="btn_o" id="btn_o_ox"> 🕹</div>
+		<div class="btn_o" id="btn_o_bgm"> 🔈</div>
+		<div class="btn_o" id="btn_o_pause"> ☕️</div>
+		<div class="btn_o" id="btn_o_menu"> 📜</div>
+
+	</div>
+
+
+	<div id="mask"></div>
+	<div id="mask_mask"></div>
+
+
+	<ul id="menu">
+		<li id="ml_user">玩家昵称<span id="ml_user_val">未填写</span></li>
+		<li id="ml_bomb">炸裂模式<span id="ml_bomb_val">🔴</span></li>
+	</ul>
+
+	<div id="ajax">
+		<div id="ajax_in"></div>
+		<i id="ajax_ox">❌</i>
+	</div>
+
+
+
+	<div id="toast"></div>
+
+	<div id="mask_load">
+		<div id="loadbar"><p id="loadbars"></p></div>
+	</div>
+
+	<div id="copyright">© 2014-2017 Jisuowei.com</div>
+
+
+</body>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+
+var gridArr = [
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0]
+];
+
+
+// @func: 刷新下一个 mover 的提示
+// @param arr: 下一个 mover 的点数组 4*4
+function updateNext(arr) {
+	for(var i=0; i<16; i++) {
+		if(arr[i]) {
+			$($('#next i')[i]).addClass('on');
+		} else {
+			$($('#next i')[i]).removeClass('on');
+		}			
+	}
+}
+
+// @func: 刷新视图层
+// @param arr: 更新的全局的 gridArr 24*10
+function updateGrid(arr) {
+	for(var i=0; i<24; i++) {
+		for(var j=0; j<10; j++) {
+			var num = parseInt('' + i + j);  // 获取索引，因为 i 元素并没有行和列，只有0-239的下标
+			if(arr[i][j]) {  // 判断显示还是隐藏
+				$($('#grid i')[num]).addClass('on');
+			} else {
+				$($('#grid i')[num]).removeClass('on');
+			}
+		}
+	}
+}
+
+
+// @func: 刷新 mover 的显示
+// @param ox:  0|1 , 清除原有点|绘制现有点
+// @remark: 在调用 moveMover() 、rotateMover() 改变 mover 的显示时用到
+// @remark: setMover(0) 和 setMover(1) 二者会连用，二者间会进行 mover.pos 的计算修改
+// @remark: 二者间的计算未必会改变 mover.pos，比如旋转条件不达标
+// @remark: 二者的调用并不会改变 mover.pos 的值，而是去修改了对应 gridArr 中点的状态（0|1）
+function setMover(ox) {
+	var arr = mover.pos;
+	for(var i=0; i<arr.length; i++) {
+		var row = arr[i][0];
+		var col = arr[i][1];
+		gridArr[row][col] = ox;
+	}
+	updateGrid(gridArr);
+}
+
+
+
+
+// 初始化
+var isRun = false; // 是否开机
+var score = 0;     // 得分
+var speed = 400;   // 速度
+var timer = null;  // 定时器
+var music = false;
+var isPau = false;
+
+var ratio = {
+	val: 19,
+	score: 100,
+	on: function(){
+		this.val = 23;
+		this.score = 200;
+	},
+	off: function(){
+		this.val = 19;
+		this.score = 100;
+	}
+};
+
+var next  = Math.floor(Math.random()*ratio.val);
+
+var ck_game_user = getCookie('game_user');
+var ck_game_te_xbomb = getCookie('game_te_xbomb');
+
+
+var timer_toast;
+function toast(str, time) {
+	var time = time*1000 || 3000;
+	clearTimeout(timer_toast);
+	$('#toast').html(str).addClass('on');
+	timer_toast = setTimeout(function(){
+		$('#toast').removeClass('on');
+	}, time);
+}
+
+
+window.onload = function() {
+
+	var loading = 0;
+	timer_bar = setInterval(function(){
+		var num = parseInt(Math.random()*10);
+		$('#loadbars').width((loading+=num)*3);
+		if(loading>88) {
+			clearInterval(timer_bar);
+			$('#loadbars').width(300);
+			$('#mask_load').fadeOut(240);
+
+			// 检测昵称
+			var str = '';
+			if(!ck_game_user) {  // 不存在
+				str += 'Hi，你还没有昵称哦！<br>阁下的得分将无法进入排行榜';
+			} else {  // 存在
+				str += '欢迎回来，尊敬的 '+ decodeURIComponent(ck_game_user);
+				$('#ml_user_val').text(decodeURIComponent(ck_game_user));
+			}
+			// 炸裂模式检测
+			if(ck_game_te_xbomb) {  // 开启
+				$('#ml_bomb_val').html('🟢');
+				str += '<br>炸裂模式已开启';
+				ratio.on();
+			} else {  // 关闭
+				$('#ml_bomb_val').html('🔴');
+				str += '<br>炸裂模式未开启';
+				ratio.off();
+			}
+			toast(str, 3);
+
+			// console.log('ratio.val: '+ ratio.val + ', ratio.score: '+ ratio.score);
+		}
+	}, 120);
+
+}
+
+
+
+
+/* 形状集合
+[
+	{
+		"eval": {            // 可执的 string
+			"shape": 'L',    // 字形 J|L|S|Z|T|I|O
+			"dir": 1,        // 朝向 1|2|3|4
+			"pos": [],       // 初始位置
+		},
+		"next": []           // 在 #next 中的形态
+	},
+]
+*/
+var movers = [
+	{"eval":"mover = { shape: 'L', dir: 1, pos: [ [0,5],[1,5],[2,5],[2,6] ] }", "next":[0,1,0,0,0,1,0,0,0,1,1,0,0,0,0,0]},
+	{"eval":"mover = { shape: 'L', dir: 2, pos: [ [1,5],[1,6],[1,7],[2,5] ] }", "next":[0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0]},
+	{"eval":"mover = { shape: 'L', dir: 3, pos: [ [1,5],[1,6],[2,6],[3,6] ] }", "next":[0,1,1,0,0,0,1,0,0,0,1,0,0,0,0,0]},
+	{"eval":"mover = { shape: 'L', dir: 4, pos: [ [2,7],[3,5],[3,6],[3,7] ] }", "next":[0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0]},
+
+	{"eval":"mover = { shape: 'T', dir: 1, pos: [ [1,5],[2,4],[2,5],[2,6] ] }", "next":[0,0,1,0,0,1,1,1,0,0,0,0,0,0,0,0]},
+	{"eval":"mover = { shape: 'T', dir: 2, pos: [ [0,5],[1,5],[1,6],[2,5] ] }", "next":[0,0,1,0,0,0,1,1,0,0,1,0,0,0,0,0]},
+	{"eval":"mover = { shape: 'T', dir: 3, pos: [ [1,4],[1,5],[1,6],[2,5] ] }", "next":[0,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0]},
+	{"eval":"mover = { shape: 'T', dir: 4, pos: [ [0,5],[1,4],[1,5],[2,5] ] }", "next":[0,0,1,0,0,1,1,0,0,0,1,0,0,0,0,0]},
+
+	{"eval":"mover = { shape: 'O', dir: 1, pos: [ [1,4],[1,5],[2,4],[2,5] ] }", "next":[0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0]},
+
+	{"eval":"mover = { shape: 'J', dir: 1, pos: [ [0,5],[1,5],[2,4],[2,5] ] }", "next":[0,0,1,0, 0,0,1,0, 0,1,1,0, 0,0,0,0]},
+	{"eval":"mover = { shape: 'J', dir: 2, pos: [ [1,4],[2,4],[2,5],[2,6] ] }", "next":[0,1,0,0, 0,1,1,1, 0,0,0,0, 0,0,0,0]},
+	{"eval":"mover = { shape: 'J', dir: 3, pos: [ [0,4],[0,5],[1,4],[2,4] ] }", "next":[0,1,1,0, 0,1,0,0, 0,1,0,0, 0,0,0,0]},
+	{"eval":"mover = { shape: 'J', dir: 4, pos: [ [0,4],[0,5],[0,6],[1,6] ] }", "next":[0,1,1,1, 0,0,0,1, 0,0,0,0, 0,0,0,0]},
+
+	{"eval":"mover = { shape: 'S', dir: 1, pos: [ [0,4],[1,4],[1,5],[2,5] ] }", "next":[0,1,0,0, 0,1,1,0, 0,0,1,0, 0,0,0,0]},
+	{"eval":"mover = { shape: 'S', dir: 2, pos: [ [1,5],[1,6],[2,4],[2,5] ] }", "next":[0,0,1,1, 0,1,1,0, 0,0,0,0, 0,0,0,0]},
+
+	{"eval":"mover = { shape: 'Z', dir: 1, pos: [ [0,5],[1,4],[1,5],[2,4] ] }", "next":[0,0,1,0, 0,1,1,0, 0,1,0,0, 0,0,0,0]},
+	{"eval":"mover = { shape: 'Z', dir: 2, pos: [ [1,4],[1,5],[2,5],[2,6] ] }", "next":[0,1,1,0, 0,0,1,1, 0,0,0,0, 0,0,0,0]},
+
+	{"eval":"mover = { shape: 'I', dir: 1, pos: [ [0,5],[1,5],[2,5],[3,5] ] }", "next":[0,0,1,0, 0,0,1,0, 0,0,1,0, 0,0,1,0]},
+	{"eval":"mover = { shape: 'I', dir: 2, pos: [ [2,3],[2,4],[2,5],[2,6] ] }", "next":[0,0,0,0, 1,1,1,1, 0,0,0,0, 0,0,0,0]},
+
+	{"eval":"mover = { shape: 'V', dir: 1, pos: [ [1,3],[1,6],[2,4],[2,5] ] }", "next":[0,0,0,0, 1,0,0,1, 0,1,1,0, 0,0,0,0]},
+
+	{"eval":"mover = { shape: 'W', dir: 1, pos: [ [1,4],[1,6],[2,3],[2,5] ] }", "next":[0,1,0,1, 1,0,1,0, 0,0,0,0, 0,0,0,0]},
+
+	{"eval":"mover = { shape: 'X', dir: 1, pos: [ [0,3],[0,5],[2,3],[2,5] ] }", "next":[0,1,0,1, 0,0,0,0, 0,1,0,1, 0,0,0,0]},
+
+	{"eval":"mover = { shape: 'Y', dir: 1, pos: [ [0,3],[0,5],[1,4],[2,3] ] }", "next":[0,1,0,1, 0,0,1,0, 0,1,0,0, 0,0,0,0]},
+
+
+];
+
+
+/* 静态引用
+"rt": {          // 右极点
+	"i": 1,      // 右极点下标
+	"tgt": []    // 右极点待障检点数组
+},
+"bt": {          // 底极点
+	"i": 1,
+	"tgt": []
+},
+"lt": {          // 左极点
+	"i": 1,
+	"tgt": []
+}
+"trans": {       // 贴边是否需要平移
+	"hor": -1,   // -1|0|1    左平移|不平移|右平移
+	"tgt": []    // 平移待障检点数组
+},
+"btmout": 1,     // 是否需要检测底边 0|1
+"rtd": 4,        // 旋转后的朝向 1|2|3|4
+"rotate": {      // 旋转相关
+	"check": [{base: , row: , col: },],  // 旋转障检点相对位置   {基点下标, 水平偏移，垂直偏移}
+	"move":  [{base: , row: , col: },]   // 旋转需要更改的点     {基点下标, 水平偏移，垂直偏移}
+}
+*/
+var static = {
+	'L': {
+		'1':{ 'rt': { 'i': 3, 'tgt': [0,1,3]}, 'bt': { 'i': 3, 'tgt': [2,3]},   'lt': { 'i': 0, 'tgt': [0,1,2]}, 'trans':{ 'hor':-1, 'tgt':[0,1,2]}, 'btmout':0, 'rtd':2, 'rotate':{ 'check':[ {'base': 0, 'row': 0, 'col': 1},{'base': 0, 'row': 0, 'col': 2}], 'move':[ {'base': 1, 'row':-1, 'col': 1}, {'base': 2, 'row':-2, 'col': 2}, {'base': 3, 'row':-1, 'col':-1}] } },
+		'2':{ 'rt': { 'i': 2, 'tgt': [2,3]},   'bt': { 'i': 3, 'tgt': [1,2,3]}, 'lt': { 'i': 0, 'tgt': [0,3]} ,  'trans':{ 'hor': 0, 'tgt':[]},      'btmout':1, 'rtd':3, 'rotate':{ 'check':[ {'base': 2, 'row': 1, 'col': 0},{'base': 2, 'row': 2, 'col': 0}], 'move':[ {'base': 0, 'row': 0, 'col': 1}, {'base': 1, 'row': 0, 'col': 1}, {'base': 2, 'row': 1, 'col': 0}, {'base': 3, 'row':  1, 'col': 2}] } },
+		'3':{ 'rt': { 'i': 1, 'tgt': [1,2,3]}, 'bt': { 'i': 3, 'tgt': [0,3]},   'lt': { 'i': 0, 'tgt': [0,2,3]}, 'trans':{ 'hor': 1, 'tgt':[1,2,3]}, 'btmout':0, 'rtd':4, 'rotate':{ 'check':[ {'base': 3, 'row': 0, 'col':-1},{'base': 3, 'row': 0, 'col':-2}], 'move':[ {'base': 0, 'row': 1, 'col': 1}, {'base': 1, 'row': 2, 'col':-2}, {'base': 2, 'row': 1, 'col':-1}] } },
+		'4':{ 'rt': { 'i': 0, 'tgt': [0,3]},   'bt': { 'i': 3, 'tgt': [1,2,3]}, 'lt': { 'i': 1, 'tgt': [0,1]} ,  'trans':{ 'hor': 0, 'tgt':[]},      'btmout':0, 'rtd':1, 'rotate':{ 'check':[ {'base': 1, 'row':-1, 'col':-2},{'base': 1, 'row':-2, 'col': 0}], 'move':[ {'base': 0, 'row':-1, 'col':-2}, {'base': 1, 'row':-1, 'col': 0}, {'base': 2, 'row': 0, 'col':-1}, {'base': 3, 'row': 0, 'col':-1,}] } }
+	},
+	'T': {
+		'1':{ 'rt': { 'i': 3, 'tgt': [0,3]},   'bt': { 'i': 3, 'tgt': [1,2,3]}, 'lt': { 'i': 1, 'tgt': [0,1]} ,  'trans':{ 'hor': 0, 'tgt':[]},      'btmout':1, 'rtd':2, 'rotate':{ 'check':[ {'base': 0, 'row': 2, 'col': 0}], 'move':[ {'base': 0, 'row': 0, 'col': 0}, {'base': 1, 'row': 0, 'col': 1}, {'base': 2, 'row': 0, 'col': 1}, {'base': 3, 'row': 1, 'col':-1}] } },
+		'2':{ 'rt': { 'i': 2, 'tgt': [0,2,3]}, 'bt': { 'i': 3, 'tgt': [2,3]},   'lt': { 'i': 0, 'tgt': [0,1,3]}, 'trans':{ 'hor': 1, 'tgt':[0,1,3]}, 'btmout':0, 'rtd':3, 'rotate':{ 'check':[ {'base': 1, 'row': 0, 'col':-1}], 'move':[ {'base': 0, 'row': 1, 'col':-1}] } },
+		'3':{ 'rt': { 'i': 2, 'tgt': [2,3]},   'bt': { 'i': 3, 'tgt': [0,2,3]}, 'lt': { 'i': 0, 'tgt': [0,3]} ,  'trans':{ 'hor': 0, 'tgt':[]},      'btmout':1, 'rtd':4, 'rotate':{ 'check':[ {'base': 1, 'row':-1, 'col': 0}], 'move':[ {'base': 0, 'row':-1, 'col': 1}, {'base': 1, 'row': 0, 'col':-1}, {'base': 2, 'row': 0, 'col':-1}] } },
+		'4':{ 'rt': { 'i': 0, 'tgt': [0,2,3]}, 'bt': { 'i': 3, 'tgt': [1,3]},   'lt': { 'i': 1, 'tgt': [0,1,3]}, 'trans':{ 'hor':-1, 'tgt':[0,2,3]}, 'btmout':0, 'rtd':1, 'rotate':{ 'check':[ {'base': 2, 'row': 0, 'col': 1}], 'move':[ {'base': 3, 'row':-1, 'col': 1}] } }
+	},
+	'O': {
+		'1':{ 'rt': { 'i': 1, 'tgt': [1,3]},   'bt': { 'i': 2, 'tgt': [2,3]},   'lt': { 'i': 0, 'tgt': [0,2]},   'trans':{ 'hor': 0} , 'rotate':0 }
+	},
+	'J': {
+		'1':{ 'rt': { 'i': 0, 'tgt': [0,1,3]}, 'bt': { 'i':2, 'tgt': [2,3]}, 'lt': { 'i':2, 'tgt': [0,1,2]} ,  'trans':{ 'hor': 1, 'tgt':[0,1,3]}, 'btmout':0, 'rtd':2, 'rotate':{ 'check':[ {'base':2, 'row': 0, 'col':-1},{'base':2, 'row':-1, 'col':-1}], 'move':[ {'base':0, 'row': 1, 'col':-2}, {'base':1, 'row': 1, 'col':-2}] } },
+		'2':{ 'rt': { 'i': 3, 'tgt': [0,3]},   'bt': { 'i':1, 'tgt': [1,2,3]}, 'lt': { 'i':0, 'tgt': [0,1]} ,  'trans':{ 'hor': 0, 'tgt':[]},      'btmout':0, 'rtd':3, 'rotate':{ 'check':[ {'base':0, 'row':-1, 'col': 0},{'base':0, 'row':-1, 'col': 1}], 'move':[ {'base':0, 'row':-1, 'col': 0}, {'base':1, 'row':-2, 'col': 1}, {'base':2, 'row':-1, 'col':-1}, {'base':3, 'row': 0, 'col':-2}] } },
+		'3':{ 'rt': { 'i': 1, 'tgt': [1,2,3]}, 'bt': { 'i':3, 'tgt': [1,3]},  'lt': { 'i':0, 'tgt': [0,2,3]} , 'trans':{ 'hor':-1, 'tgt':[0,2,3]}, 'btmout':0, 'rtd':4, 'rotate':{ 'check':[ {'base':1, 'row': 0, 'col': 1},{'base':1, 'row': 1, 'col': 1}], 'move':[ {'base':2, 'row':-1, 'col': 2}, {'base':3, 'row':-1, 'col': 2}] } },
+		'4':{ 'rt': { 'i': 2, 'tgt': [2,3]},   'bt': { 'i':3, 'tgt': [0,1,3]}, 'lt': { 'i':0, 'tgt': [0,3]} ,  'trans':{ 'hor': 0, 'tgt':[]},      'btmout':1, 'rtd':1, 'rotate':{ 'check':[ {'base':3, 'row': 1, 'col': 0},{'base':3, 'row': 1, 'col':-1}], 'move':[ {'base':0, 'row': 0, 'col': 2}, {'base':1, 'row': 1, 'col': 1}, {'base':2, 'row': 2, 'col':-1}, {'base':3, 'row': 1, 'col': 0}] } }
+		},
+	'S': {
+		'1':{ 'rt': { 'i': 2, 'tgt': [0,2,3]}, 'bt': { 'i':3, 'tgt': [1,3]}, 'lt': { 'i':0, 'tgt': [0,1,3]} ,  'trans':{ 'hor':-1, 'tgt':[0,1,3]}, 'btmout':0, 'rtd':2, 'rotate':{ 'check':[ {'base':1, 'row': 1, 'col': 0},{'base':2, 'row': 0, 'col': 1}], 'move':[ {'base':0, 'row': 1, 'col': 1}, {'base':1, 'row': 0, 'col': 2}, {'base':2, 'row': 1, 'col':-1}] } },
+		'2':{ 'rt': { 'i': 1, 'tgt': [1,3]},   'bt': { 'i':2, 'tgt': [1,2,3]}, 'lt': { 'i':2, 'tgt': [0,2]} ,  'trans':{ 'hor': 0, 'tgt':[]},      'btmout':0, 'rtd':1, 'rotate':{ 'check':[ {'base':0, 'row': 0, 'col':-1},{'base':0, 'row':-1, 'col':-1}], 'move':[ {'base':0, 'row':-1, 'col':-1}, {'base':1, 'row': 0, 'col':-2}, {'base':2, 'row':-1, 'col': 1}] } },
+		},
+	'Z': {
+		'1':{ 'rt': { 'i': 0, 'tgt': [0,2,3]}, 'bt': { 'i':3, 'tgt': [2,3]}, 'lt': { 'i':1, 'tgt': [0,1,3]} ,  'trans':{ 'hor':-1, 'tgt':[0,2,3]}, 'btmout':0, 'rtd':2, 'rotate':{ 'check':[ {'base':3, 'row': 0, 'col': 1},{'base':3, 'row': 0, 'col': 2}], 'move':[ {'base':0, 'row': 1, 'col':-1}, {'base':1, 'row': 0, 'col': 1}, {'base':2, 'row': 1, 'col': 0}, {'base':3, 'row': 0, 'col': 2}] } },
+		'2':{ 'rt': { 'i': 3, 'tgt': [1,3]},   'bt': { 'i':2, 'tgt': [0,2,3]}, 'lt': { 'i':0, 'tgt': [0,2]} ,  'trans':{ 'hor': 0, 'tgt':[]},      'btmout':0, 'rtd':1, 'rotate':{ 'check':[ {'base':0, 'row':-1, 'col': 1},{'base':0, 'row': 1, 'col': 0}], 'move':[ {'base':0, 'row':-1, 'col': 1}, {'base':1, 'row': 0, 'col':-1}, {'base':2, 'row':-1, 'col': 0}, {'base':3, 'row': 0, 'col':-2}] } },
+		},
+	'I': {
+		'1':{ 'rt': { 'i': 0, 'tgt': [0,1,2,3]}, 'bt': { 'i':3, 'tgt': [3]}, 'lt': { 'i':0, 'tgt': [0,1,2,3]} ,  'trans':{ 'hor': 2, 'tgt':[0,1,2,3]}, 'btmout':0, 'rtd':2, 'rotate':{ 'check':[ {'base':2, 'row': 0, 'col':-2},{'base':2, 'row': 0, 'col':-1},{'base':2, 'row': 0, 'col': 1}], 'move':[ {'base':0, 'row': 2, 'col':-2}, {'base':1, 'row': 1, 'col':-1}, {'base':3, 'row':-1, 'col': 1}] } },
+		'2':{ 'rt': { 'i': 3, 'tgt': [3]},   'bt': { 'i':0, 'tgt': [0,1,2,3]}, 'lt': { 'i':0, 'tgt': [0]} ,'trans':{ 'hor': 0, 'tgt':[]},        'btmout':1, 'rtd':1, 'rotate':{ 'check':[ {'base':2, 'row':-2, 'col': 0},{'base':2, 'row':-1, 'col': 0},{'base':2, 'row': 1, 'col': 0}], 'move':[ {'base':0, 'row':-2, 'col': 2}, {'base':1, 'row':-1, 'col': 1}, {'base':3, 'row': 1, 'col':-1}] } },
+		},
+	'V': {
+		'1':{ 'rt': { 'i': 1, 'tgt': [1,3]},   'bt': { 'i': 2, 'tgt': [0,1,2,3]},   'lt': { 'i': 0, 'tgt': [0,2]},   'trans':{ 'hor': 0} , 'rotate':0 }
+	},
+	'W': {
+		'1':{ 'rt': { 'i': 1, 'tgt': [1,3]},   'bt': { 'i': 2, 'tgt': [0,1,2,3]},   'lt': { 'i': 2, 'tgt': [0,2]},   'trans':{ 'hor': 0} , 'rotate':0 }
+	},
+	'X': {
+		'1':{ 'rt': { 'i': 1, 'tgt': [1,3]},   'bt': { 'i': 2, 'tgt': [2,3]},   'lt': { 'i': 0, 'tgt': [0,2]},   'trans':{ 'hor': 0} , 'rotate':0 }
+	},
+	'Y': {
+		'1':{ 'rt': { 'i': 1, 'tgt': [1,2,3]},  'bt': { 'i': 3, 'tgt': [1,2,3]},   'lt': { 'i': 0, 'tgt': [0,2,3]},   'trans':{ 'hor': 0} , 'rotate':0 }
+	},
+
+}
+
+
+// var nextArr = [
+// 	0,1,1,0,
+// 	0,1,1,0,
+// 	0,0,0,0,
+// 	0,0,0,0];
+// updateNext(nextArr);
+// console.log(nextArr.toString());
+
+
+function newMover() {
+
+	clearInterval(timer);
+
+	eval(movers[next].eval);  // new mover
+	// eval(movers[22].eval);  // new mover test
+	// eval(movers[8]);
+
+	next = Math.floor(Math.random()*ratio.val);  // 随机生产 mover
+	updateNext(movers[next].next);  // update next
+
+	timer = setInterval(function(){
+		moveMover(3);
+	}, speed);
+
+}
+
+
+
+
+// 虚拟按键控制
+$('#btn_top'  ).click(function(){ rotateMover(); });
+$('#btn_right').click(function(){ moveMover(2);  });
+$('#btn_btm'  ).click(function(){ moveMover(3);  });
+$('#btn_left' ).click(function(){ moveMover(4);  });
+$('#btn_enter').click(function(){ rotateMover(); });
+
+
+//  键盘方向键控制
+document.onkeydown = function(event) {
+	var key = event.keyCode;
+	switch (key) {
+		case 37: moveMover(4);  break;
+		case 38: rotateMover(); break;
+		case 39: moveMover(2);  break;
+		case 40: moveMover(3);  break;
+	}
+}
+
+
+
+// 电源键
+$('#btn_o_ox').click(function(){
+	if(isRun) {  // 关机操作
+
+		$('#music,#coffee').removeClass('on');
+		
+		$('.info_title').removeClass('on');
+		$('#score, #score_hi, #level, #speed').text('');
+
+		clearInterval(timer);
+		// grid 清零
+		for(var i=0; i<24; i++) {
+			for( var j=0; j<10; j++) {
+				gridArr[i][j] = 0;
+			}
+		}
+		updateGrid(gridArr);
+
+		isRun = false;
+
+		// next 清零
+		for(var i=0; i<16; i++) {
+			$($('#next i')).removeClass('on');
+		}
+
+		// 重置
+		score = 0;
+		speed = 600;
+		timer = null;
+		music = false;
+		isPau = false;
+		mover = null;
+
+	} else {  // 开机操作
+
+		toast('游戏开始！', 0.8);
+
+		var hisco = getCookie('game_te_hisco');
+		hisco ? hisco : hisco = 0;
+
+		// console.log(hisco);
+		
+		$('.info_title').addClass('on');
+		$('#score').text('0');
+		$('#score_hi').text(hisco);
+		$('#level').text('1/20');
+		$('#speed').text('1');
+
+		newMover();
+		isRun = true;
+	}
+});
+
+
+// 音效键
+$('#btn_o_bgm').click(function(){
+	if(isRun) {  // 开机才能控制音效
+		if(music) {  // 关闭
+			$('#music').removeClass('on');
+			music = false;
+		} else {  // 开启
+			$('#music').addClass('on');
+			music = true;
+		}
+	}
+});
+
+
+// 暂停键
+$('#btn_o_pause').click(function(){
+	if(isRun) {  // 开机才能暂停
+		if(isPau) {  // 重新开始
+			$('#coffee').removeClass('on');
+
+			toast('游戏继续！', 1);
+
+			timer = setInterval(function(){
+				moveMover(3);
+			}, speed);
+
+			isPau = false;
+		} else {  // 暂停
+
+			$('#coffee').addClass('on');
+
+			toast('游戏已经暂停！', 3);
+
+			clearInterval(timer);
+
+			isPau = true;
+		}
+	}
+});
+
+
+
+// 菜单键
+$('#btn_o_menu').click(function(){
+	if(!isRun || (isRun && isPau) ) {  // 未开机 || 开机已经暂停
+		$('#mask,#menu').fadeIn(240);
+	} else {
+		toast('当前游戏正在运行中<br>请暂停后再试');
+	}
+});
+
+
+$('#mask').click(function(){
+	$('#mask,#menu').fadeOut(240);
+});
+
+// 玩家昵称
+$('#ml_user').click(function(){
+	var hint = '';
+	if(ck_game_user) {
+		hint = decodeURIComponent(ck_game_user);
+	}
+
+	var name = prompt('幸会，敢问阁下尊姓大名：长度不要超过12位，遵循网络文明哟', hint);
+	if(name) {
+		if(name.match('嵇所伟')) {
+			name = '包含敏感字符';
+		} else if(name.length > 12) {
+			name = '长度超过12位';
+		} else {
+			// cookie
+			setCookie('game_user', name, setCookieDate(30));
+		}
+		$('#ml_user_val').text(name);
+		ck_game_user = name;
+	}
+});
+
+
+// 炸裂模式
+$('#ml_bomb').click(function(){
+if(isRun) {
+	toast('当前游戏未结束，请关闭游戏机后再试');
+} else {
+
+	if(ck_game_te_xbomb) {  // 关闭
+		$('#ml_bomb_val').html('🔴');
+		toast("怎么了骚年，为什么要放弃炸裂模式！");
+		setCookie('game_te_xbomb', '', setCookieDate(30));
+		ratio.off();
+		ck_game_te_xbomb = false;
+	} else {  // 开启
+		$('#ml_bomb_val').html('🟢');
+		toast("恭喜您，成功开启炸裂模式<br>得分翻倍，赶紧试试吧！", 5);
+		setCookie('game_te_xbomb', '1', setCookieDate(30));
+		ratio.on();
+		ck_game_te_xbomb = true;
+	}
+
+}
+});
+
+$('#ajax_ox').click(function(){
+	$('#mask_mask,#ajax').fadeOut(240);
+});
+
+
+
+
+// @func: 旋转 mover
+function rotateMover() {
+if(isRun && !isPau) {  // 开机 且 没有暂停
+
+	setMover(0);
+	var arr = mover.pos;
+
+	var transDir = static[mover.shape][mover.dir].trans.hor;  // 平移方向
+	var transArr = static[mover.shape][mover.dir].trans.tgt;
+	var isLt = arr[static[mover.shape][mover.dir].lt.i][1]==0;
+	var isRt = arr[static[mover.shape][mover.dir].rt.i][1]==9;
+
+	// console.log('left: '+ isLt + ', right: '+ isRt+ transDir);
+
+	// 左贴边且需要右移 或者 右贴边需要左移 的情况进行偏移
+	if(  ( isLt && transDir==1)  ||  ( isRt && transDir==-1) || ( transDir==2 && (isLt||isRt)  )  ) {
+		if(transDir==2) {  // 'I' 情况特殊
+			if(arr[static[mover.shape][mover.dir].rt.i][1]==9) {
+				transDir = -1;
+			}
+		}
+
+		var checkArr = [];  // 平移条件
+		for(var i=0; i<transArr.length; i++) {
+			var tempPoint = [];
+			tempPoint[0] = arr[transArr[i]][0];  // 平移行不变
+			tempPoint[1] = arr[transArr[i]][1] + transDir;
+			checkArr.push(tempPoint);
+		}
+
+		if(checkPoint(checkArr)) {
+			for(var i=0; i<4; i++) {
+				arr[i][1]+=transDir;
+			}
+		}
+
+	}
+
+	var rotate = static[mover.shape][mover.dir].rotate;
+
+	if(rotate) {  // 判断是否需要旋转，比如 'O' 形为0，就不需要旋转
+		var checkArrRt = [];  // 旋转条件
+		for(var i=0; i<rotate.check.length; i++) {
+			var tempPoint = [];
+			tempPoint[0] = arr[rotate.check[i].base][0] + rotate.check[i].row;
+			tempPoint[1] = arr[rotate.check[i].base][1] + rotate.check[i].col;
+			checkArrRt.push(tempPoint);
+		}
+
+		// 触底旋转
+		var exception = true;
+		if(static[mover.shape][mover.dir].btmout) {
+			exception = arr[static[mover.shape][mover.dir].bt.i][0] < 23;
+		}
+		if( exception && checkPoint(checkArrRt)) {  // 旋转
+
+			for(var i=0; i<rotate.move.length; i++) {
+				arr[rotate.move[i].base][0] += rotate.move[i].row;
+				arr[rotate.move[i].base][1] += rotate.move[i].col;
+			}
+			mover.dir = static[mover.shape][mover.dir].rtd;
+		}
+	}
+
+	setMover(1);
+
+
+} else if(isRun) {  // 开机 且 没有暂停
+	toast('大侠您的游戏已经暂停了')
+} else {
+	toast('请按开机键开始游戏')
+}
+}
+
+
+
+// @func: 传参控制 mover 的位置，行 控制 上下， 列 控制 左右
+// @param dir:  2|3|4  运动的方向，右|下|左，遵循 TRBL 原则，用来判断能否能执行运动
+function moveMover(dir) {
+if(isRun && !isPau) {  // 开机 且 没有暂停
+
+	var canMove = false;
+
+	switch(dir) {
+		case 2:  // to right
+			if(mover.pos[static[mover.shape][mover.dir].rt.i][1] < 9) {  // 未超出右边
+
+				var checkArr = [];
+				for(var i=0; i<static[mover.shape][mover.dir].rt.tgt.length; i++) {
+					var tempPoint = [];
+					tempPoint[0] = mover.pos[static[mover.shape][mover.dir].rt.tgt[i]][0];
+					tempPoint[1] = mover.pos[static[mover.shape][mover.dir].rt.tgt[i]][1] + 1;
+					checkArr.push(tempPoint);
+				}
+
+				if(checkPoint(checkArr)) { canMove = true; }
+
+			}
+		break;
+
+		case 3:  // to bottm
+			if(mover.pos[static[mover.shape][mover.dir].bt.i][0] < 23) {  // 未超出底边
+
+				var checkArr = [];
+				for(var i=0; i<static[mover.shape][mover.dir].bt.tgt.length; i++) {
+					var tempPoint = [];
+					tempPoint[0] = mover.pos[static[mover.shape][mover.dir].bt.tgt[i]][0] + 1;
+					tempPoint[1] = mover.pos[static[mover.shape][mover.dir].bt.tgt[i]][1];
+					checkArr.push(tempPoint);
+				}
+
+				if(checkPoint(checkArr)) { canMove = true; } else { checkScore(); }
+
+			} else { checkScore(); }
+		break;
+
+		case 4:  // to left
+			if(mover.pos[static[mover.shape][mover.dir].lt.i][1] > 0) {  // 未超出左边
+
+				var checkArr = [];
+				for(var i=0; i<static[mover.shape][mover.dir].lt.tgt.length; i++) {
+					var tempPoint = [];
+					tempPoint[0] = mover.pos[static[mover.shape][mover.dir].lt.tgt[i]][0];
+					tempPoint[1] = mover.pos[static[mover.shape][mover.dir].lt.tgt[i]][1] - 1;
+					checkArr.push(tempPoint);
+				}
+
+				if(checkPoint(checkArr)) { canMove = true; }
+			}
+		break;
+	}
+
+	if(canMove) {
+		setMover(0);
+
+		switch(dir) {
+			case 2:  // 右
+				for(var i=0; i<4; i++) {
+					mover.pos[i][1] += 1;
+				}
+			break;
+
+			case 3:  // 下
+				for(var i=0; i<4; i++) {
+					mover.pos[i][0] += 1;
+				}
+			break;
+
+			case 4: // 左
+				for(var i=0; i<4; i++) {
+					mover.pos[i][1] -= 1;
+				}
+			break;
+		}
+
+		setMover(1);
+	}
+
+} else if(isRun) {  // 开机 且 没有暂停
+	toast('大侠您的游戏已经暂停了')
+} else {
+	toast('请按开机键开始游戏')
+}
+}
+
+
+
+
+
+// @func: 根据传入的点判断该点位是否为0 并取反
+// @param arr: [row,col] 点的行下标，列下标
+// function checkPoint(arr) {
+// 	return !gridArr[arr[0]][arr[1]];
+// }
+
+
+// @func: 根据传入的点判断该点位是否为0 并取反
+// @param arr: [row,col], ..  点的 行下标，列下标
+// function checkPoint() {
+// 	var res = [];
+// 	var len = arguments.length;
+// 	for(var i=0; i<len; i++) {
+// 		var is = ! gridArr[ arguments[i][0] ][ arguments[i][1] ];
+// 		if(is) {
+// 			res.push(is);
+// 		}
+// 	}
+// 	// console.log('checkPoint: '+ res.length +'/'+ len);
+// 	return res.length == len;
+// }
+
+// @func: 根据传入的数组（多个点）判断该点位是否为0 并取反
+// @param arr: [ [row,col], .. ] 点的 行下标，列下标
+function checkPoint(arr) {
+	var res = [];
+	for(var i=0; i<arr.length; i++) {
+		var is = ! gridArr[ arr[i][0] ][ arr[i][1] ];
+		if(is) {
+			res.push(is);
+		}
+	}
+	// console.log('checkPoint: '+ res.length +'/'+ len);
+	return res.length == arr.length;
+}
+
+
+
+
+// 触底后 遍历得分 并消除
+function checkScore() {
+	// console.log((new Date).getMilliseconds() +' fixed');
+	var disArr = [];  // 需要消除的行的下标数组
+	for(var i=0; i<24; i++) {  // 遍历所有行
+		var num=0;  // 实心个数
+		for(var j=0; j<10; j++) {  // 遍历行中所有点
+			if(gridArr[i][j]) {
+				num++;  // 如果为 1 即 实心 就累加
+			}
+		}
+		if(num==10) {  // 10个实心 就保存该行到消除队列
+			disArr.push(i);
+		}
+		// console.log('实心个数 '+ num);
+	}
+	if(disArr.length) {  // 避免空转
+		// console.log('实心的行：'+ disArr.length);
+		// 实心行置0
+		for(var i=0; i<disArr.length; i++) {
+			for(var j=0; j<10; j++) {
+				gridArr[disArr[i]][j] = 0;  
+			}
+		}
+		// 空出部分消除，思路：得到消除行队列后，由上而下遍历，每消除一行，便立即整体向下平移一行
+		// 假设有一行：第15行（14）该被消除
+		for(var i=0; i<disArr.length; i++) {  // 假设：disArr.length == 1
+
+			var tempGridArr = [];  // 缓存容器
+			for(var j=4; j<disArr[i]; j++) {  // 假设：disArr[i] == 14 ，遍历保存 15（14）以上数据
+				tempGridArr[j] = gridArr[j];
+			}
+			for(var j=4; j<disArr[i]; j++) {
+				gridArr[j+1] = tempGridArr[j];  // 向下平移
+			}
+
+			gridArr[4] = [0,0,0,0,0,0,0,0,0,0];  // 每次消行（瞬间）手动清空顶行残留（平移造成）
+		}
+
+		updateGrid(gridArr);
+
+		// 计算得分
+		score += disArr.length * ratio.score;
+		$('#score').text(score);
+	}
+
+	// 触顶检测
+	if(mover.pos[3][0]>4) {  // 继续
+		newMover();
+	} else {  // 游戏结束
+		clearInterval(timer);
+		toast('Game Over');
+
+		// 获取历史最高分
+		var hisco = getCookie('game_te_hisco') || 0;
+		console.log('score='+score+' hisco='+hisco);
+		if(score > hisco) {
+			// 超过：更新cookie
+			setCookie('game_te_hisco', score, setCookieDate(30));
+			toast('本次游戏您获得了 '+ score +' 分');
+		}
+
+		// grid 清零
+		for(var i=0; i<24; i++) {
+			for( var j=0; j<10; j++) {
+				gridArr[i][j] = 0;
+			}
+		}
+		updateGrid(gridArr);
+
+		isRun = false;
+
+		// next 清零
+		for(var i=0; i<16; i++) {
+			$($('#next i')).removeClass('on');
+		}
+
+		// 重置
+		score = 0;
+		speed = 600;
+		timer = null;
+		isPau = false;
+		mover = null;
+
+
+	}
+}
+
+
+// cookie
+function setCookie(name,value,expires,path,domain,secure) {
+	var cookieName = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+	if(expires instanceof Date) { cookieName += ';expires=' + expires;}
+	if(path) { cookieName += ';path=' + path;}
+	if(domain) { cookieName += ';domain=' + domain;}
+	if(secure) { cookieName += ';secure' }
+	document.cookie = cookieName;
+}
+
+function setCookieDate(day) {
+	var date = null;
+	if ( typeof day == 'number' && day > 0 ) {
+		date = new Date();
+		date.setDate(date.getDate() + day);
+	} else {
+		throw new Error('您输入的日期不正确');
+	}
+	return date;
+}
+
+function getCookie(name){
+	var cookieName = encodeURIComponent(name) + '=';
+	var cookieStart = document.cookie.indexOf(cookieName);
+	var cookieValue = null;
+
+	if(cookieStart > -1 ) {
+		var cookieEnd = document.cookie.indexOf(';',cookieStart);
+		if ( cookieEnd == -1 ){
+			cookieEnd = document.cookie.length;
+		}
+		cookieValue = document.cookie.substring(cookieStart + cookieName.length, cookieEnd);
+	}
+	return cookieValue;
+}
+
+function delCookie(name){
+	document.cookie = name +'='+ name +';expires=' + new Date(0);
+}
+</script>
+</html>
