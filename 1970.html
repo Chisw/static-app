@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>高邮 1970</title>
+  <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <script>
+    if (location.href.startsWith('http://jisuowei')) location.href = location.href.replace('http://', 'https://')
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: "微软雅黑";
+    }
+    #container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 20px;
+    }
+    #title {
+      position: absolute;
+      top: 0;
+      z-index: 10;
+      font-size: 1rem;
+      bottom: 0;
+      left: 25%;
+      margin-left: -50px;
+      width: 100px;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      color: #000;
+      background: rgba(255,255,255,.9);
+    }
+    #map,
+    #map2 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 50%;
+      border: 1px solid #fff;
+      box-sizing: border-box;
+    }
+    #map2 {
+      left: 50%;
+    }
+    .anchorBL {
+      display: none;
+    }
+    @media screen and (max-width: 640px) {
+      #title {
+        left: 50%;
+      }
+      #map,
+      #map2 {
+        width: 100%;
+        height: 50%;
+      }
+      #map2 {
+        top: 50%;
+        left: 0;
+      }
+    }
+
+  </style>
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=hWlAC3G3AFjWt3QGjB5o7eK4HIqzMhQZ"></script>
+</head>
+<body>
+  <div id="title">高邮 1970</div>
+  <div id="container">
+    <div id="map"></div>
+    <div id="map2"></div>
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+
+;(function() {
+
+  // x more right
+  // y more top
+  const OFFSETS = [
+    ,,,,,,,,,,,,
+    { x: 814, y: 239, cols: 5 },
+    { x: 1628, y: 476, cols: 10 },
+    { x: 3257, y: 951, cols: 20 },
+    { x: 6515, y: 1901, cols: 40 },
+    { x: 13032, y: 3801, cols: 80 },
+  ]
+
+  const center = new BMap.Point(119.45, 32.79)
+
+  var map = new BMap.Map('map')
+  map.addControl(new BMap.NavigationControl())
+  map.centerAndZoom(center, 14)
+  map.enableScrollWheelZoom(true)
+  map.setMinZoom(12)
+  map.setMaxZoom(16)
+  map.disableInertialDragging()
+
+
+  var map2 = new BMap.Map('map2', { mapType: BMAP_HYBRID_MAP })
+  map2.addControl(new BMap.NavigationControl())
+  map2.centerAndZoom(center, 14);
+  map2.enableScrollWheelZoom(true)
+  map2.setMinZoom(12)
+  map2.setMaxZoom(16)
+  map2.disableInertialDragging()
+
+
+  var mapType1 = new BMap.MapTypeControl({
+    mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP],
+    anchor: BMAP_ANCHOR_TOP_RIGHT
+  })
+  map2.addControl(mapType1)
+
+  var tileLayer = new BMap.TileLayer({isTransparentPng: true})
+  tileLayer.getTilesUrl = function(tileCoord, zoom) {
+    const { x, y } = tileCoord
+
+    let _x, _y, index = 0
+
+    const offset = OFFSETS[zoom]
+
+    _x = offset.x - x
+    _y = offset.y - y
+    index = (_y - 1) * offset.cols - _x
+
+    if (
+      _x < 0 || 
+      _y < 0 || 
+      _x > offset.cols - 1 || 
+      _y > offset.cols + 1 || 
+      (index > offset.cols * offset.cols) || 
+      index <= 0
+    ) {
+      return ''
+    }
+
+    isLocal = !location.href.startsWith('https://jisuowei')
+
+    return `${isLocal ? 'http://192.168.31.84:8000/gaoyou/1970' : 'https://oss.jisuowei.com/gaoyou1970'}/z_${zoom}/tile_${index}.jpg`
+  }
+
+  map.addTileLayer(tileLayer)
+
+  const unify = m => {
+    const center = m.getCenter()
+    const zoom = m.getZoom()
+    map.setCenter(center)
+    map.setZoom(zoom)
+    map2.setCenter(center)
+    map2.setZoom(zoom)
+  }
+
+  map.addEventListener('dragging', () => unify(map))
+  map.addEventListener('draged', () => unify(map))
+  map.addEventListener('zoomend', () => unify(map))
+  map2.addEventListener('dragging', () => unify(map2))
+  map2.addEventListener('draged', () => unify(map2))
+  map2.addEventListener('zoomend', () => unify(map2))
+
+  function getBoundary() {       
+    var bdary = new BMap.Boundary();
+    bdary.get("高邮市", function(rs){
+      map.clearOverlays()
+      var count = rs.boundaries.length
+      if (count === 0) {
+        alert('未能获取当前输入行政区域')
+        return
+      }
+      var pointArray = []
+      for (var i = 0; i < count; i++) {
+        var ply = new BMap.Polygon(rs.boundaries[i], {
+          strokeWeight: 3,
+          strokeColor: '#f00',
+          strokeStyle: 'dashed',
+          fillColor: 'rgba(0,0,0,0)'},
+        )
+        map2.addOverlay(ply)
+        pointArray = pointArray.concat(ply.getPath());
+      }
+      // map.setViewport(pointArray)
+    })
+  }
+
+  setTimeout(function(){
+    getBoundary()
+  }, 1000)
+
+}());
+</script>
