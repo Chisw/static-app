@@ -24,13 +24,14 @@
     const zip = new JSZip()
     const docName = Date.now()
     const folder = zip.folder(docName)
+    const listLen = list.length
 
-    if (list.length) {
+    if (listLen) {
       let index = 0
       do {
         const url = list[index]
         const name = getName ? getName(url) : url
-        console.log(`Handling ${index + 1}`)
+        console.log(`Handling ${index + 1}/${listLen}`)
         try {
           const buff = await fetchBinary(url)
           await folder.file(name, buff, { base64: true })
@@ -38,7 +39,7 @@
           console.log(`${error} - ${url} fetch failed.`)
         }
         index++
-      } while (index < list.length)
+      } while (index < listLen)
     }
 
     zip
