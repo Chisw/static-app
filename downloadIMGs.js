@@ -50,6 +50,9 @@
       })
   }
 
+  console.clear()
+  console.log('downloadIMGs ready')
+
 }());
 
 /*
