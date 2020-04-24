@@ -19,7 +19,7 @@
       })
   }
 
-  window.downloadIMGs = async (list, getName) => {
+  window.downloadIMGs = async (list, handleFileName) => {
 
     const zip = new JSZip()
     const docName = Date.now()
@@ -30,7 +30,7 @@
       let index = 0
       do {
         const url = list[index]
-        const name = getName ? getName(url) : url
+        const name = handleFileName ? handleFileName(url, index) : url
         console.log(`Handling ${index + 1}/${listLen}`)
         try {
           const buff = await fetchBinary(url)
@@ -50,13 +50,19 @@
       })
   }
 
+  const tip =
+`/* downloadIMGs is ready */
+
+downloadIMGs(
+  urlList: string[],
+  handleFileName?: (url: string, index: number) => string
+)`
+
   console.clear()
-  console.log('downloadIMGs ready')
+  console.log(tip)
 
 }());
 
 /*
-downloadIMGs(urlList: string[], (url: string) => {
-  return FILE_NAME  // use to save
-})
+
 */
