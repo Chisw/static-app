@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Brain</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=1366, user-scalable=no">
+    <link href="./images/favicon.ico" rel="shortcut icon" />
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: none;
+}
+
+::placeholder {
+  color: #ccc;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  min-width: 1200px;
+  min-height: 800px;
+}
+
+body {
+  padding-top: 100px;
+}
+
+.center {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+.blur {
+  filter: blur(4px);
+  opacity: .4;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.logo {
+  width: 72px;
+  height: 60px;
+}
+
+.navi {
+  margin-left: 40px;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.github a,
+.navi a {
+  margin-left: 24px;
+  cursor: pointer;
+  color: rgba(255,255,255, .7);
+}
+
+.github a {
+  font-size: 12px;
+}
+
+.navi a:hover {
+  color: #fff;
+}
+
+.module {
+  width: 100%;
+  padding: 60px 0 120px 0;
+  background-size: 1920px;
+}
+.module.fetcher { background-color: #3ddc84; }
+
+.module .title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.module .subtitle {
+  margin: 6px 0 32px 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 200;
+  color: rgba(255,255,255, .7);
+}
+
+.module .subtitle.-small {
+  margin: 40px 0 32px 0;
+  font-size: 14px;
+}
+
+.header {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  background: #073042;
+}
+
+.steper {
+  margin-bottom: 32px;
+  text-align: center;
+  color: #fff;
+  font-size: 10px;
+}
+
+.steper .item {
+  display: inline-block;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 14px;
+  background: rgba(255,255,255, .2);
+}
+
+.steper span + span {
+  margin-left: 12px;
+}
+
+.steper .item.active {
+  color: #3ddc84;
+  background: #fff;
+}
+
+.input-label {
+  display: inline-block;
+  margin: 6px 0 4px 4px;
+  font-size: 12px;
+  color: #999;
+}
+
+.input {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  width: 100%;
+  padding: 6px 12px;
+  height: 38px;
+  line-height: 38px;
+  border-radius: 4px;
+  font-family: monospace, consolas;
+}
+
+.input[readonly] {
+  color: #aaa;
+  border-color: #eee;
+  background: #fafafa;
+}
+
+.input.active {
+  border-color: #3ddc84;
+}
+
+.input.error {
+  border-color: #f86734;
+}
+
+.radio-group {
+  display: flex;
+  box-sizing: border-box;
+  border: 1px solid #3ddc84;
+  width: 100%;
+  height: 38px;
+  line-height: 36px;
+  border-radius: 4px;
+  font-family: monospace, consolas;
+}
+
+.radio-group .group-item {
+  width: 100%;
+  text-align: center;
+  color: #3ddc84;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.radio-group .group-item.active {
+  color: #fff;
+  background: #3ddc84;
+}
+
+.btn {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #3ddc84;
+  text-align: center;
+  color: #fff;
+  height: 48px;
+  line-height: 48px;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 300;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.btn:not(.disabled) {
+  animation: wave linear 1s infinite alternate;
+}
+
+@keyframes wave {
+  from {
+    background: #1a7643;
+  }
+  to {
+    background: #3ddc84;
+  }
+}
+.btn.disabled {
+  background: #bbb;
+}
+
+.btn:hover {
+  cursor: pointer;
+  animation: none;
+}
+
+.btn.disabled:hover {
+  cursor: not-allowed;
+}
+
+.footer {
+  width: 100%;
+  line-height: 60px;
+  font-weight: 300;
+  background: #073042;
+}
+
+.footer p {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.footer p a {
+  color: #fff;
+}
+
+.choose-view-container {
+  position: relative;
+}
+
+.choose-view {
+  border: 4px solid #fff;
+  height: 560px;
+  box-sizing: border-box;
+  box-sizing: #348a5b;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(10,30,60, .3);
+  transition: all .5s;
+  border-radius: 6px;
+}
+
+.choose-view .map {
+  float: left;
+  width: 788px;
+  height: 552px;
+  border-radius: 4px;
+}
+
+.choose-view .view-console {
+  float: right;
+  position: relative;
+  width: 400px;
+  height: 100%;
+}
+
+.choose-view .view-console .console-top {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  font-size: 0;
+  border-radius: 4px;
+  background: url(./images/thumbnail.png) no-repeat center;;
+  overflow: hidden;
+}
+
+.choose-view .view-console .console-top::before,
+.choose-view .view-console .console-top::after {
+  content: '👈 Choose a view by';
+  display: inline-block;
+  position: absolute;
+  z-index: 9;
+  top: 80px;
+  right: 20px;
+  left: 20px;
+  font-size: 18px;
+  text-align: center;
+  color: #666;
+  font-weight: 300;
+}
+.choose-view .view-console .console-top::before {
+  top: 120px;
+  content: 'clicking blue line on the map left';
+}
+
+.choose-view .view-console #view-thumbnail {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  width: 400px;
+  height: 200px;
+  border-radius: 4px;
+}
+
+#loading {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  line-height: 552px;
+  font-size: 60px;
+  background: rgba(61,220,132, .4);
+  user-select: none;
+}
+
+#fetch-pool {
+  display: none;
+  position: absolute;
+  z-index: 9;
+  top: 20px;
+  left: 88px;
+  width: 1024px;
+  height: 512px;
+  background: #fff;
+  box-shadow: 0 10px 50px rgba(0,0,0, .2);
+  outline: 4px solid #fff;
+  font-size: 0;
+  user-select: none;
+}
+
+#fetch-pool::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255,255,255, .3);
+}
+
+#fetch-pool::after {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 8;
+  top: -20px;
+  right: -88px;
+  bottom: -20px;
+  left: -88px;
+  /* background: rgba(0,0,0, .2); */
+}
+
+#fetch-pool.done::before {
+  display: none;
+}
+
+#fetch-end,
+#fetch-status {
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  left: -4px;
+  padding: 0 12px;
+  height: 28px;
+  line-height: 28px;
+  background: #fff;
+  text-align: center;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  font-size: 12px;
+  color: #666;
+  transition: all .23s;
+}
+
+#fetch-end {
+  left: auto;
+  right: -4px;
+  cursor: pointer;
+  color: #4285f4;
+}
+
+#fetch-end span + span {
+  margin-left: 12px;
+}
+
+#fetch-end span:hover {
+  color: #348a5b;
+}
+
+#fetch-end.show,
+#fetch-status.show {
+  top: -28px;
+  z-index: 10;
+}
+
+#export-bg {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  color: #ddd;
+  border-collapse: collapse;
+}
+
+#export-bg td {
+  border: 1px solid #efefef;
+  text-align: right;
+  vertical-align: bottom;
+  width: 12.5%;
+  font-family: monospace, consolas;
+  background: #fff;
+}
+
+#export {
+  position: absolute;
+  z-index: 10;
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+#canvas {
+  display: none;
+}
+
+.anchorBL {
+  display: none;
+}
+
+.get-batch {
+  padding: 80px 200px 0 200px;
+}
+
+.get-batch pre {
+  padding: 20px 40px;
+  color: #3ddc84;
+  background: #072e19;
+  border-radius: 4px;
+}
+
+.drop-view {
+  border: 2px dashed #fff;
+  height: 560px;
+  box-sizing: border-box;
+  box-sizing: #348a5b;
+  border-radius: 6px;
+  line-height: 560px;
+  text-align: center;
+  font-size: 48px;
+  font-weight: 100;
+  color: #fff;
+  user-select: none;
+  background: rgba(255,255,255, .1);
+}
+
+#no-match {
+  display: none;
+  position: absolute;
+  top: 4px;
+  left: 240px;
+  width: 320px;
+  height: 28px;
+  line-height: 28px;
+  background: #f86734;
+  color: #fff;
+  font-family: monospace, consolas;
+  text-align: center;
+  font-size: 12px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 5px 5px rgba(139,69,19, .3), 0 2px 2px rgba(139,69,19, .2);
+  text-shadow: 0 2px 2px rgba(139,69,19, .2);
+}
+
+.panoda {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,255,255, .92);
+  text-align: center;
+  line-height: 100px;
+  z-index: 999999999999999999999999999999999;
+}
+
+.panoda a {
+  color: #3ddc84;
+}
+
+</style>
+</head>
+<body>
+
+  <div class="panoda">
+    Upgrade to <a href="https://panoda.jisuowei.com" target="_blank">Panoda</a> now!
+  </div>
+
+  <div class="header">
+    <div class="center">
+      <div class="left">
+        <img class="logo" src="./images/logo.png">
+      </div>
+      <div class="right github">
+        <a href="https://github.com/Chisw/MapBrain" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="module fetcher">
+    <div class="center">
+
+      <h3 class="title navi-target">Fetcher</h3>
+      <h4 class="subtitle">3 steps get your panoramic image</h4>
+
+      <div class="steper">
+        <span class="item active">1. Choose view</span>
+        <span>▶</span>
+        <span class="item">2. Fetch data</span>
+        <span>▶</span>
+        <span class="item">3. Download</span>
+      </div>
+
+      <div class="choose-view-container">
+
+        <div class="choose-view" id="choose-view">
+
+          <div class="map" id="map"></div>
+
+          <div class="view-console">
+             <label class="input-label">Preview</label>
+            <div class="console-top">
+              <img id="view-thumbnail" src="" />
+            </div>
+            <div class="console-bottom">
+                <label class="input-label">Pano position</label>
+                <input id="pano-posi" class="input" readonly>
+                <label class="input-label">Image Name</label>
+                <input id="image-name" class="input" readonly>
+                <label class="input-label">Customize pano id</label>
+                <input id="pano-id-user" class="input" placeholder="Paste pano id here if you have" maxlength="27">
+                <label class="input-label">Image Quality</label>
+                <div class="radio-group" id="image-quality">
+                  <span data-quality=".92" class="group-item active">High</span>
+                  <span data-quality=".8" class="group-item">Middle</span>
+                  <span data-quality=".5" class="group-item">Low</span>
+                </div>
+                <span id="btn-fetch" class="btn disabled">Fetch</span>
+            </div>
+          </div><!-- .view-console -->
+
+          <div id="no-match">No point matched, try again..</div>
+
+        </div><!-- .choose-view -->
+
+        <div id="loading">🕒</div>
+
+        <div id="fetch-pool">
+          <div id="fetch-status">🧲 Fetching ..</div>
+          <div id="fetch-end"><span id="download">💾 Download</span> <span id="close">❌ Close</span></div>
+          <table id="export-bg">
+            <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+            <tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+            <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td></tr>
+            <tr><td>25</td><td>16</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td>32</td></tr>
+          </table>
+          <img id="export" alt="export" src="" >
+        </div>
+
+      </div>
+      <h4 class="subtitle -small">
+        If an error occurs while downloading,<br>
+        try right-clicking save or drag the image to the desktop directly.
+      </h4>
+
+      <div class="get-batch">
+        <h3 class="title">
+          How to get pano ids along the way？
+        </h3>
+        <h4 class="subtitle">
+          Copy the following code and paste it to the console of BaiduPano page,<br>
+          and then click the direction-guide-button to collect ids.
+        </h4>
+        <code>
+<pre>
+(function(){
+  let monitor = document.createElement('textarea');
+  document.body.appendChild(monitor);
+
+  monitor.onclick = (event) => {event.stopPropagation();}
+  monitor.id = 'mbn-monitor';
+  monitor.value = 'Ready, click the direction-guide-button now.';
+  monitor.style = 
+    `position: fixed;z-index: 999999;top: 80px;left: 20px;
+    width: 220px;height: 320px;padding: 20px;overflow-y: auto;
+    font-family: monospace, consolas;font-size: 12px;text-align: center;
+    color: #3ddc84; background: #072e19; border: 1px solid #3ddc84;border-radius: 4px;`;
+
+  let panoIdList = [];
+  window.onclick = () => {
+    const panoId = location.href.match(/[0-9]{26}[A-Z]{1}/)[0]
+    const exist = panoIdList.find((id) => {
+      return id === panoId;
+    })
+    if (!exist) panoIdList.unshift(panoId)
+
+    monitor.value = panoIdList.join(',\n') + ',';
+  }
+}());
+</pre>
+        </code>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="center">
+      <p><a style="text-decoration: none;" href="//jisuowei.com" target="_blank"> © jisuowei.com</a></p>
+    </div>
+  </div>
+
+  <canvas id="canvas" width="4096" height="2048" ></canvas>
+
+</body>
+<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=hWlAC3G3AFjWt3QGjB5o7eK4HIqzMhQZ"></script>
+<script src="//apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+(function() {
+
+  const MapBrain = {
+
+    init() {
+      this.initMap();
+      this.initEvent();
+    },
+
+    map: null,
+    units: [],
+    base64: '',
+    pano_id: '',
+    pano_id_user: '',
+    PANO_ID_RE: /^[0-9]{26}[A-Z]{1}$/,
+
+    initMap() {
+      const map = new BMap.Map('map', {enableMapClick: false});
+      map.centerAndZoom(new BMap.Point(119.45, 32.79), 14);
+      map.enableScrollWheelZoom(true);
+      
+      map.addTileLayer(new BMap.PanoramaCoverageLayer());  // 覆盖区域图层测试
+
+      const navigationControl = new BMap.NavigationControl({
+        anchor: BMAP_ANCHOR_TOP_LEFT,
+        type: BMAP_NAVIGATION_CONTROL_LARGE,
+      });
+
+      map.addControl(navigationControl);
+
+      map.addEventListener('click', (event) => {
+        $('#pano-id-user').val('').trigger('input').blur();
+        this.pano_id_user = '';
+        this.getPanoID(event.point);
+      })
+      this.map = map;
+    },  // initMap
+
+    initEvent() {
+      $('body')
+        .on('click', '.navi a', function() {
+          const index = $(this).index();
+          $('html, body').animate({
+              scrollTop: $($('.navi-target')[index]).offset().top - 100
+            }, 
+          230);
+        })
+        .on('click', '.radio-group .group-item', function() {
+          $(this).addClass('active').siblings().removeClass('active');
+        })
+        .on('click', '#btn-fetch', () => {
+          if ( !$('#btn-fetch').hasClass('disabled') ) {
+            this.fetch();
+          }
+        })
+        .on('input properychange', '#pano-id-user', () => {
+          const $u = $('#pano-id-user');
+          const id = $u.val();
+
+          if ( id === '') {
+            $u.removeClass('error active');
+            this.pano_id_user = '';
+          } else if ( this.PANO_ID_RE.test(id) ) {
+            $('#pano-posi').val('');
+            this.pano_id = '';
+
+            $u.removeClass('error').addClass('active');
+            this.pano_id_user = id;
+            this.setThumbnail(id);
+            MapBrain.imageName.set();
+          } else {
+            $u.removeClass('active').addClass('error');
+            this.pano_id_user = '';
+          }
+
+          this.switchBtn();
+        })
+        .on('click', '#close', () => {
+          this.reset();
+        })
+        .on('click', '#download', () => {
+          this.grab(this.base64);
+        })
+    },  // initEvent
+
+    stepTo(index) {
+      $(`.steper .item:nth(${index})`).addClass('active').siblings().removeClass('active');
+    },  // stepTo
+
+    setThumbnail(id) {
+      if ( id ) {
+        this.loading();
+        $('#view-thumbnail').attr('src', `https://mapsv1.bdimg.com/?qt=pdata&sid=${id}&pos=0_0&z=1`).show();
+        this.loaded();
+      } else {
+        $('#view-thumbnail').attr('src', ``).hide();
+      }
+    },  // setThumbnail
+
+    noMatch: {
+      show() {
+        $('#no-match').hide().slideDown();
+      },
+      hide() {
+        $('#no-match').slideUp();
+      }
+    },
+
+    imageName: {
+      set() {
+        $('#image-name').val('PANODA_' + (MapBrain.pano_id || MapBrain.pano_id_user) + '.jpg');
+      },
+      del() {
+        $('#image-name').val('');
+      },
+      get() {
+        return $('#image-name').val();
+      }
+    },
+
+    switchBtn() {
+      if ( this.pano_id || this.pano_id_user ) {
+        $('#btn-fetch').removeClass('disabled');
+      } else {
+        $('#btn-fetch').addClass('disabled');
+      }
+    },
+
+    getPanoID(point) {
+      this.loading();
+
+      const { lng, lat } = point;
+
+      const panoramaService = new BMap.PanoramaService();
+      panoramaService.getPanoramaByLocation(new BMap.Point(lng, lat), (data) => {
+        this.map.clearOverlays();
+        if (data !== null) {
+          $('#pano-posi').val(data.position.lng + ',' + data.position.lat );
+          this.setThumbnail(data.id);
+          this.pano_id = data.id;
+
+          const point = new BMap.Point(data.position.lng, data.position.lat);
+          this.map.panTo(point);
+          const marker = new BMap.Marker(point);  // 创建标注
+          this.map.addOverlay(marker);  // 将标注添加到地图中
+          // marker.setAnimation(BMAP_ANIMATION_BOUNCE);  //跳动的动画
+
+          this.imageName.set();
+          this.noMatch.hide();
+        } else {
+          $('#pano-posi').val('');
+          this.setThumbnail();
+          this.pano_id = '';
+
+          this.imageName.del();
+          this.noMatch.show();
+        }
+        this.loaded();
+        this.switchBtn();
+      });
+    },  // getPanoID
+
+    getPanoInfo(id) {
+      $.ajax({
+        url: `https://mapsv0.bdimg.com/?qt=sdata&sid=${id}`,
+        success: (data) => {
+          console.log(data);
+        }
+      }) 
+    },
+
+    fetch() {
+      $('#choose-view').addClass('blur');
+      this.stepTo(1);
+
+      setTimeout(() => {
+        $('#fetch-pool').fadeIn();
+
+        setTimeout(() => {
+          $('#fetch-status').addClass('show');
+        }, 500);
+
+        let units = [];
+
+        for ( let row = 0, rows = 4; row < rows; row++ ) {
+          for ( let col = 0, cols = 8; col < cols; col ++ ) {
+            units.push({
+              row,
+              col,
+              src: `https://mapsv1.bdimg.com/?qt=pdata&sid=${ this.pano_id_user || this.pano_id }&pos=${row}_${col}&z=4`
+            });
+          }
+        }
+
+        this.units = units;
+        this._appendImg()
+      }, 501)
+    },  // fetch
+
+    _appendImg() {
+      setTimeout( () => {
+        const first = this.units.shift()
+        if ( first ) {
+          $('#fetch-pool').append(
+            `<img 
+              class="unit"
+              crossOrigin="Anonymous" 
+              width="128" 
+              row="${first.row}" 
+              col="${first.col}" 
+              onload="MapBrain._appendImg()" 
+              src="${first.src}" 
+            />`
+          )
+        } else {
+          this.drawCanvas();
+        }
+      }, 12)
+    },  // _appendImg
+
+    drawCanvas() {
+      $('#fetch-status').text('🖌 Drawing ..');
+
+      const ctx = document.querySelector('#canvas').getContext('2d');
+      const images = document.querySelectorAll('#fetch-pool .unit');
+
+      images.forEach( img => {
+        const row = img.getAttribute('row');
+        const col = img.getAttribute('col');
+        ctx.drawImage(img, 512 * col, 512 * row, 512, 512);
+      })
+
+      ctx.font = '24px monospace';
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#000';
+      ctx.fillText('panoda.jisuowei.com', 4072, 2021);
+      ctx.fillStyle = '#fff';
+      ctx.fillText('panoda.jisuowei.com', 4072, 2020);
+
+      setTimeout(() => {
+        this.base64 = document.querySelector('#canvas').toDataURL(
+          `image/jpeg`, 
+          +$('#image-quality .active').data('quality')
+        );
+        $('#export').attr('src', this.base64).show();
+        $('#fetch-pool').addClass('done');
+        
+        this.stepTo(2);
+
+        $('#fetch-status').text('💡 Done');
+        $('#fetch-end').addClass('show');
+        setTimeout(() => {
+          $('#fetch-status').removeClass('show');
+        }, 2000);
+
+      }, 20);
+    },  // drawCanvas
+
+    loading() {
+      $('#loading').fadeIn(100);
+    },
+
+    loaded() {
+      $('#loading').fadeOut(100);
+    },
+    
+    reset() {
+      $('#fetch-pool').fadeOut().removeClass('done');
+      $('#fetch-pool .unit').remove();
+      $('#choose-view').removeClass('blur');
+      $('#pano-posi').val('');
+      this.pano_id = '';
+      this.pano_id_user = '';
+      $('#btn-fetch').addClass('disabled');
+      $('#fetch-status').text('🧲 Fetching ..').removeClass('show');
+      $('#fetch-end').removeClass('show');
+      $('#export').hide();
+      $('#pano-id-user').val('');
+      this.imageName.del();
+      this.setThumbnail();
+      this.map.clearOverlays();
+      this.stepTo(0);
+    },
+
+    grab (base64) {
+      const name = this.imageName.get();
+      const link = document.createElement('a');
+      link.setAttribute('href', base64);
+      link.setAttribute('download', name);
+      link.dispatchEvent(new MouseEvent(`click`, { bubbles: true, cancelable: true, view: window }));
+    },
+
+  };
+
+  window.MapBrain = MapBrain;
+
+  MapBrain.init();
+
+} ());
+</script>
+</html>
