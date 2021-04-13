@@ -212,7 +212,7 @@
 			$('#jiloading').show();
 			$.ajax({
 				type: 'POST', dataType: 'json',
-				url: '../../api/get/pokit.php',
+				url: '../../../api/get/pokit.php',
 				data: { name: name },
 				success: function(data) {
 					$('#jiloading').hide();
@@ -252,7 +252,7 @@
 			$('#jiloading').show();
 			$.ajax({
 				type: 'POST', dataType: 'json',
-				url: '../../api/get/pokit.php',
+				url: '../../../api/get/pokit.php',
 				data: { id: pokitId },
 				success: function(data) {
 					$('#jiloading').hide();
