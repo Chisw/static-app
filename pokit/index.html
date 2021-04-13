@@ -261,7 +261,7 @@
 						data = data.rows[0];
 						$('.J_pokitTitle').html( data.title );
 						$('.J_pokitText').html( data.text );
-						$('.J_pokitImage').css({ backgroundImage: `url(${data.image})` })
+						$('.J_pokitImage').css({ backgroundImage: `url(${data.image.replace('cdn://', 'https://oss.jisuowei.com/')})` })
 						$('.J_pokitWords').html( data.words );
 						$('.J_pokitNotes').html( data.notes );
 						$('.J_pokitTranslation').html( data.translation );
