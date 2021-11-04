@@ -148,9 +148,12 @@
       return ''
     }
 
-    isLocal = !location.href.startsWith('https://jisuowei')
+    const isLocal = !location.href.startsWith('https://jisuowei')
+    const base = isLocal
+      ? 'http://127.0.0.1:1970'
+      : 'https://oss.jisuowei.com/album/gaoyou/1970'
 
-    return `${isLocal ? 'http://192.168.31.84:8000/gaoyou/1970' : 'https://oss.jisuowei.com/gaoyou1970'}/z_${zoom}/tile_${index}.jpg`
+    return `${base}/z_${zoom}/tile_${index}.jpg`
   }
 
   map.addTileLayer(tileLayer)
